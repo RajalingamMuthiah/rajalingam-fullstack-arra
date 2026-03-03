@@ -1,0 +1,47 @@
+# Local development files
+
+server.js
+.env
+.env.local
+.env.\*.local
+
+# Dependencies (Vercel installs fresh)
+
+node_modules/
+
+# Development tools
+
+.vscode/
+.idea/
+
+# Build artifacts (Vercel rebuilds)
+
+dist/
+build/
+
+# Git files
+
+.git/
+.gitignore
+
+# Documentation
+
+\*.md
+QUICKSTART.md
+SETUP.md
+COMMANDS.md
+CUSTOMIZATION.md
+FEATURES.md
+
+# OS files
+
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# IDE configs
+
+_.swp
+_.swo
+\*~
+.env.example
