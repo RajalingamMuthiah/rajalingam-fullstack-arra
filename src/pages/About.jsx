@@ -42,7 +42,6 @@ const About = () => {
     "Natural Language Processing",
     "Web Development",
     "Open Source",
-    "Tech Blogging",
     "Mentoring",
   ];
 

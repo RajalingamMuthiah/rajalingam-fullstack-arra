@@ -15,59 +15,67 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Gallery from "./pages/Gallery";
 import Certificates from "./pages/Certificates";
-import Blog from "./pages/Blog";
 import Resume from "./pages/Resume";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
 // Context
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
-function App() {
+function AppContent() {
   const location = useLocation();
+  const { isDark } = useTheme();
 
   return (
-    <ThemeProvider>
-      <div className="relative min-h-screen bg-dark-bg text-white overflow-x-hidden">
-        {/* Particle Background */}
-        <ParticlesBackground />
+    <div
+      className={`relative min-h-screen ${isDark ? "bg-dark-bg text-white" : "bg-gray-50 text-gray-900"} overflow-x-hidden`}
+    >
+      {/* Particle Background */}
+      <ParticlesBackground />
 
-        {/* Main Content */}
-        <div className="relative z-10">
-          <Navbar />
+      {/* Main Content */}
+      <div className="relative z-10">
+        <Navbar />
 
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/certificates" element={<Certificates />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </AnimatePresence>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/certificates" element={<Certificates />} />
 
-          <Footer />
-        </div>
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </AnimatePresence>
 
-        <FloatingResumeButton />
-
-        {/* Toast Notifications */}
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
+        <Footer />
       </div>
+
+      <FloatingResumeButton />
+
+      {/* Toast Notifications */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={isDark ? "dark" : "light"}
+      />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
     </ThemeProvider>
   );
 }

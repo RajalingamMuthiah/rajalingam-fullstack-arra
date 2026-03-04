@@ -97,7 +97,11 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-lg shadow-neon-blue/10" : "bg-transparent"
+          scrolled
+            ? isDark
+              ? "glass shadow-lg shadow-neon-blue/10"
+              : "bg-white/80 backdrop-blur-lg shadow-lg border-b border-gray-200"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,7 +143,9 @@ const Navbar = () => {
                       className={`text-sm font-medium transition-colors duration-300 ${
                         isActive
                           ? "text-neon-blue"
-                          : "text-gray-300 hover:text-white"
+                          : isDark
+                            ? "text-gray-300 hover:text-white"
+                            : "text-gray-700 hover:text-gray-900"
                       }`}
                     >
                       {link.name}
@@ -201,7 +207,9 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-y-0 right-0 z-40 w-full sm:w-80 glass lg:hidden pt-20"
+            className={`fixed inset-y-0 right-0 z-40 w-full sm:w-80 lg:hidden pt-20 ${
+              isDark ? "glass" : "bg-white border-l border-gray-200"
+            }`}
           >
             <div className="flex flex-col p-6 space-y-4">
               {navLinks.map((link, index) => {
@@ -223,7 +231,9 @@ const Navbar = () => {
                       className={`w-full text-left block px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
                         isActive
                           ? "bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 text-neon-blue"
-                          : "hover:bg-white/5 text-gray-300"
+                          : isDark
+                            ? "hover:bg-white/5 text-gray-300"
+                            : "hover:bg-gray-100 text-gray-700"
                       }`}
                     >
                       {link.name}

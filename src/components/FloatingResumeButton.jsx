@@ -144,7 +144,7 @@ const FloatingResumeButton = () => {
               <AnimatePresence>
                 {menuOpen && (
                   <>
-                    <motion.button
+                    {/* <motion.button
                       type="button"
                       custom={{ x: -64, y: -6 }}
                       variants={miniButtonVariants}
@@ -155,12 +155,12 @@ const FloatingResumeButton = () => {
                       whileHover={{ scale: 1.08 }}
                       whileTap={{ scale: 0.95 }}
                       title="View Resume"
-                      className="absolute z-10 w-11 h-11 rounded-full bg-white/5 backdrop-blur-lg border border-cyan-400/30 text-cyan-200 shadow-2xl shadow-cyan-500/20 flex items-center justify-center"
+                      className="absolute z-10 w-11 h-11 rounded-full bg-white/5 backdrop-blur-lg border border-cyan-400/30 text-cyan-200 shadow-2xl shadow-cyan-500/20 flex items-center justify-center hover:bg-white/10 transition-colors"
                     >
                       <Eye className="w-4.5 h-4.5" />
-                    </motion.button>
+                    </motion.button> */}
 
-                    <motion.button
+                    {/* <motion.button
                       type="button"
                       custom={{ x: -14, y: -62 }}
                       variants={miniButtonVariants}
@@ -171,10 +171,10 @@ const FloatingResumeButton = () => {
                       whileHover={{ scale: 1.08 }}
                       whileTap={{ scale: 0.95 }}
                       title="Download Resume"
-                      className="absolute z-10 w-11 h-11 rounded-full bg-white/5 backdrop-blur-lg border border-cyan-400/30 text-cyan-200 shadow-2xl shadow-cyan-500/20 flex items-center justify-center"
+                      className="absolute z-10 w-11 h-11 rounded-full bg-white/5 backdrop-blur-lg border border-cyan-400/30 text-cyan-200 shadow-2xl shadow-cyan-500/20 flex items-center justify-center hover:bg-white/10 transition-colors"
                     >
                       <Download className="w-4.5 h-4.5" />
-                    </motion.button>
+                    </motion.button> */}
 
                     <motion.div
                       initial={{ opacity: 0, y: 4 }}
@@ -187,16 +187,18 @@ const FloatingResumeButton = () => {
                         <button
                           type="button"
                           onClick={handleView}
-                          className="w-full text-left px-3 py-2 rounded-xl hover:bg-white/10 transition-colors duration-200 text-cyan-100"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/10 transition-colors duration-200 text-cyan-100"
                         >
-                          View Resume
+                          <Eye className="w-4 h-4 flex-shrink-0" />
+                          <span>View Resume</span>
                         </button>
                         <button
                           type="button"
                           onClick={handleDownload}
-                          className="w-full text-left px-3 py-2 rounded-xl hover:bg-white/10 transition-colors duration-200 text-cyan-100"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/10 transition-colors duration-200 text-cyan-100"
                         >
-                          Download Resume
+                          <Download className="w-4 h-4 flex-shrink-0" />
+                          <span>Download Resume</span>
                         </button>
                       </div>
                     </motion.div>

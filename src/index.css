@@ -4,8 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-dark-bg text-white font-sans;
-    @apply antialiased;
+    @apply bg-dark-bg text-white font-sans antialiased;
+  }
+
+  /* Light mode styles */
+  .light body {
+    @apply bg-gray-50 text-gray-900;
   }
 
   html {
@@ -19,6 +23,11 @@
     @apply bg-white/5 backdrop-blur-lg border border-white/10;
   }
 
+  /* Light mode glassmorphism */
+  .light .glass {
+    @apply bg-black/5 border-black/10;
+  }
+
   /* Glow effect for cards */
   .glow-card {
     @apply relative overflow-hidden;
@@ -26,6 +35,11 @@
     @apply before:bg-gradient-to-r before:from-neon-blue/20 before:to-neon-purple/20;
     @apply before:blur-xl before:opacity-0 hover:before:opacity-100;
     @apply before:transition-opacity before:duration-500;
+  }
+
+  /* Light mode card glow */
+  .light .glow-card:hover::before {
+    @apply from-neon-blue/10 to-neon-purple/10;
   }
 
   /* Animated gradient text */
@@ -50,6 +64,11 @@
     @apply glass hover:bg-white/10;
     @apply transition-all duration-300;
     @apply hover:scale-105 active:scale-95;
+  }
+
+  /* Light mode button secondary */
+  .light .btn-secondary {
+    @apply hover:bg-black/10;
   }
 
   /* Scrollbar styling */

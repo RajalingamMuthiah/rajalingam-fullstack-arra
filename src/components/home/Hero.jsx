@@ -89,19 +89,19 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="max-w-7xl mx-auto w-full relative"
       >
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Column - Text Content */}
-          <div className="space-y-8">
+          <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
             <motion.div variants={itemVariants} className="space-y-4">
               <motion.h1
-                className="text-5xl md:text-7xl font-bold font-display"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display leading-tight"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -110,8 +110,8 @@ const Hero = () => {
                 <span className="gradient-text">Rajalingam Muthiah</span>
               </motion.h1>
 
-              <div className="h-20 md:h-16">
-                <p className="text-2xl md:text-3xl text-gray-300 font-medium">
+              <div className="h-24 sm:h-20 md:h-16">
+                <p className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium">
                   {typedText}
                   <span className="animate-pulse">|</span>
                 </p>
@@ -218,7 +218,7 @@ const Hero = () => {
           {/* Right Column - Profile Image */}
           <motion.div
             variants={itemVariants}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end order-1 lg:order-2"
           >
             <div className="relative">
               {/* Animated Glow Ring */}
@@ -242,7 +242,7 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
+                className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
               >
                 <img
                   src="/Passport_Photograph.jpeg"
@@ -259,9 +259,9 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center shadow-lg shadow-neon-blue/50"
+                className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center shadow-lg shadow-neon-blue/50"
               >
-                <span className="text-2xl">🚀</span>
+                <span className="text-xl sm:text-2xl">🚀</span>
               </motion.div>
 
               <motion.div
@@ -272,9 +272,9 @@ const Hero = () => {
                   ease: "easeInOut",
                   delay: 1,
                 }}
-                className="absolute -bottom-4 -left-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center shadow-lg shadow-neon-purple/50"
+                className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center shadow-lg shadow-neon-purple/50"
               >
-                <span className="text-2xl">⚡</span>
+                <span className="text-xl sm:text-2xl">⚡</span>
               </motion.div>
             </div>
           </motion.div>
