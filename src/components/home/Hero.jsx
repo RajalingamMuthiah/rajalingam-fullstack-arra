@@ -1,26 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  MapPin,
-  Briefcase,
-  Mail,
-  Github,
-  Linkedin,
-  Instagram,
-  Download,
-  ArrowRight,
-  Zap,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+import { MapPin, Briefcase, Mail, ArrowRight } from "lucide-react";
 import Button from "../common/Button";
-import LaunchBadge from "../common/LaunchBadge";
-import LaunchModal from "../common/LaunchModal";
 import { SOCIAL_ICONS, SOCIAL_COLORS } from "../common/socialIcons";
 import { profile, socialLinks as socialLinkData } from "../../data/portfolio";
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
-  const [isLaunchModalOpen, setIsLaunchModalOpen] = useState(false);
   const fullText = profile.typedTitle;
 
   useEffect(() => {
@@ -35,7 +21,7 @@ const Hero = () => {
     }, 100);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [fullText]);
 
   const skills = profile.heroBadges;
 
@@ -91,16 +77,23 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                Hi, I'm{" "}
+                Hi, I’m{" "}
                 <span className="gradient-text">{profile.name}</span>
               </motion.h1>
 
-              <div className="h-24 sm:h-20 md:h-16">
-                <p className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium">
+              <p
+                className="relative text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium"
+                aria-label={fullText}
+              >
+                {/* invisible copy reserves the final height while typing */}
+                <span className="invisible" aria-hidden="true">
+                  {fullText}|
+                </span>
+                <span className="absolute inset-0" aria-hidden="true">
                   {typedText}
                   <span className="animate-pulse">|</span>
-                </p>
-              </div>
+                </span>
+              </p>
             </motion.div>
 
             {/* Animated Skill Badges */}
@@ -135,7 +128,7 @@ const Hero = () => {
                 >
                   <Icon className="w-5 h-5 text-neon-blue" />
                   <p className="text-xs text-gray-400">{label}</p>
-                  <p className="text-xs font-semibold truncate">{value}</p>
+                  <p className="text-xs font-semibold break-all">{value}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -145,49 +138,21 @@ const Hero = () => {
               variants={itemVariants}
               className="flex flex-wrap gap-4 items-center"
             >
-              <Link to="/projects">
-                <Button variant="primary" icon={ArrowRight}>
-                  View Projects
-                </Button>
-              </Link>
-              <Link to="/contact">
-                <Button variant="secondary">Get In Touch</Button>
-              </Link>
-
-              {/* Smart To-Do CTA Button */}
-              <motion.button
-                onClick={() => setIsLaunchModalOpen(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative px-4 py-2.5 rounded-full bg-gradient-to-r from-neon-purple/10 to-neon-blue/10 border border-neon-purple/40 hover:border-neon-purple/70 text-sm font-semibold text-white/90 hover:text-white backdrop-blur-sm transition-all duration-300 group overflow-hidden cursor-pointer"
-              >
-                {/* Soft glow animation */}
-                <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-purple/30 to-neon-blue/30 blur-lg opacity-0 group-hover:opacity-100"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-
-                {/* Button content */}
-                <span className="relative flex items-center gap-1.5">
-                  <Zap className="w-4 h-4" />
-                  Smart To-Do
-                </span>
-              </motion.button>
+              <Button to="/projects" variant="primary" icon={ArrowRight}>
+                View Projects
+              </Button>
+              <Button to="/contact" variant="secondary">
+                Get In Touch
+              </Button>
             </motion.div>
 
             {/* Social Links */}
             <motion.div variants={itemVariants} className="flex space-x-4">
-              {socialLinks.map(({ icon: Icon, href, color }) => (
+              {socialLinks.map(({ icon: Icon, href, color, label }) => (
                 <motion.a
                   key={href}
                   href={href}
+                  aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, rotate: 5 }}
@@ -280,12 +245,6 @@ const Hero = () => {
             <div className="w-1 h-2 bg-white/50 rounded-full" />
           </motion.div>
         </motion.div>
-
-        {/* Launch Modal */}
-        <LaunchModal
-          isOpen={isLaunchModalOpen}
-          onClose={() => setIsLaunchModalOpen(false)}
-        />
       </motion.div>
     </section>
   );

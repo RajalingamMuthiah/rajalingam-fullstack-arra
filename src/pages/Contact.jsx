@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Send,
-  Mail,
-  MapPin,
-  Phone,
-  Linkedin,
-  Github,
-  Instagram,
-} from "lucide-react";
+import { Send, Mail, MapPin } from "lucide-react";
 import { toast } from "react-toastify";
 import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
@@ -40,12 +32,6 @@ const Contact = () => {
       label: "Location",
       value: profile.location,
       href: null,
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: profile.phone.display,
-      href: profile.phone.href,
     },
   ];
 
@@ -332,11 +318,11 @@ const Contact = () => {
 
               {/* Additional Info */}
               <Card glow>
-                <h3 className="text-xl font-bold mb-4">Let's Collaborate!</h3>
+                <h3 className="text-xl font-bold mb-4">Let’s Collaborate!</h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                  I'm always interested in hearing about new projects and
+                  I’m always interested in hearing about new projects and
                   opportunities. Whether you have a question or just want to say
-                  hi, I'll try my best to get back to you!
+                  hi, I’ll try my best to get back to you!
                 </p>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   🚀 Available for freelance work

@@ -1,6 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
+
+const MotionLink = motion.create(Link);
 
 const Button = ({ 
   children, 
@@ -9,6 +11,8 @@ const Button = ({
   icon: Icon, 
   loading = false,
   className = '',
+  to,
+  href,
   ...props 
 }) => {
   const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed';
@@ -25,23 +29,27 @@ const Button = ({
     lg: 'px-8 py-4 text-lg',
   };
 
+  // Render as a router link, an anchor, or a button — never a button nested in a link.
+  const Component = to ? MotionLink : href ? motion.a : motion.button;
+  const elementProps = to ? { to } : href ? { href } : { disabled: loading };
+
   return (
-    <motion.button
+    <Component
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      disabled={loading}
+      {...elementProps}
       {...props}
     >
       {loading ? (
         <Loader2 className="w-5 h-5 animate-spin" />
       ) : (
         <>
-          {Icon && <Icon className="w-5 h-5 mr-2" />}
+          {Icon && <Icon className="w-5 h-5 mr-2" aria-hidden="true" />}
           {children}
         </>
       )}
-    </motion.button>
+    </Component>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, Eye, FileText, X } from "lucide-react";
 
@@ -6,29 +6,6 @@ import { profile } from "../data/portfolio";
 
 const RESUME_FILE = profile.resume.file;
 const RESUME_PATH = profile.resume.path;
-
-const miniButtonVariants = {
-  closed: {
-    opacity: 0,
-    scale: 0.6,
-    y: 8,
-    x: 8,
-    pointerEvents: "none",
-    transition: { duration: 0.18 },
-  },
-  open: (position) => ({
-    opacity: 1,
-    scale: 1,
-    y: position.y,
-    x: position.x,
-    pointerEvents: "auto",
-    transition: {
-      type: "spring",
-      stiffness: 420,
-      damping: 26,
-    },
-  }),
-};
 
 const backdropVariants = {
   hidden: { opacity: 0 },
@@ -146,37 +123,7 @@ const FloatingResumeButton = () => {
               <AnimatePresence>
                 {menuOpen && (
                   <>
-                    {/* <motion.button
-                      type="button"
-                      custom={{ x: -64, y: -6 }}
-                      variants={miniButtonVariants}
-                      initial="closed"
-                      animate="open"
-                      exit="closed"
-                      onClick={handleView}
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
-                      title="View Resume"
-                      className="absolute z-10 w-11 h-11 rounded-full bg-white/5 backdrop-blur-lg border border-cyan-400/30 text-cyan-200 shadow-2xl shadow-cyan-500/20 flex items-center justify-center hover:bg-white/10 transition-colors"
-                    >
-                      <Eye className="w-4.5 h-4.5" />
-                    </motion.button> */}
 
-                    {/* <motion.button
-                      type="button"
-                      custom={{ x: -14, y: -62 }}
-                      variants={miniButtonVariants}
-                      initial="closed"
-                      animate="open"
-                      exit="closed"
-                      onClick={handleDownload}
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
-                      title="Download Resume"
-                      className="absolute z-10 w-11 h-11 rounded-full bg-white/5 backdrop-blur-lg border border-cyan-400/30 text-cyan-200 shadow-2xl shadow-cyan-500/20 flex items-center justify-center hover:bg-white/10 transition-colors"
-                    >
-                      <Download className="w-4.5 h-4.5" />
-                    </motion.button> */}
 
                     <motion.div
                       initial={{ opacity: 0, y: 4 }}

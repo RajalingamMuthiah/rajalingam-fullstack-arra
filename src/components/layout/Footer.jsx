@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Heart } from "lucide-react";
@@ -75,21 +74,6 @@ const Footer = () => {
                   <Icon className="w-5 h-5 group-hover:text-neon-blue transition-colors" />
                 </motion.a>
               ))}
-            </div>
-
-            {/* Other Portfolio Section */}
-            <div className="pt-4 border-t border-white/10">
-              <p className="text-gray-500 text-xs font-medium mb-2">
-                Other Portfolio:
-              </p>
-              <a
-                href={site.otherPortfolio.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-xs inline-block"
-              >
-                {site.otherPortfolio.label}
-              </a>
             </div>
           </div>
         </div>

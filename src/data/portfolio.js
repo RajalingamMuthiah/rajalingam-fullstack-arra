@@ -4,6 +4,10 @@
  * Edit this file to update the portfolio. Components only render what is here.
  * Icons are referenced by key (e.g. "github") and resolved inside components,
  * so this file stays plain data with no React imports.
+ *
+ * Sources: public/Rajalingam-Muthiah-AI-Engineer-Resume.pdf and each project's
+ * GitHub README/code. Do not add features, metrics or links that are not in
+ * those sources.
  */
 
 // ---------------------------------------------------------------------------
@@ -11,23 +15,24 @@
 // ---------------------------------------------------------------------------
 export const profile = {
   name: "Rajalingam Muthiah",
-  typedTitle: "Fullstack Developer | AI Engineer | ML Developer",
+  title: "AI/ML Engineer",
+  typedTitle:
+    "AI/ML Engineer | LLM Evaluation | RAG & Agentic AI | Computer Vision",
   heroBadges: [
     "Artificial Intelligence",
     "Machine Learning",
-    "Deep Learning",
+    "LLMs & RAG",
+    "LLM Evaluation",
     "Computer Vision",
-    "Natural Language Processing",
-    "Full Stack Development",
+    "Agentic AI",
   ],
-  location: "Mumbai, MH",
+  location: "Mumbai, India",
   experienceLabel: "5+ Years",
   email: "rajalingammuthiah2011@gmail.com",
-  phone: { display: "+91 9920580660", href: "tel:+919920580660" },
-  photo: { src: "/Passport_Photograph.jpeg", alt: "Your Name" },
+  photo: { src: "/Passport_Photograph.jpeg", alt: "Rajalingam Muthiah" },
   resume: {
-    file: "Rajalingam-Muthiah-Resume_Updtaed.pdf",
-    path: "/Rajalingam-Muthiah-Resume_Updtaed.pdf",
+    file: "Rajalingam-Muthiah-AI-Engineer-Resume.pdf",
+    path: "/Rajalingam-Muthiah-AI-Engineer-Resume.pdf",
   },
 };
 
@@ -42,440 +47,454 @@ export const socialLinks = [
   {
     key: "linkedin",
     label: "LinkedIn",
-    href: "https://linkedin.com/in/rajalingam-muthiah/",
+    href: "https://www.linkedin.com/in/rajalingam-muthiah/",
     showIn: ["hero", "contact", "footer"],
   },
   {
     key: "instagram",
     label: "Instagram",
     href: "https://instagram.com/hilarious_king__/",
-    showIn: ["hero", "contact", "footer"],
+    showIn: ["footer"],
   },
 ];
 
 export const site = {
-  footerBrand: "AI/ML Portfolio",
+  url: "https://rajalingam-fullstack-arra.vercel.app",
+  footerBrand: "Rajalingam Muthiah",
   footerBlurb:
-    "Building the future with AI and Machine Learning. Passionate about creating innovative solutions.",
-  otherPortfolio: {
-    label: "Arjun – Fullstack Developer (Java)",
-    href: "https://arjun-portfolio-wheat.vercel.app/",
-  },
+    "AI/ML Engineer building RAG, LLM evaluation, OCR and computer vision systems.",
 };
 
 // ---------------------------------------------------------------------------
 // About page
 // ---------------------------------------------------------------------------
 export const about = {
-  photo: { src: "/gallery/Bike-Ride.jpeg", alt: "Your professional photo" },
+  photo: {
+    src: "/gallery/Bike-Ride.jpeg",
+    alt: "Rajalingam Muthiah smiling on a red-and-black scooter",
+  },
   heading: "Hi, I'm Rajalingam Muthiah",
   paragraphs: [
-    "I'm a passionate AI/ML Engineer and Full Stack Developer with over 5 years of experience building intelligent systems and scalable web applications. My journey in tech started with a curiosity about how machines can learn and has evolved into a career dedicated to creating innovative solutions.",
-    "I specialize in developing end-to-end AI solutions, from data collection and model training to deployment and monitoring. My expertise spans across computer vision, natural language processing, and deep learning, combined with strong full-stack development skills.",
-    "When I'm not coding, you'll find me contributing to open-source projects, writing technical articles, or mentoring aspiring developers. I believe in continuous learning and sharing knowledge with the community.",
+    "I'm a Senior Associate AI/ML Engineer with 5 years of experience building RAG, LLM evaluation, OCR and computer vision systems. I specialize in measuring and improving the reliability of AI answers, including hallucination and factual-grounding evaluation.",
+    "I'm currently at TransformHub, building enterprise AI agent solutions on the AgentIQX platform, and pursuing an Executive PG Diploma in AI/ML at IIT Bombay.",
   ],
-  // icon keys: code | zap | heart | coffee | target
+  // icon keys: code | zap | graduation
   stats: [
-    { label: "Years Experience", value: "5+", icon: "code" },
-    { label: "Projects Completed", value: "10+", icon: "zap" },
-    { label: "Happy Clients", value: "30+", icon: "heart" },
-    { label: "Cups of Coffee", value: "1000+", icon: "coffee" },
-  ],
-  values: [
-    {
-      icon: "target",
-      title: "Innovation",
-      description:
-        "Constantly exploring new technologies and pushing the boundaries of what's possible in AI and ML.",
-    },
-    {
-      icon: "heart",
-      title: "Quality",
-      description:
-        "Committed to delivering high-quality, maintainable, and scalable solutions that exceed expectations.",
-    },
-    {
-      icon: "zap",
-      title: "Performance",
-      description:
-        "Optimizing every aspect to ensure fast, efficient, and reliable applications.",
-    },
+    { value: "5+", label: "Years Experience", icon: "code" },
+    { value: "15+", label: "Projects", icon: "zap" },
+    { value: "IIT Bombay", label: "Exec PG AI/ML", icon: "graduation" },
   ],
   interests: [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Deep Learning",
+    "LLM Evaluation",
+    "RAG",
+    "Agentic AI",
     "Computer Vision",
-    "Natural Language Processing",
-    "Web Development",
-    "Open Source",
-    "Mentoring",
+    "Document Intelligence",
+    "OCR",
+    "NLP",
+    "AI for Health Tech",
   ],
 };
 
 // ---------------------------------------------------------------------------
-// Experience (newest first)
-// `highlights` render on Home; `achievements` render on the Resume page.
+// Experience (newest first) — shown on Home and Resume
 // ---------------------------------------------------------------------------
 export const experience = [
   {
-    title: "Full Stack Developer",
-    company: "Tata Consultancy Services",
-    location: "Mumbai, India",
-    period: "June 2023 - Present",
-    description:
-      "Engineered and deployed responsive UI components for Salesforce-powered enterprise applications, implementing data quality frameworks and automated validation scripts.",
-    highlights: [
-      "Achieved 99% data accuracy through custom Python scripts",
-      "Improved user engagement with responsive UI components",
-      "Collaborated with cross-functional teams for seamless integration",
+    title: "Senior Associate, AI/ML Engineer",
+    company: "TransformHub",
+    location: "Mumbai (Hybrid)",
+    period: "Aug 2026 – Present",
+    bullets: [
+      "Built an end-to-end claims-processing POC for the AgentIQX enterprise AI agent platform, with an OCR/document-parsing pipeline (Tesseract, PaddleOCR, Docling) that extracts structured data from claim documents, and fine-tuned Qwen models.",
+      "Built a Loss of Baggage Document Intelligence POC that identifies identity-document types in PDFs and supports automated validation of extracted data.",
+      "Designed a privacy-conscious pipeline for PII documents, with anonymization and controlled LLM integration before data reaches external services.",
     ],
-    achievements: [
-      "Engineered responsive UI components using Lightning App Builder, Experience Builder, and SLDS, improving user engagement metrics",
-      "Implemented data quality framework achieving 99% data accuracy through custom Python scripts and Excel VBA queries",
-      "Developed automated data validation scripts using Python (Pandas, NumPy) to support critical business operations",
-      "Collaborated with cross-functional teams to align UI/UX design with data architecture requirements",
+    color: "from-emerald-500 to-cyan-500",
+  },
+  {
+    title: "AI Engineer (CV & Document Intelligence)",
+    company: "Tata Consultancy Services",
+    location: "Mumbai",
+    period: "Jun 2023 – Jul 2026",
+    bullets: [
+      "LLM Evaluation & RAG: Architected a RAG-based document QA system using LangChain; designed hallucination-evaluation pipelines to measure factual grounding of outputs against source documents.",
+      "Vision Pipelines: Engineered a YOLOv8 object-detection system for automated document grading; managed the full ML lifecycle from Roboflow annotation to hyperparameter tuning.",
     ],
     color: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Workflow Analyst",
+    title: "Software Developer – Data Automation Engineer",
     company: "Tata Consultancy Services",
-    location: "Mumbai, India",
-    period: "June 2021 - May 2023",
-    description:
-      "Designed visual assets for digital platforms and streamlined workflow processes to improve team efficiency.",
-    highlights: [
-      "Created visual assets using Adobe Creative Suite",
-      "Improved team efficiency through process optimization",
-      "Translated requirements into actionable specifications",
-    ],
-    achievements: [
-      "Designed and delivered visual assets for digital platforms using Adobe Creative Suite (Illustrator, Photoshop)",
-      "Streamlined workflow processes and created documentation to improve team efficiency and project delivery timelines",
-      "Partnered with business analysts and technical teams to translate requirements into actionable design specifications",
+    location: "Mumbai",
+    period: "Jun 2021 – May 2023",
+    bullets: [
+      "Performed quantitative and qualitative data analysis to support senior consultants in developing strategic recommendations for clients.",
+      "Contributed to detailed project plans and managed key workstreams for consulting engagements across multiple sectors.",
     ],
     color: "from-purple-500 to-pink-500",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Education
+// Education — shown on Home and Resume, in this order
 // ---------------------------------------------------------------------------
 export const education = [
   {
-    degree: "Master of Science in Data Science",
-    school: "SIES College of Arts, Science & Commerce",
+    degree: "Executive PG Diploma in AI/ML",
+    school: "IIT Bombay",
+    period: "May 2026 – Present",
+    status: "Pursuing",
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    degree: "M.Sc. Data Science",
+    school: "SIES College",
     university: "Mumbai University",
-    location: "Mumbai, India",
-    period: "Aug 2022 - May 2024",
-    description:
-      "Advanced study in data science with focus on practical applications",
-    coursework: [
-      "Machine Learning",
-      "Data Visualization",
-      "Big Data Analytics",
-      "Statistical Modeling",
-    ],
-    thesis:
-      "Developed predictive models using Python, TensorFlow, and Scikit-learn for real-world forecasting applications",
+    period: "Aug 2022 – May 2024",
     color: "from-blue-500 to-cyan-500",
   },
   {
-    degree: "Bachelor of Science in Computer Science",
-    school: "SIWS College of Arts, Science & Commerce",
+    degree: "B.Sc. Computer Science",
+    school: "SIWS College",
     university: "Mumbai University",
-    location: "Mumbai, India",
-    period: "Aug 2018 - May 2021",
-    description: "Comprehensive foundation in computer science fundamentals",
-    coursework: [
-      "Algorithms & Data Structures",
-      "Database Management Systems",
-      "Computer Networks",
-      "Web Development",
-    ],
+    period: "Aug 2018 – May 2021",
     color: "from-purple-500 to-pink-500",
-  },
-  {
-    degree: "ePGD in Computer Science Engineering",
-    school: "Indian Institute of Technology (IIT)",
-    location: "Online",
-    period: "May 2026 - Ongoing",
-    description: "Advanced postgraduate diploma in Computer Science Engineering",
-    coursework: [
-      "Advanced Computer Science",
-      "Modern Computing Practices",
-      "Emerging Technologies",
-    ],
-    color: "from-green-500 to-emerald-500",
-  },
-];
-
-// LEGACY: the Resume page currently shows this separate (incorrect) list.
-// Replaced by `education` in step 3 of the update.
-export const legacyResumeEducation = [
-  {
-    degree: "Master of Science in Computer Science",
-    school: "Stanford University",
-    period: "2016 - 2018",
-    gpa: "3.9/4.0",
-    focus: "Artificial Intelligence & Machine Learning",
-  },
-  {
-    degree: "Bachelor of Technology in Computer Engineering",
-    school: "MIT",
-    period: "2012 - 2016",
-    gpa: "3.8/4.0",
-    focus: "Software Engineering",
   },
 ];
 
 // ---------------------------------------------------------------------------
 // Projects
-// `featured` projects appear on Home (first three). `inProgress` shows the
-// "Work in Progress" dialog instead of opening the demo link.
+//
+// Fields:
+//   featured     larger card on Home + top of Projects page (in array order)
+//   categories   any of "ai" | "cv" | "fullstack" (drives the filters)
+//   links        only real URLs; omit a link rather than using "#"
+//   status       "In progress" shows a badge
+//   availability e.g. "Demo on request"
+//   results      measured results quoted from the repo README
+//   note         short disclaimer shown on the card
 // ---------------------------------------------------------------------------
 export const projectCategories = [
-  { id: "all", label: "All Projects" },
+  { id: "all", label: "All" },
   { id: "ai", label: "AI/ML" },
-  { id: "web", label: "Web Development" },
+  { id: "cv", label: "Computer Vision" },
+  { id: "fullstack", label: "Full-Stack" },
 ];
+
+const GH = "https://github.com/RajalingamMuthiah";
 
 export const projects = [
+  // ----- Featured -----
   {
-    id: 1,
-    title: "Smart To-Do – Intelligent Task Planning System",
-    description:
-      "Java-based full-stack productivity platform with priority-based task management, AI-generated workout plans, and real-time collaboration.",
-    fullDescription:
-      "A comprehensive full-stack productivity platform built with Java and Spring Boot. Features intelligent task management with priority-based organization, AI-generated workout plans, real-time collaboration capabilities, and MongoDB for scalable data storage. Deployed as a Progressive Web App (PWA) for seamless mobile-first accessibility and offline functionality.",
+    id: "medquery",
+    title: "MedQuery",
+    subtitle: "Grounded health Q&A with RAG and hallucination evaluation",
+    summary:
+      "RAG health Q&A over 10 public-domain CDC, NIH, VA/DoD and HHS documents on diabetes, hypertension and tuberculosis. Answers cite their sources and say \"not covered\" when the documents don't contain the answer.",
+    details: [
+      "Hybrid retrieval: dense bge-small embeddings + BM25, fused with reciprocal rank fusion (RRF).",
+      "Cited answers generated on Groq (gpt-oss-20b), with honest \"not covered\" refusals.",
+      "Optional claim-by-claim verification and a hallucination-evaluation layer; every design choice measured on a held-out dev set.",
+    ],
+    results: {
+      caption: "Held-out test set (23 questions) vs. a simple baseline",
+      items: [
+        { label: "Answer correctness", value: "0.556 → 0.833" },
+        { label: "False refusals", value: "0.389 → 0.111" },
+        { label: "Unanswerable questions declined", value: "100%" },
+      ],
+    },
+    note: "Not medical advice. MedQuery answers only from its source documents.",
+    tags: ["Python", "FastAPI", "React", "RAG", "LLM Evaluation", "Groq"],
+    categories: ["ai", "fullstack"],
+    links: { github: `${GH}/MedQuery` },
+    featured: true,
+  },
+  {
+    id: "codey",
+    title: "Codey",
+    subtitle: "Secure remote code-execution platform",
+    summary:
+      "Run code remotely and safely: an Angular frontend and FastAPI backend, with each execution sandboxed in Docker.",
+    tags: ["Angular", "FastAPI", "Python", "Docker"],
+    categories: ["fullstack"],
+    links: {
+      github: `${GH}/codey`,
+      video: `${GH}/codey/blob/main/static/submission_vid.mp4`,
+    },
+    featured: true,
+  },
+  {
+    id: "barometers",
+    title: "Barometers",
+    subtitle: "Outlet counting and inventory platform",
+    summary:
+      "Outlet counting and inventory platform with JWT authentication, outlet-scoped inventory, voice transcription (Groq speech-to-text) and text-to-speech confirmations. Deployable on Render or Railway.",
+    tags: ["FastAPI", "MongoDB Atlas", "JWT", "Groq", "Python"],
+    categories: ["fullstack", "ai"],
+    links: { github: `${GH}/Barometers` },
+    featured: true,
+  },
+
+  // ----- Other projects -----
+  {
+    id: "smart-todo",
+    title: "Smart To-Do – Intelligent Task Planner",
+    summary:
+      "Full-stack AI product with automated workout generation and real-time collaboration, deployed as a mobile-first Progressive Web App.",
     image: "/Smart-To-Do.png",
-    tags: ["Java", "Spring Boot", "MongoDB", "PWA", "REST APIs"],
-    category: "web",
-    github: "#",
-    demo: "https://smart-todo-list-fb8d.onrender.com/login.html",
-    featured: true,
+    tags: ["PWA", "Python", "MongoDB", "AI"],
+    categories: ["fullstack", "ai"],
     date: "Feb – Mar 2026",
+    links: { demo: "https://smart-todo-list-fb8d.onrender.com/login.html" },
   },
   {
-    id: 2,
-    title: "EEMS – Smart Educational Platform",
-    description:
-      "Full-stack app with role-based dashboards (Admin, Principal, Teacher, HOD), JWT auth, and exam scheduling.",
-    fullDescription:
-      "A comprehensive educational management system with full-stack architecture. Features role-based access control (Admin, Principal, Teacher, HOD), JWT authentication, and intelligent exam scheduling. Built with Spring Boot backend and modern frontend technologies.",
-    image: "/Exam.jpg",
-    tags: ["Java", "Spring Boot", "MySQL", "REST APIs"],
-    category: "web",
-    github: "https://github.com/yourusername/eems",
-    demo: "#",
-    featured: true,
-    date: "Nov – Jan 2025",
-    inProgress: true,
-  },
-  {
-    id: 3,
-    title: "Cognitive Visual Intelligence Framework",
-    description:
-      "AI-based computer vision system to identify handwritten response indicators in evaluation sheets.",
-    fullDescription:
-      "An intelligent computer vision system leveraging deep learning and ML techniques to analyze and identify handwritten response indicators in evaluation sheets. Built with Python and Roboflow for dataset management, achieving high accuracy in document analysis.",
-    image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop",
-    tags: ["Python", "Applied ML", "AI", "Roboflow"],
-    category: "ai",
-    github: "https://github.com/yourusername/cognitive-vision",
-    demo: "#",
-    featured: true,
-    date: "Feb – Apr 2025",
-    inProgress: true,
-  },
-  {
-    id: 4,
-    title: "Real-Time Hand Tracking & Watch Overlay",
-    description:
-      "Real-time 21-point hand landmark tracking with virtual watch overlay using webcam.",
-    fullDescription:
-      "A sophisticated computer vision application featuring real-time hand tracking using 21-point landmark detection. Includes interactive virtual watch overlay that follows hand movements. Optimized for low-latency performance with live webcam input.",
+    id: "hand-tracking",
+    title: "Real-Time Hand Tracking & AR Overlay",
+    summary:
+      "21-point hand-landmark detection running at live webcam frame rates for virtual AR watch try-ons.",
     image: "/Virtual-Watch.png",
     tags: ["Python", "OpenCV", "MediaPipe"],
-    category: "ai",
-    github: "https://github.com/yourusername/hand-tracking",
-    demo: "https://luxe-time-e-commerce.vercel.app/",
-    featured: true,
+    categories: ["cv", "ai"],
     date: "Jun – Jul 2025",
+    links: {
+      github: `${GH}/Real-Time-Hand-Tracking-Virtual-Watch-Overlay`,
+      demo: "https://luxe-time-e-commerce.vercel.app/",
+    },
   },
   {
-    id: 5,
-    title: "AyuSangam Fitness Tracker",
-    description:
-      "React.js dashboard integrating wearable health data with gym logs and real-time analytics.",
-    fullDescription:
-      "A comprehensive fitness tracking dashboard that aggregates data from wearable devices and gym activities. Features real-time health analytics, progress tracking, and personalized insights. Built with React.js and integrated REST APIs for seamless data synchronization.",
+    id: "cvif",
+    title: "Cognitive Visual Intelligence Framework",
+    summary:
+      "AI-based computer vision system that identifies handwritten response indicators on evaluation sheets.",
+    tags: ["Python", "Roboflow", "Computer Vision"],
+    categories: ["cv", "ai"],
+    date: "Feb 2025 – Present",
+    status: "In progress",
+    collaborator: "Arjun",
+    links: {},
+  },
+  {
+    id: "workflow-builder",
+    title: "Generative AI Workflow Builder",
+    summary:
+      "Visual builder for agentic pipelines: connect LLM, prompt and logic nodes on a canvas, with a backend that validates each pipeline is a directed acyclic graph.",
+    tags: ["React", "React Flow", "FastAPI", "JavaScript"],
+    categories: ["ai", "fullstack"],
+    links: { github: `${GH}/Generative-AI-Workflow-Builder-Vector` },
+  },
+  {
+    id: "sci-hunt",
+    title: "Scientis-Hunt",
+    summary:
+      "Exam and assessment platform with HttpOnly-cookie JWT auth, CSRF protection, optional TOTP MFA and four roles (super admin, school admin, teacher, student).",
+    tags: ["Next.js 14", "Spring Boot 3.4", "MongoDB", "JWT", "TOTP MFA"],
+    categories: ["fullstack"],
+    links: { github: `${GH}/sci-hunt` },
+  },
+  {
+    id: "eems",
+    title: "EEMS – Exam Examiner Management System",
+    summary:
+      "Multi-role dashboards (Admin, Principal, VP, HOD, Teacher) for exam scheduling and examiner assignment.",
+    image: "/Exam.jpg",
+    tags: ["PHP", "MySQL", "JavaScript"],
+    categories: ["fullstack"],
+    availability: "Demo on request",
+    links: { github: `${GH}/external-examiner-management-system-demo` },
+  },
+  {
+    id: "ayusangam",
+    title: "AyuSangam",
+    summary:
+      "Fitness and health tracker with HRV, resting-heart-rate and sleep analytics from Whoop and Garmin wearables.",
     image: "/Ayusangam.jpg",
-    tags: ["React.js", "REST APIs", "Wearables", "Analytics"],
-    category: "web",
-    github: "https://github.com/yourusername/ayusangam",
-    demo: "#",
-    featured: true,
-    date: "Aug – Oct 2025",
-    inProgress: true,
+    tags: ["FastAPI", "PostgreSQL", "Wearables"],
+    categories: ["fullstack"],
+    availability: "Demo on request",
+    links: { github: `${GH}/AyuSangam---fitness-health-tracker-demo` },
   },
   {
-    id: 6,
-    title: "Digital Animal Care Platform",
-    description:
-      "Connected pet owners, vets & rescue teams via WhatsApp alerts and an AI chatbot for consultations.",
-    fullDescription:
-      "A comprehensive animal care platform connecting pet owners, veterinarians, and rescue teams. Features WhatsApp integration for instant alerts, AI-powered chatbot for consultations, and real-time emergency response coordination. Built with modern web technologies and cloud infrastructure.",
+    id: "animal-care",
+    title: "Digital Animal Care & Emergency Response",
+    summary:
+      "Dog-care and emergency platform connecting pet owners, vets, rescue teams and the public, with care recommendations, remote vet consultation scheduling and WhatsApp emergency alerts.",
     image: "/Digital-Animal-care.png",
-    tags: ["HTML", "CSS", "JavaScript", "Dialog flow", "WhatsApp API"],
-    category: "web",
-    github: "https://github.com/yourusername/animal-care",
-    demo: "https://animalrescue-emergency-response-pla.vercel.app/",
-    date: "Oct – Dec 2025",
+    tags: ["React", "TypeScript"],
+    categories: ["fullstack"],
+    date: "Oct – Dec 2024",
+    collaborator: "Arjun",
+    links: {
+      // TODO(owner): animalrescue-emergency-response-platform is a private repo;
+      // add `github` once it is public (or confirm the public duplicate).
+      demo: "https://animalrescue-emergency-response-pla.vercel.app",
+    },
+  },
+  {
+    id: "apti",
+    title: "Apti – SMB Growth Tracker",
+    summary:
+      "Multi-channel attribution dashboard showing SMBs which channels (ads, WhatsApp, referrals, organic) bring their customers, with campaign management and KPI charts.",
+    tags: ["HTML", "Tailwind CSS", "Chart.js"],
+    categories: ["fullstack"],
+    links: { github: `${GH}/apti-SMBs-growth-tracker` },
+  },
+  {
+    id: "fraud-detection",
+    title: "Fraud Detection",
+    summary:
+      "Fraud classification with a K-Nearest Neighbors model, feature scaling and cross-validation, in a Jupyter notebook.",
+    tags: ["Python", "Scikit-learn", "Pandas", "Jupyter"],
+    categories: ["ai"],
+    links: { github: `${GH}/Fraud-Detection` },
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Skills
-// `techStack` renders on Home; `resumeSkills` renders on the Resume page.
+// Skills (grouped as on the resume)
 // ---------------------------------------------------------------------------
-export const techStack = [
-  { name: "HTML5", icon: "🌐", color: "text-orange-500", category: "Frontend" },
-  { name: "CSS3", icon: "🎨", color: "text-blue-500", category: "Frontend" },
-  { name: "React.js", icon: "⚛️", color: "text-cyan-400", category: "Frontend" },
-  { name: "Angular", icon: "🔴", color: "text-red-600", category: "Frontend" },
-  { name: "Tailwind CSS", icon: "🦋", color: "text-cyan-500", category: "Frontend" },
-  { name: "Python", icon: "🐍", color: "text-yellow-400", category: "Backend" },
-  { name: "Flask", icon: "🔨", color: "text-green-600", category: "Backend" },
-  { name: "Java", icon: "☕", color: "text-orange-600", category: "Backend" },
-  { name: "RESTful API", icon: "🔌", color: "text-blue-400", category: "Backend" },
-  { name: "NumPy", icon: "📊", color: "text-blue-600", category: "AI/ML" },
-  { name: "Pandas", icon: "🐼", color: "text-blue-500", category: "AI/ML" },
-  { name: "Scikit-learn", icon: "🤖", color: "text-orange-400", category: "AI/ML" },
-  { name: "OpenCV", icon: "👁️", color: "text-red-500", category: "AI/ML" },
-  { name: "YOLO", icon: "🎯", color: "text-yellow-600", category: "AI/ML" },
-  { name: "MediaPipe", icon: "🎬", color: "text-purple-600", category: "AI/ML" },
-  { name: "Predictive Modeling", icon: "📈", color: "text-green-500", category: "AI/ML" },
-  { name: "AWS", icon: "☁️", color: "text-orange-500", category: "Cloud" },
-  { name: "Salesforce", icon: "☁️", color: "text-blue-700", category: "Cloud" },
-  { name: "Lightning", icon: "⚡", color: "text-yellow-500", category: "Cloud" },
-  { name: "MySQL", icon: "🐬", color: "text-blue-400", category: "Database" },
-  { name: "MongoDB", icon: "🍃", color: "text-green-600", category: "Database" },
-  { name: "Git", icon: "📦", color: "text-orange-600", category: "Tools" },
-  { name: "GitHub", icon: "🐙", color: "text-gray-400", category: "Tools" },
-  { name: "Postman", icon: "📮", color: "text-orange-400", category: "Tools" },
+export const skillGroups = [
+  {
+    title: "AI/ML & LLMs",
+    icon: "brain",
+    items: [
+      "RAG pipelines",
+      "Hallucination evaluation (factual grounding)",
+      "Prompt engineering (CoT, few-shot)",
+      "LangChain",
+      "OpenAI / Anthropic APIs",
+      "Agentic AI",
+      "Fine-tuning (Qwen)",
+    ],
+  },
+  {
+    title: "Computer Vision & OCR",
+    icon: "eye",
+    items: [
+      "YOLOv8",
+      "MediaPipe",
+      "OpenCV",
+      "Roboflow",
+      "Tesseract",
+      "PaddleOCR",
+      "Docling",
+      "Image processing",
+    ],
+  },
+  {
+    title: "Development",
+    icon: "code",
+    items: [
+      "Python (Flask, FastAPI)",
+      "React.js",
+      "Angular",
+      "Java (Spring Boot)",
+      "REST APIs",
+      "PWA",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    title: "Data & Cloud",
+    icon: "database",
+    items: [
+      "MySQL",
+      "MongoDB",
+      "PostgreSQL",
+      "AWS",
+      "Salesforce Data Cloud",
+      "Pandas",
+      "NumPy",
+      "Scikit-learn",
+    ],
+  },
+  {
+    title: "Tools",
+    icon: "wrench",
+    items: ["Git", "GitHub", "Docker", "Postman"],
+  },
 ];
 
-export const resumeSkills = {
-  Languages: ["Python", "JavaScript", "TypeScript", "C++", "SQL"],
-  "AI/ML": ["TensorFlow", "PyTorch", "Scikit-learn", "OpenCV", "Keras"],
-  Web: ["React", "Next.js", "Node.js", "Express", "Tailwind CSS"],
-  Tools: ["Git", "Docker", "AWS", "MongoDB", "PostgreSQL"],
-};
-
 // ---------------------------------------------------------------------------
-// Certificates (shown in this order)
+// Certificates (shown in this order). Omit `image` to show the icon card.
 // ---------------------------------------------------------------------------
-export const certificateCategories = [
-  { id: "all", label: "All Certificates" },
-  { id: "tech", label: "Technical Certifications" },
-];
-
 export const certificates = [
   {
-    id: 1,
-    title: "Salesforce Certified Data Cloud Consultant",
+    id: "claude-architect",
+    title: "Claude Certified Architect – Foundations",
+    issuer: "Anthropic",
+    date: "Apr 2026",
+    credentialId: "39hnit8bdwjh",
+  },
+  {
+    id: "salesforce-data-cloud",
+    title: "Salesforce Data Cloud Consultant",
     issuer: "Salesforce",
     date: "2024",
-    category: "tech",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
     description:
       "Professional certification validating expertise in Salesforce Data Cloud implementation and management.",
     credentialUrl: "/DataCloudConsultant_20240803_Cert4732972.pdf",
   },
   {
-    id: 2,
-    title: "JPMorgan Chase's Software Engineering",
-    issuer: "JPMorgan Chase (Forage)",
-    date: "2024",
-    category: "tech",
+    id: "jpmorgan",
+    title: "JPMorgan Chase Software Engineering",
+    issuer: "Forage",
     image: "/TheForage-JPMorgan-Certificate_page-0001.jpg",
     description:
-      "Software engineering virtual experience program covering full-stack development and modern software practices.",
+      "Software engineering job simulation by JPMorgan Chase on Forage.",
     credentialUrl: "/TheForage-JPMorgan-Certificate.pdf",
   },
   {
-    id: 3,
+    id: "aws",
     title: "AWS Solutions Architecture",
-    issuer: "Amazon Web Services (Forage)",
-    date: "2024",
-    category: "tech",
+    issuer: "Forage",
+    date: "Jan 2026",
+    credentialId: "zj44YKeXAYcrB9KAx",
     image: "/AWS_completion_certificate_page-0001.jpg",
     description:
-      "AWS virtual internship program covering cloud architecture, deployment, and best practices.",
+      "AWS Solutions Architecture job simulation on Forage, covering cloud architecture and deployment.",
     credentialUrl: "/AWS_completion_certificate.pdf",
   },
   {
-    id: 4,
-    title: "Walmart Advanced Software Engineering",
-    issuer: "Walmart Global Tech (Forage)",
-    date: "2024",
-    category: "tech",
+    id: "wells-fargo",
+    title: "Wells Fargo Software Engineering",
+    issuer: "Forage",
     image: "/Wells_Fargo_completion_certificate_page-0001.jpg",
-    description:
-      "Advanced software engineering program covering enterprise-scale development and system design.",
+    description: "Software engineering job simulation by Wells Fargo on Forage.",
     credentialUrl: "/Wells_Fargo_completion_certificate.pdf",
   },
   {
-    id: 5,
+    id: "prompt-engineering",
     title: "AI Prompt Engineering Masterclass",
     issuer: "Microsoft × Reliance Digital",
     date: "September 2025",
-    category: "tech",
-    image:
-      "https://images.unsplash.com/photo-1677442d019cecf3da5391b1ab9eb9345?w=800&h=600&fit=crop",
     description:
-      "Advanced masterclass on prompt engineering, AI applications, and modern language models.",
-    credentialUrl: "#",
+      "Masterclass on prompt engineering, AI applications, and modern language models.",
   },
   {
-    id: 6,
+    id: "google-cloud",
     title: "Google Cloud Study Jams",
     issuer: "Google Cloud",
     date: "2023–2024",
-    category: "tech",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop",
     description:
-      "Google Cloud Study Jams program with hands-on labs and cloud computing certifications.",
-    credentialUrl: "#",
+      "Google Cloud Study Jams program with hands-on labs in cloud computing.",
   },
   {
-    id: 7,
+    id: "power-bi",
     title: "Power BI Bootcamp Certification",
     issuer: "O'Reilly",
     date: "2023",
-    category: "tech",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     description:
-      "Comprehensive Power BI training covering data visualization, dashboards, and business intelligence.",
-    credentialUrl: "#",
+      "Power BI training covering data visualization, dashboards, and business intelligence.",
   },
   {
-    id: 8,
+    id: "data-studio",
     title: "Master Google Data Studio for Data",
     issuer: "Google (Looker Studio)",
     date: "2023",
-    category: "tech",
-    image:
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
     description:
-      "Data visualization masterclass using Google Data Studio (Looker Studio) for analytics.",
-    credentialUrl: "#",
+      "Data visualization course using Google Data Studio (Looker Studio).",
   },
 ];
 
