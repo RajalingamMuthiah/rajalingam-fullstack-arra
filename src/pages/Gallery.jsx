@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import PageTransition from "../components/common/PageTransition";

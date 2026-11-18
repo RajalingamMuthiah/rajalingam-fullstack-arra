@@ -133,6 +133,8 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
+// Express identifies error handlers by their 4-argument signature.
+// eslint-disable-next-line no-unused-vars
 app.use((err, _req, res, _next) => {
   console.error("[Global Error Handler]", err);
   return res
