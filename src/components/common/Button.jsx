@@ -21,9 +21,9 @@ const Button = ({
   const variants = {
     primary: 'text-white bg-gradient-to-r from-cyan-600 to-purple-600 hover:shadow-lg hover:shadow-neon-blue/40',
     // Pathwise mentoring actions use teal so they are recognisable site-wide.
-    pathwise: 'text-white bg-teal-700 hover:bg-teal-600 hover:shadow-lg hover:shadow-teal-500/40',
+    pathwise: 'text-white bg-pathwise-700 hover:bg-pathwise-600 hover:shadow-lg hover:shadow-pathwise-500/40',
     secondary: 'glass hover:bg-white/10',
-    outline: 'border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-gray-900',
+    outline: 'border-2 border-cyan-700 text-cyan-700 hover:bg-cyan-700 hover:text-white dark:border-neon-blue dark:text-neon-blue dark:hover:bg-neon-blue dark:hover:text-gray-900',
     ghost: 'border border-gray-400/40 hover:border-gray-400/70 hover:bg-gray-500/10',
   };
 

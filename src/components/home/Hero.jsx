@@ -12,7 +12,7 @@ import {
 
 const ACCENT_CLASSES = {
   brand: "gradient-text",
-  pathwise: "text-teal-600 dark:text-teal-400",
+  pathwise: "text-pathwise-600 dark:text-pathwise-400",
 };
 
 /** Typed tagline; shows the full text at once when reduced motion is preferred. */
@@ -101,7 +101,7 @@ const Hero = () => {
             {brand.subline.map((item, i) => (
               <span key={item}>
                 {i > 0 && (
-                  <span aria-hidden="true" className="mx-2 text-gray-400">
+                  <span aria-hidden="true" className="mx-2 text-gray-600 dark:text-gray-400">
                     ·
                   </span>
                 )}
@@ -171,14 +171,14 @@ const Hero = () => {
           <div className="relative">
             <div
               aria-hidden="true"
-              className="absolute -inset-4 rounded-full bg-gradient-to-br from-neon-blue/40 via-neon-purple/30 to-teal-400/30 blur-2xl"
+              className="absolute -inset-4 rounded-full bg-gradient-to-br from-neon-blue/40 via-neon-purple/30 to-pathwise-400/30 blur-2xl"
             />
             <img
               src={profile.photo.src}
               alt={profile.photo.alt}
               width="384"
               height="384"
-              className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full object-cover border-4 border-white/10 shadow-2xl"
+              className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full object-cover border-4 border-gray-200 dark:border-white/10 shadow-2xl"
             />
           </div>
         </motion.div>

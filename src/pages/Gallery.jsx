@@ -15,6 +15,8 @@ const Gallery = () => {
       <div className="min-h-screen pt-page pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
+            as="h1"
+            eyebrow="Beyond work"
             title="Gallery"
             subtitle="Moments captured from my professional journey"
           />
@@ -42,12 +44,12 @@ const Gallery = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h3 className="text-xl font-bold mb-1">{image.title}</h3>
-                    <p className="text-sm text-gray-300">{image.category}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{image.category}</p>
                   </div>
 
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <div className="w-16 h-16 rounded-full glass flex items-center justify-center">
-                      <ZoomIn className="w-8 h-8 text-neon-blue" />
+                      <ZoomIn className="w-8 h-8 text-cyan-700 dark:text-neon-blue" />
                     </div>
                   </div>
                 </div>
@@ -67,7 +69,7 @@ const Gallery = () => {
               >
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-lg transition-colors z-10"
+                  className="absolute top-4 right-4 p-2 hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg transition-colors z-10"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -88,7 +90,7 @@ const Gallery = () => {
                     <h3 className="text-2xl font-bold mb-2">
                       {selectedImage.title}
                     </h3>
-                    <p className="text-gray-400">{selectedImage.category}</p>
+                    <p className="text-gray-600 dark:text-gray-400">{selectedImage.category}</p>
                   </div>
                 </motion.div>
               </motion.div>

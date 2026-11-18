@@ -5,13 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      // Reserve space for the announcement bar before React loads (no layout shift).
-      try {
-        if (localStorage.getItem("announcement-dismissed:pathwise-v1") !== "1")
-          document.documentElement.classList.add("has-announcement");
-      } catch (e) {
-        document.documentElement.classList.add("has-announcement");
-      }
+      // Before React loads: apply the saved theme (default dark) and reserve
+      // space for the announcement bar, so nothing flashes or shifts.
+      (function () {
+        var root = document.documentElement, theme = "dark", bar = true;
+        try {
+          theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+          bar = localStorage.getItem("announcement-dismissed:pathwise-v1") !== "1";
+        } catch (e) {}
+        root.classList.toggle("dark", theme === "dark");
+        root.style.colorScheme = theme;
+        if (bar) root.classList.add("has-announcement");
+      })();
     </script>
     <title>Rajalingam Muthiah — AI/ML Engineer</title>
     <meta

@@ -29,7 +29,7 @@ const ProjectLinks = ({ project }) => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${label}: ${project.title} (opens in a new tab)`}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-white/5 border border-white/10 hover:border-neon-blue hover:text-neon-blue transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-neon-blue hover:text-cyan-700 dark:hover:text-neon-blue transition-colors"
         >
           <Icon className="w-4 h-4" aria-hidden="true" />
           {label}
@@ -60,10 +60,10 @@ const Badges = ({ project }) => {
   ].filter(Boolean);
   if (!badges.length) return null;
   const tones = {
-    amber: "bg-amber-400/10 text-amber-300 border-amber-400/30",
-    purple: "bg-neon-purple/10 text-purple-300 border-neon-purple/30",
-    blue: "bg-neon-blue/10 text-neon-blue border-neon-blue/30",
-    gray: "bg-white/5 text-gray-300 border-white/15",
+    amber: "bg-amber-50 text-amber-800 border-amber-600/30 dark:bg-amber-400/10 dark:text-amber-300 dark:border-amber-400/30",
+    purple: "bg-purple-50 text-purple-800 border-purple-600/30 dark:bg-neon-purple/10 dark:text-purple-300 dark:border-neon-purple/30",
+    blue: "bg-cyan-50 dark:bg-neon-blue/10 text-cyan-800 dark:text-neon-blue border-cyan-700/30 dark:border-neon-blue/30",
+    gray: "bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 border-white/15",
   };
   return (
     <div className="flex flex-wrap gap-2">
@@ -85,7 +85,7 @@ const Tags = ({ tags }) => (
     {tags.map((tag) => (
       <li
         key={tag}
-        className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-medium"
+        className="px-2.5 py-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-xs font-medium"
       >
         {tag}
       </li>
@@ -116,14 +116,14 @@ const ProjectImage = ({ project, eager = false, className = "" }) => (
 );
 
 const Results = ({ results }) => (
-  <div className="rounded-xl border border-neon-blue/20 bg-neon-blue/5 p-4">
-    <p className="text-xs uppercase tracking-wide text-neon-blue font-semibold mb-3">
+  <div className="rounded-xl border border-cyan-600/20 bg-cyan-50 dark:border-neon-blue/20 dark:bg-neon-blue/5 p-4">
+    <p className="text-xs uppercase tracking-wide text-cyan-700 dark:text-neon-blue font-semibold mb-3">
       {results.caption}
     </p>
     <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       {results.items.map(({ label, value }) => (
         <div key={label}>
-          <dt className="text-xs text-gray-400">{label}</dt>
+          <dt className="text-xs text-gray-600 dark:text-gray-400">{label}</dt>
           <dd className="text-lg font-bold whitespace-nowrap">{value}</dd>
         </div>
       ))}
@@ -149,16 +149,16 @@ export const FeaturedProjectCard = ({
   const roleAndTeam = (
     <>
       {project.role && (
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs uppercase tracking-wide text-neon-blue font-semibold mb-1">
+        <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-4">
+          <p className="text-xs uppercase tracking-wide text-cyan-700 dark:text-neon-blue font-semibold mb-1">
             My role
           </p>
-          <p className="text-sm text-gray-300 leading-relaxed">{project.role}</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.role}</p>
         </div>
       )}
       {project.team && (
-        <p className="text-sm text-gray-400">
-          <span className="font-semibold text-gray-300">Team:</span>{" "}
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          <span className="font-semibold text-gray-700 dark:text-gray-300">Team:</span>{" "}
           {project.team.join(", ")}
         </p>
       )}
@@ -169,22 +169,22 @@ export const FeaturedProjectCard = ({
     <>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-2xl font-bold gradient-text">{project.title}</h3>
+          <h3 className="text-2xl font-bold">{project.title}</h3>
           {project.subtitle && (
-            <p className="text-sm text-gray-400 mt-1">{project.subtitle}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{project.subtitle}</p>
           )}
         </div>
-        <span className="px-3 py-1 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-xs font-semibold text-white flex-shrink-0">
+        <span className="px-3 py-1 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-xs font-semibold text-white flex-shrink-0">
           Featured
         </span>
       </div>
       <Badges project={project} />
-      <p className="text-gray-300 leading-relaxed">{project.summary}</p>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{project.summary}</p>
       {project.details && (
         <ul className="space-y-1.5">
           {project.details.map((d) => (
-            <li key={d} className="flex items-start gap-2 text-sm text-gray-400">
-              <span className="text-neon-blue" aria-hidden="true">
+            <li key={d} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-cyan-700 dark:text-neon-blue" aria-hidden="true">
                 ▹
               </span>
               <span>{d}</span>
@@ -201,7 +201,7 @@ export const FeaturedProjectCard = ({
       {project.results && <Results results={project.results} />}
       {roleOnRight && roleAndTeam}
       {project.note && (
-        <p className="flex items-start gap-2 text-xs text-amber-300/90">
+        <p className="flex items-start gap-2 text-xs text-amber-800 dark:text-amber-300/90">
           <AlertTriangle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
           <span>{project.note}</span>
         </p>
@@ -222,7 +222,7 @@ export const FeaturedProjectCard = ({
             <ProjectImage
               project={project}
               eager={eager}
-              className="rounded-xl border border-white/10"
+              className="rounded-xl border border-gray-200 dark:border-white/10"
             />
           )}
           {outro}
@@ -271,10 +271,10 @@ export const ProjectCard = ({ project }) => (
 
     <h3 className="text-lg font-bold">{project.title}</h3>
     {project.date && (
-      <p className="text-xs text-neon-blue font-semibold -mt-2">{project.date}</p>
+      <p className="text-xs text-cyan-700 dark:text-neon-blue font-semibold -mt-2">{project.date}</p>
     )}
     <Badges project={project} />
-    <p className="text-sm text-gray-400 leading-relaxed">{project.summary}</p>
+    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{project.summary}</p>
 
     <div className="mt-auto space-y-3">
       <Tags tags={project.tags} />

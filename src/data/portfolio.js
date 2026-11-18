@@ -454,6 +454,8 @@ export const projects = [
   // ----- Featured -----
   {
     id: "medquery",
+    image: "/projects/medquery-cover.svg",
+    imageAlt: "Cover graphic for MedQuery",
     title: "MedQuery",
     subtitle: "Grounded health Q&A with RAG and hallucination evaluation",
     summary:
@@ -479,6 +481,8 @@ export const projects = [
   },
   {
     id: "codey",
+    image: "/projects/codey-cover.svg",
+    imageAlt: "Cover graphic for Codey",
     title: "Codey",
     subtitle: "Secure remote code-execution platform",
     summary:
@@ -493,6 +497,8 @@ export const projects = [
   },
   {
     id: "barometers",
+    image: "/projects/barometers-cover.svg",
+    imageAlt: "Cover graphic for Barometers",
     title: "Barometers",
     subtitle: "Outlet counting and inventory platform",
     summary:
@@ -522,6 +528,8 @@ export const projects = [
   },
   {
     id: "adlc",
+    image: "/projects/adlc-cover.svg",
+    imageAlt: "Cover graphic for ADLC",
     title: "ADLC – Agentic Requirements & Planning Platform",
     subtitle: "IIT Bombay capstone (team project)",
     summary:
@@ -570,6 +578,8 @@ export const projects = [
   },
   {
     id: "cvif",
+    image: "/projects/cvif-cover.svg",
+    imageAlt: "Cover graphic for Cognitive Visual Intelligence Framework",
     title: "Cognitive Visual Intelligence Framework",
     summary:
       "AI-based computer vision system that identifies handwritten response indicators on evaluation sheets.",
@@ -582,9 +592,8 @@ export const projects = [
   },
   {
     id: "eems",
-    image: "/Exam.jpg",
-    imageAlt:
-      "Wooden letter tiles spelling EXAM",
+    image: "/projects/eems-cover.svg",
+    imageAlt: "Cover graphic for EEMS",
     title: "EEMS – Exam Examiner Management System",
     summary:
       "Multi-role dashboards (Admin, Principal, VP, HOD, Teacher) for exam scheduling and examiner assignment.",
@@ -595,6 +604,8 @@ export const projects = [
   },
   {
     id: "ayusangam",
+    image: "/projects/ayusangam-cover.svg",
+    imageAlt: "Cover graphic for AyuSangam",
     title: "AyuSangam",
     summary:
       "Fitness and health tracker with HRV, resting-heart-rate and sleep analytics from Whoop and Garmin wearables.",
@@ -622,6 +633,8 @@ export const projects = [
   },
   {
     id: "fraud-detection",
+    image: "/projects/fraud-detection-cover.svg",
+    imageAlt: "Cover graphic for Fraud Detection",
     title: "Fraud Detection",
     summary:
       "Fraud classification with a K-Nearest Neighbors model, feature scaling and cross-validation, in a Jupyter notebook.",

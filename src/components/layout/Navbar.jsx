@@ -111,7 +111,7 @@ const Navbar = () => {
                 aria-label="Rajalingam Muthiah — home"
                 className="flex items-center space-x-2 rounded-xl"
               >
-                <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-neon-blue/40">
+                <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-600 to-purple-600 text-white flex items-center justify-center font-bold text-xl text-white shadow-md shadow-cyan-500/20">
                   RM
                 </span>
                 <span className="hidden sm:block lg:hidden xl:block font-display font-bold text-xl">
@@ -162,8 +162,8 @@ const Navbar = () => {
                   {...target(CTA_LINK)}
                   onClick={onLinkClick(CTA_LINK)}
                   aria-current={ctaActive ? "page" : undefined}
-                  className={`hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white bg-teal-700 hover:bg-teal-600 shadow-md shadow-teal-500/30 transition-colors ${
-                    ctaActive ? "ring-2 ring-teal-300 ring-offset-2 ring-offset-transparent" : ""
+                  className={`hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white bg-pathwise-700 hover:bg-pathwise-600 shadow-md shadow-pathwise-500/30 transition-colors ${
+                    ctaActive ? "ring-2 ring-pathwise-300 ring-offset-2 ring-offset-transparent" : ""
                   }`}
                 >
                   <span aria-hidden="true">🎓</span>
@@ -220,7 +220,7 @@ const Navbar = () => {
               <SmartLink
                 {...target(CTA_LINK)}
                 onClick={onLinkClick(CTA_LINK)}
-                className="mb-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-white bg-teal-700 hover:bg-teal-600"
+                className="mb-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-white bg-pathwise-700 hover:bg-pathwise-600"
               >
                 <span aria-hidden="true">🎓</span>
                 {CTA_LINK.name}

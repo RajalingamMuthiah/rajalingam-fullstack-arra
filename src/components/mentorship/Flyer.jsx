@@ -85,7 +85,7 @@ const Flyer = ({ className = "", eager = false }) => {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open the Pathwise flyer at full size"
-        className={`group relative block w-full rounded-2xl overflow-hidden shadow-2xl shadow-teal-500/10 border border-gray-200 dark:border-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 ${className}`}
+        className={`group relative block w-full rounded-2xl overflow-hidden shadow-2xl shadow-pathwise-500/10 border border-gray-200 dark:border-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pathwise-500 ${className}`}
       >
         <img
           src={flyer.src}

@@ -62,11 +62,11 @@ const FaqItem = ({ q, a }) => {
           aria-expanded={open}
           aria-controls={`${id}-a`}
           onClick={() => setOpen((v) => !v)}
-          className="flex w-full items-center justify-between gap-4 py-4 text-left font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 rounded"
+          className="flex w-full items-center justify-between gap-4 py-4 text-left font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pathwise-500 rounded"
         >
           {q}
           <ChevronDown
-            className={`h-5 w-5 flex-shrink-0 text-teal-700 dark:text-teal-400 transition-transform ${open ? "rotate-180" : ""}`}
+            className={`h-5 w-5 flex-shrink-0 text-pathwise-700 dark:text-pathwise-400 transition-transform ${open ? "rotate-180" : ""}`}
             aria-hidden="true"
           />
         </button>
@@ -93,7 +93,7 @@ const Testimonials = () => {
       <ul className="grid gap-4 md:grid-cols-2">
         {mentorship.testimonials.map(({ quote, name, role }) => (
           <li key={name} className={PANEL}>
-            <Quote className="h-6 w-6 text-teal-700 dark:text-teal-400 mb-3" aria-hidden="true" />
+            <Quote className="h-6 w-6 text-pathwise-700 dark:text-pathwise-400 mb-3" aria-hidden="true" />
             <blockquote className="text-gray-700 dark:text-gray-200">{quote}</blockquote>
             <p className="mt-4 font-semibold">
               {name}
@@ -123,7 +123,7 @@ const Mentorship = () => {
             className="grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-10 items-center pb-12"
           >
             <div className="space-y-6">
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pathwise-700 dark:text-pathwise-400">
                 Pathwise mentoring
               </p>
               <h1
@@ -150,7 +150,7 @@ const Mentorship = () => {
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {mentorship.audience.map((who) => (
                 <motion.li key={who} {...fadeIn} className={`${PANEL} flex items-start gap-3`}>
-                  <UserRound className="h-5 w-5 mt-0.5 flex-shrink-0 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+                  <UserRound className="h-5 w-5 mt-0.5 flex-shrink-0 text-pathwise-700 dark:text-pathwise-400" aria-hidden="true" />
                   <span className="font-medium">{who}</span>
                 </motion.li>
               ))}
@@ -165,7 +165,7 @@ const Mentorship = () => {
                 const Icon = SERVICE_ICONS[icon] ?? Compass;
                 return (
                   <motion.li key={title} {...fadeIn} className={`${PANEL} space-y-3`}>
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-700 text-white">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-pathwise-700 text-white">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <h3 className="text-lg font-bold">{title}</h3>
@@ -182,7 +182,7 @@ const Mentorship = () => {
             <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {mentorship.steps.map(({ title, text }, i) => (
                 <motion.li key={title} {...fadeIn} className={`${PANEL} space-y-2`}>
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 text-teal-700 dark:text-teal-400 font-bold">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-pathwise-600 text-pathwise-700 dark:text-pathwise-400 font-bold">
                     {i + 1}
                   </span>
                   <h3 className="font-bold">{title}</h3>
@@ -202,13 +202,13 @@ const Mentorship = () => {
                 width="192"
                 height="192"
                 loading="lazy"
-                className="mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-teal-600/40"
+                className="mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-pathwise-600/40"
               />
               <div className="space-y-5">
                 <ul className="space-y-2">
                   {mentorship.credentials.map((c) => (
                     <li key={c} className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+                      <CheckCircle2 className="h-5 w-5 mt-0.5 flex-shrink-0 text-pathwise-700 dark:text-pathwise-400" aria-hidden="true" />
                       <span>{c}</span>
                     </li>
                   ))}
@@ -235,7 +235,7 @@ const Mentorship = () => {
           {/* Final CTA band */}
           <section
             aria-labelledby="cta-heading"
-            className="mt-6 rounded-2xl border border-teal-600/40 bg-teal-50 px-6 py-10 text-center dark:bg-teal-400/[0.06] dark:border-teal-400/30"
+            className="mt-6 rounded-2xl border border-pathwise-600/40 bg-pathwise-50 px-6 py-10 text-center dark:bg-pathwise-400/[0.06] dark:border-pathwise-400/30"
           >
             <h2 id="cta-heading" className="text-2xl sm:text-3xl font-bold font-display mb-3">
               Ready to find your direction?

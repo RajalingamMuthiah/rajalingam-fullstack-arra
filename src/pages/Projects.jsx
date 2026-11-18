@@ -18,8 +18,8 @@ const Projects = () => {
   useEffect(() => {
     if (!hash) return undefined;
     const timer = setTimeout(
-      () => document.getElementById(hash.slice(1))?.scrollIntoView({ block: "start" }),
-      350,
+      () => document.getElementById(hash.slice(1))?.scrollIntoView({ block: "start", behavior: "instant" }),
+      450, // PageTransition (300ms) plus a margin, so the layout has settled
     );
     return () => clearTimeout(timer);
   }, [hash]);
@@ -36,6 +36,8 @@ const Projects = () => {
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
+            as="h1"
+            eyebrow="Portfolio"
             title="Projects"
             subtitle="AI/ML, computer vision and full-stack work"
           />
@@ -61,7 +63,7 @@ const Projects = () => {
             <section aria-labelledby="featured-heading" className="mb-12">
               <h2
                 id="featured-heading"
-                className="text-2xl font-bold gradient-text mb-6"
+                className="text-2xl font-bold mb-6"
               >
                 Featured
               </h2>
@@ -73,7 +75,7 @@ const Projects = () => {
             <section aria-labelledby="other-heading">
               <h2
                 id="other-heading"
-                className="text-2xl font-bold gradient-text mb-6"
+                className="text-2xl font-bold mb-6"
               >
                 Other Projects
               </h2>

@@ -9,6 +9,7 @@ const Skills = () => {
     >
       <div className="max-w-7xl mx-auto">
         <SectionTitle
+          eyebrow="Skills"
           title="Tech Stack"
           subtitle="Technologies and tools I work with"
         />

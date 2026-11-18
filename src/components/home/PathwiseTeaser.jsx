@@ -17,10 +17,10 @@ const PathwiseTeaser = () => (
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
-      className="max-w-7xl mx-auto grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] items-center rounded-2xl border border-teal-600/40 bg-teal-50 p-6 sm:p-8 dark:border-teal-400/30 dark:bg-teal-400/[0.05]"
+      className="max-w-7xl mx-auto grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] items-center rounded-2xl border border-pathwise-600/40 bg-pathwise-50 p-6 sm:p-8 dark:border-pathwise-400/30 dark:bg-pathwise-400/[0.05]"
     >
       <div className="space-y-4">
-        <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-teal-700 dark:text-teal-400">
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pathwise-700 dark:text-pathwise-400">
           Mentorship
         </p>
         <h2
@@ -38,7 +38,7 @@ const PathwiseTeaser = () => (
             return (
               <li
                 key={title}
-                className="inline-flex items-center gap-1.5 rounded-full border border-teal-600/30 bg-white px-3 py-1 text-sm font-medium text-teal-800 dark:border-teal-400/30 dark:bg-transparent dark:text-teal-300"
+                className="inline-flex items-center gap-1.5 rounded-full border border-pathwise-600/30 bg-white px-3 py-1 text-sm font-medium text-pathwise-800 dark:border-pathwise-400/30 dark:bg-transparent dark:text-pathwise-300"
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
                 {title}

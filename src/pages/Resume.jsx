@@ -8,8 +8,8 @@ import { profile, experience, education } from "../data/portfolio";
 
 const SectionHeading = ({ icon: Icon, children }) => (
   <h2 className="flex items-center gap-3 mb-6 text-3xl font-bold">
-    <Icon className="w-8 h-8 text-neon-blue" aria-hidden="true" />
-    <span className="gradient-text">{children}</span>
+    <Icon className="w-8 h-8 text-cyan-700 dark:text-neon-blue" aria-hidden="true" />
+    <span>{children}</span>
   </h2>
 );
 
@@ -19,6 +19,8 @@ const Resume = () => {
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <SectionTitle
+            as="h1"
+            eyebrow="For recruiters"
             title="Resume"
             subtitle={`${profile.title} · ${profile.location}`}
           />
@@ -48,18 +50,18 @@ const Resume = () => {
                 >
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-neon-blue">
+                      <h3 className="text-xl font-bold text-cyan-700 dark:text-neon-blue">
                         {exp.title}
                       </h3>
                       <p className="text-lg font-semibold">
                         {exp.company}
-                        <span className="text-sm font-normal text-gray-400">
+                        <span className="text-sm font-normal text-gray-600 dark:text-gray-400">
                           {" "}
                           · {exp.location}
                         </span>
                       </p>
                     </div>
-                    <span className="text-sm text-gray-400 md:text-right">
+                    <span className="text-sm text-gray-600 dark:text-gray-400 md:text-right">
                       {exp.period}
                     </span>
                   </div>
@@ -67,9 +69,9 @@ const Resume = () => {
                     {exp.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start text-sm text-gray-300 leading-relaxed"
+                        className="flex items-start text-sm text-gray-700 dark:text-gray-300 leading-relaxed"
                       >
-                        <span className="text-neon-blue mr-2" aria-hidden="true">
+                        <span className="text-cyan-700 dark:text-neon-blue mr-2" aria-hidden="true">
                           ▹
                         </span>
                         {bullet}
@@ -90,23 +92,23 @@ const Resume = () => {
                 <Card key={edu.degree} glow hover={false}>
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1">
                     <div>
-                      <h3 className="text-xl font-bold text-neon-blue">
+                      <h3 className="text-xl font-bold text-cyan-700 dark:text-neon-blue">
                         {edu.degree}
                       </h3>
                       <p className="text-lg font-semibold">
                         {edu.school}
                         {edu.university && (
-                          <span className="text-sm font-normal text-gray-400">
+                          <span className="text-sm font-normal text-gray-600 dark:text-gray-400">
                             {" "}
                             · {edu.university}
                           </span>
                         )}
                       </p>
                     </div>
-                    <p className="text-sm text-gray-400 md:text-right">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 md:text-right">
                       {edu.period}
                       {edu.status && (
-                        <span className="block text-neon-blue font-semibold">
+                        <span className="block text-cyan-700 dark:text-neon-blue font-semibold">
                           {edu.status}
                         </span>
                       )}

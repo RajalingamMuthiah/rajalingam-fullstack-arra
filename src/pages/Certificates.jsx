@@ -10,6 +10,8 @@ const Certificates = () => {
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
+            as="h1"
+            eyebrow="Credentials"
             title="Certificates"
             subtitle="Professional certifications and job simulations"
           />
@@ -28,8 +30,8 @@ const Certificates = () => {
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-neon-blue/20 via-neon-purple/15 to-transparent flex flex-col items-center justify-center gap-2">
-                        <Award className="w-14 h-14 text-neon-blue" aria-hidden="true" />
-                        <span className="text-xs uppercase tracking-widest text-gray-400">
+                        <Award className="w-14 h-14 text-cyan-700 dark:text-neon-blue" aria-hidden="true" />
+                        <span className="text-xs uppercase tracking-widest text-gray-600 dark:text-gray-400">
                           {cert.issuer}
                         </span>
                       </div>
@@ -37,20 +39,20 @@ const Certificates = () => {
                   </div>
 
                   <h2 className="text-lg font-bold">{cert.title}</h2>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
                     {cert.issuer}
                     {cert.date && <> · {cert.date}</>}
                   </p>
                   {cert.credentialId && (
                     <p className="text-xs text-gray-500">
                       Credential ID:{" "}
-                      <span className="font-mono text-gray-300">
+                      <span className="font-mono text-gray-700 dark:text-gray-300">
                         {cert.credentialId}
                       </span>
                     </p>
                   )}
                   {cert.description && (
-                    <p className="text-sm text-gray-400 leading-relaxed">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                       {cert.description}
                     </p>
                   )}
@@ -61,7 +63,7 @@ const Certificates = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`View ${cert.title} certificate (PDF, opens in a new tab)`}
-                      className="mt-auto pt-3 inline-flex items-center gap-1.5 text-sm font-medium text-neon-blue hover:underline"
+                      className="mt-auto pt-3 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-700 dark:text-neon-blue hover:underline"
                     >
                       <ExternalLink className="w-4 h-4" aria-hidden="true" />
                       View certificate

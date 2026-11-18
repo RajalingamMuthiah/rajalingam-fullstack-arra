@@ -36,7 +36,7 @@ const HelpStrip = () => (
                 aria-label={`${a.audience}: ${a.text} ${a.action}${external ? " (opens in a new tab)" : ""}`}
                 className={`group flex h-full flex-col gap-3 rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
                   a.pathwise
-                    ? "border-teal-600/40 bg-teal-50 hover:border-teal-600 hover:shadow-lg hover:shadow-teal-500/15 focus-visible:outline-teal-500 dark:border-teal-400/30 dark:bg-teal-400/5 dark:hover:border-teal-400"
+                    ? "border-pathwise-600/40 bg-pathwise-50 hover:border-pathwise-600 hover:shadow-lg hover:shadow-pathwise-500/15 focus-visible:outline-pathwise-500 dark:border-pathwise-400/30 dark:bg-pathwise-400/5 dark:hover:border-pathwise-400"
                     : "border-gray-200 bg-white hover:border-cyan-600/60 hover:shadow-lg hover:shadow-cyan-500/10 focus-visible:outline-neon-blue dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-neon-blue/50"
                 }`}
               >
@@ -44,7 +44,7 @@ const HelpStrip = () => (
                   <span
                     className={`flex h-10 w-10 items-center justify-center rounded-xl ${
                       a.pathwise
-                        ? "bg-teal-700 text-white"
+                        ? "bg-pathwise-700 text-white"
                         : "bg-gradient-to-br from-cyan-600 to-purple-600 text-white"
                     }`}
                   >
@@ -60,7 +60,7 @@ const HelpStrip = () => (
                 <span
                   className={`mt-auto inline-flex items-center gap-1 text-sm font-semibold ${
                     a.pathwise
-                      ? "text-teal-700 dark:text-teal-400"
+                      ? "text-pathwise-700 dark:text-pathwise-400"
                       : "text-cyan-700 dark:text-neon-blue"
                   }`}
                 >

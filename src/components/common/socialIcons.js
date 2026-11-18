@@ -9,8 +9,8 @@ export const SOCIAL_ICONS = {
 };
 
 export const SOCIAL_COLORS = {
-  github: "hover:text-gray-300",
+  github: "hover:text-gray-700 dark:hover:text-gray-300",
   linkedin: "hover:text-blue-400",
   instagram: "hover:text-pink-400",
-  email: "hover:text-neon-blue",
+  email: "hover:text-cyan-700 dark:hover:text-neon-blue",
 };

@@ -42,7 +42,7 @@ const AnnouncementBar = () => {
   return (
     <div
       id="announcement-bar"
-      className="relative h-10 flex items-center justify-center px-12 bg-teal-700 text-white text-sm font-medium"
+      className="relative h-10 flex items-center justify-center px-12 bg-pathwise-700 text-white text-sm font-medium"
     >
       <SmartLink
         {...destinations.mentoring}

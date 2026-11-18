@@ -20,6 +20,30 @@ export default {
           800: '#075985',
           900: '#0c4a6e',
         },
+        /*
+         * Design system
+         * - brand (cyan #00d9ff): primary accent. On light backgrounds use
+         *   cyan-700 for text (AA contrast); #00d9ff only on dark.
+         * - accent (purple #a855f7): secondary accent, gradients.
+         * - pathwise (teal #14b8a6): ONLY for Pathwise mentoring elements, so
+         *   mentoring has its own recognisable colour. Text/fills use 700 for
+         *   AA contrast with white.
+         */
+        brand: { DEFAULT: '#00d9ff', ink: '#0e7490' },
+        accent: { DEFAULT: '#a855f7', ink: '#7e22ce' },
+        pathwise: {
+          DEFAULT: '#14b8a6',
+          50: '#f0fdfa',
+          100: '#ccfbf1',
+          200: '#99f6e4',
+          300: '#5eead4',
+          400: '#2dd4bf',
+          500: '#14b8a6',
+          600: '#0d9488',
+          700: '#0f766e',
+          800: '#115e59',
+          900: '#134e4a',
+        },
         neon: {
           blue: '#00d9ff',
           purple: '#a855f7',
@@ -31,9 +55,14 @@ export default {
           border: '#2a2a2a',
         }
       },
+      // Type: Poppins for headings, Inter for body. Spacing follows Tailwind's
+      // 4px scale used in 8px steps (2, 4, 6, 8, 10, 12…).
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Poppins', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        measure: '70ch', // comfortable body-text line length
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',

@@ -12,16 +12,16 @@ const SkillGroupsGrid = () => (
       return (
         <Card key={title} glow hover={false} className="h-full">
           <h3 className="flex items-center gap-3 text-lg font-bold mb-4">
-            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center">
+            <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-600 to-purple-600 text-white flex items-center justify-center">
               <Icon className="w-5 h-5 text-white" aria-hidden="true" />
             </span>
-            <span className="gradient-text">{title}</span>
+            <span>{title}</span>
           </h3>
           <ul className="flex flex-wrap gap-2">
             {items.map((item) => (
               <li
                 key={item}
-                className="px-3 py-1 rounded-lg text-sm font-medium bg-white/5 border border-white/10"
+                className="px-3 py-1 rounded-lg text-sm font-medium bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10"
               >
                 {item}
               </li>

@@ -86,7 +86,7 @@ const FloatingActions = () => {
                   aria-label={newTab ? `${label} (opens in a new tab)` : undefined}
                   className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold shadow-lg transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-blue ${
                     pathwise
-                      ? "bg-teal-700 text-white"
+                      ? "bg-pathwise-700 text-white"
                       : "bg-white text-gray-900 border border-gray-200 dark:bg-gray-900 dark:text-white dark:border-white/15"
                   }`}
                 >
@@ -128,7 +128,7 @@ const MobileActionBar = () => (
     <div className="grid grid-cols-2 gap-2">
       <SmartLink
         {...destinations.mentoring}
-        className="flex items-center justify-center gap-2 rounded-xl bg-teal-700 py-2.5 text-sm font-semibold text-white"
+        className="flex items-center justify-center gap-2 rounded-xl bg-pathwise-700 py-2.5 text-sm font-semibold text-white"
       >
         <GraduationCap className="h-4 w-4" aria-hidden="true" />
         Mentoring

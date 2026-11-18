@@ -174,7 +174,7 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
             >
               <Card glow>
-                <h2 className="text-2xl font-bold mb-6 gradient-text">
+                <h2 className="text-2xl font-bold mb-6">
                   Send Message
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -190,7 +190,7 @@ const Contact = () => {
                           className={`cursor-pointer rounded-full border px-3 py-1.5 text-sm font-medium transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-neon-blue ${
                             role === r.id
                               ? r.id === "student"
-                                ? "border-teal-600 bg-teal-700 text-white"
+                                ? "border-pathwise-600 bg-pathwise-700 text-white"
                                 : "border-cyan-600 bg-cyan-700 text-white"
                               : "border-gray-300 hover:border-gray-500 dark:border-white/15 dark:hover:border-white/40"
                           }`}
@@ -224,7 +224,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-xl glass border ${
-                        errors.name ? "border-red-500" : "border-white/10"
+                        errors.name ? "border-red-500" : "border-gray-200 dark:border-white/10"
                       } focus:border-neon-blue focus:outline-none transition-colors`}
                       placeholder="Your Name"
                     />
@@ -248,7 +248,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-xl glass border ${
-                        errors.email ? "border-red-500" : "border-white/10"
+                        errors.email ? "border-red-500" : "border-gray-200 dark:border-white/10"
                       } focus:border-neon-blue focus:outline-none transition-colors`}
                       placeholder="your.email@example.com"
                     />
@@ -274,7 +274,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-xl glass border ${
-                        errors.subject ? "border-red-500" : "border-white/10"
+                        errors.subject ? "border-red-500" : "border-gray-200 dark:border-white/10"
                       } focus:border-neon-blue focus:outline-none transition-colors`}
                       placeholder="Project Discussion"
                     />
@@ -300,7 +300,7 @@ const Contact = () => {
                       onChange={handleChange}
                       rows="5"
                       className={`w-full px-4 py-3 rounded-xl glass border ${
-                        errors.message ? "border-red-500" : "border-white/10"
+                        errors.message ? "border-red-500" : "border-gray-200 dark:border-white/10"
                       } focus:border-neon-blue focus:outline-none transition-colors resize-none`}
                       placeholder="Tell me about your project..."
                     />
@@ -334,27 +334,27 @@ const Contact = () => {
             >
               {/* Contact Details */}
               <Card glow>
-                <h2 className="text-2xl font-bold mb-6 gradient-text">
+                <h2 className="text-2xl font-bold mb-6">
                   Contact Info
                 </h2>
                 <div className="space-y-4">
                   {contactInfo.map(({ icon: Icon, label, value, href, newTab }) => (
                     <div key={label} className="flex items-start space-x-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-600 to-purple-600 text-white flex items-center justify-center flex-shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm text-gray-400 mb-1">{label}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{label}</p>
                         {href ? (
                           <a
                             href={href}
                             {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                            className="text-white hover:text-neon-blue transition-colors break-all"
+                            className="text-gray-900 dark:text-white hover:text-cyan-700 dark:hover:text-neon-blue transition-colors break-all"
                           >
                             {value}
                           </a>
                         ) : (
-                          <p className="text-white">{value}</p>
+                          <p className="text-gray-900 dark:text-white">{value}</p>
                         )}
                       </div>
                     </div>
@@ -364,7 +364,7 @@ const Contact = () => {
 
               {/* Social Links */}
               <Card glow>
-                <h2 className="text-2xl font-bold mb-6 gradient-text">
+                <h2 className="text-2xl font-bold mb-6">
                   Follow Me
                 </h2>
                 <div className="flex space-x-4">
@@ -388,12 +388,12 @@ const Contact = () => {
               {/* Additional Info */}
               <Card glow>
                 <h3 className="text-xl font-bold mb-4">Let’s Collaborate!</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
                   I’m always interested in hearing about new projects and
                   opportunities. Whether you have a question or just want to say
                   hi, I’ll try my best to get back to you!
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                   🚀 Available for freelance work
                   <br />
                   💼 Open to collaboration

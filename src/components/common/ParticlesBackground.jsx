@@ -1,87 +1,29 @@
-import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import { lazy, Suspense, useEffect, useState } from "react";
 
+// Loaded only when shown, so phones and reduced-motion users never download
+// the particles bundle.
+const Particles = lazy(() => import("./ParticlesCanvas"));
+
+const QUERY = "(min-width: 768px) and (prefers-reduced-motion: no-preference)";
+
+/** Subtle particle background: desktop only, off when reduced motion is set. */
 const ParticlesBackground = () => {
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
+  const [enabled, setEnabled] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(QUERY).matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(QUERY);
+    const onChange = () => setEnabled(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  if (!enabled) return null;
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      options={{
-        background: {
-          color: {
-            value: "transparent",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 2,
-            },
-            repulse: {
-              distance: 100,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: ["#00d9ff", "#a855f7", "#ec4899"],
-          },
-          links: {
-            color: "#00d9ff",
-            distance: 150,
-            enable: true,
-            opacity: 0.2,
-            width: 1,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: false,
-            speed: 1,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0.5,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 3 },
-          },
-        },
-        detectRetina: true,
-      }}
-      className="absolute inset-0 -z-10"
-    />
+    <Suspense fallback={null}>
+      <Particles />
+    </Suspense>
   );
 };
 

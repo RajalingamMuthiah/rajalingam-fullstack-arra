@@ -14,6 +14,7 @@ const ProjectsPreview = () => {
     >
       <div className="max-w-7xl mx-auto">
         <SectionTitle
+          eyebrow="Selected work"
           title="Featured Projects"
           subtitle="RAG and LLM evaluation, agentic planning, secure code execution, and voice-enabled inventory"
         />

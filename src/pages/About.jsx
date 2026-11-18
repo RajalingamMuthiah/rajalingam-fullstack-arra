@@ -12,7 +12,7 @@ const About = () => {
     <PageTransition>
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle title="About Me" />
+          <SectionTitle as="h1" eyebrow="About" title="About Me" />
 
           {/* Intro */}
           <Card glow hover={false} className="grid lg:grid-cols-2 gap-8 items-center mb-12">
@@ -24,11 +24,11 @@ const About = () => {
               />
             </div>
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold gradient-text">
+              <h2 className="text-3xl font-bold">
                 {about.heading}
               </h2>
               {about.paragraphs.map((text) => (
-                <p key={text} className="text-gray-300 leading-relaxed">
+                <p key={text} className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   {text}
                 </p>
               ))}
@@ -41,11 +41,11 @@ const About = () => {
               const Icon = ICONS[icon] ?? Code2;
               return (
                 <Card key={label} glow hover={false} className="text-center">
-                  <Icon className="w-8 h-8 mx-auto mb-3 text-neon-blue" aria-hidden="true" />
-                  <p className="text-2xl md:text-3xl font-bold gradient-text mb-1">
+                  <Icon className="w-8 h-8 mx-auto mb-3 text-cyan-700 dark:text-neon-blue" aria-hidden="true" />
+                  <p className="text-2xl md:text-3xl font-bold mb-1">
                     {value}
                   </p>
-                  <p className="text-sm text-gray-400">{label}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{label}</p>
                 </Card>
               );
             })}
@@ -55,7 +55,7 @@ const About = () => {
           <section aria-labelledby="interests-heading">
             <h2
               id="interests-heading"
-              className="text-3xl font-bold text-center gradient-text mb-6"
+              className="text-3xl font-bold text-center mb-6"
             >
               Interests & Expertise
             </h2>
@@ -68,7 +68,7 @@ const About = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
-                    className="px-5 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-medium"
+                    className="px-5 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-sm font-medium"
                   >
                     {interest}
                   </motion.li>
