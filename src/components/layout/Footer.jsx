@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import SmartLink from "../common/SmartLink";
 import { motion } from "framer-motion";
 import { Mail, Heart } from "lucide-react";
 import { SOCIAL_ICONS } from "../common/socialIcons";
@@ -6,6 +6,7 @@ import {
   profile,
   site,
   mentorship,
+  destinations,
   socialLinks as socialLinkData,
 } from "../../data/portfolio";
 
@@ -20,14 +21,11 @@ const Footer = () => {
   ];
 
   const footerLinks = [
-    { name: "Home", path: "/" },
-    { name: "Projects", path: "/projects" },
-    {
-      name: mentorship.footerLabel,
-      path: "/",
-      state: { scrollTo: "mentorship" },
-    },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", target: { to: "/" } },
+    { name: "Projects", target: { to: "/projects" } },
+    { name: mentorship.footerLabel, target: destinations.mentoring },
+    { name: "Gallery", target: { to: "/gallery" } },
+    { name: "Contact", target: { to: "/contact" } },
   ];
 
   return (
@@ -55,13 +53,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    state={link.state}
+                  <SmartLink
+                    {...link.target}
                     className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
                   >
                     {link.name}
-                  </Link>
+                  </SmartLink>
                 </li>
               ))}
             </ul>
@@ -90,7 +87,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+        <div className="pt-8 md:pr-20 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <p className="text-gray-400 text-sm text-center sm:text-center">
             © {currentYear} {profile.name}. All rights reserved.
           </p>

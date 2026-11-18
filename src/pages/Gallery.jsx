@@ -12,7 +12,7 @@ const Gallery = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen pt-page pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             title="Gallery"

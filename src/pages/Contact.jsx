@@ -122,14 +122,14 @@ const Contact = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen pt-page pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <SectionTitle
             title="Get In Touch"
             subtitle="Have a project in mind? Let's work together!"
           />
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-[minmax(0,1fr)] lg:grid-cols-2 gap-8">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -275,12 +275,12 @@ const Contact = () => {
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center flex-shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <p className="text-sm text-gray-400 mb-1">{label}</p>
                         {href ? (
                           <a
                             href={href}
-                            className="text-white hover:text-neon-blue transition-colors"
+                            className="text-white hover:text-neon-blue transition-colors break-all"
                           >
                             {value}
                           </a>

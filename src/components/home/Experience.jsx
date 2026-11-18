@@ -7,7 +7,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="scroll-mt-20 py-8 md:py-10 px-4 sm:px-6 lg:px-8"
+      className="scroll-mt-header py-8 md:py-10 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <SectionTitle

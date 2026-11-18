@@ -15,6 +15,16 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Fixed header height: navbar (5rem) + announcement bar while it is shown.
+     AnnouncementBar toggles `has-announcement` on <html>. */
+  :root {
+    --bar-h: 0px;
+    --header-h: calc(5rem + var(--bar-h));
+  }
+  :root.has-announcement {
+    --bar-h: 2.5rem;
+  }
 }
 
 @layer components {
@@ -90,6 +100,17 @@
 }
 
 @layer utilities {
+  /* Clear the fixed header (navbar + announcement bar) */
+  .pt-header {
+    padding-top: var(--header-h);
+  }
+  .pt-page {
+    padding-top: calc(var(--header-h) + 2rem);
+  }
+  .scroll-mt-header {
+    scroll-margin-top: var(--header-h);
+  }
+
   .text-shadow {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }

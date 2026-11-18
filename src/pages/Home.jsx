@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import PageTransition from "../components/common/PageTransition";
 import Hero from "../components/home/Hero";
+import HelpStrip from "../components/home/HelpStrip";
 import Experience from "../components/home/Experience";
 import Skills from "../components/home/Skills";
 import Education from "../components/home/Education";
@@ -33,10 +34,11 @@ const Home = () => {
     <PageTransition>
       <div className="min-h-screen">
         <Hero />
+        <HelpStrip />
+        <Mentorship />
         <Experience />
         <Skills />
         <ProjectsPreview />
-        <Mentorship />
         <Education />
       </div>
     </PageTransition>

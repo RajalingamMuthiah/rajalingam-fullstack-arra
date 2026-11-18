@@ -20,7 +20,7 @@ const Projects = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             title="Projects"

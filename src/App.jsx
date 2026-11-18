@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ParticlesBackground from "./components/common/ParticlesBackground";
-import FloatingResumeButton from "./components/FloatingResumeButton";
+import QuickContact from "./components/layout/QuickContact";
 
 // Pages
 import Home from "./pages/Home";
@@ -40,7 +40,7 @@ function AppContent() {
       <ParticlesBackground />
 
       {/* Main Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 pb-16 md:pb-0">
         <Navbar />
 
         <AnimatePresence mode="wait">
@@ -59,7 +59,8 @@ function AppContent() {
         <Footer />
       </div>
 
-      <FloatingResumeButton />
+      {/* Floating action button (≥768px) / sticky action bar (<768px) */}
+      <QuickContact />
 
       {/* Toast Notifications */}
       <ToastContainer

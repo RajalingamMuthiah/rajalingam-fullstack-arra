@@ -66,6 +66,88 @@ export const site = {
 };
 
 // ---------------------------------------------------------------------------
+// Contact links (WhatsApp + email). The number is only used inside links; it is
+// never printed as text on the site.
+// ---------------------------------------------------------------------------
+const WHATSAPP_NUMBER = "919920580660";
+
+export const whatsappLink = (text) =>
+  text
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
+    : `https://wa.me/${WHATSAPP_NUMBER}`;
+
+export const mailtoLink = (subject) =>
+  `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
+
+export const messages = {
+  mentoring: "Hi Raja, I'd like to book a Pathwise discovery call",
+  project: "Hi Raja, I'd like to discuss an AI project",
+};
+
+/**
+ * Where the main calls to action lead. Each target is one of
+ * { to: "/route" } | { section: "home-section-id" } | { href: "https://…" }
+ * and is rendered by components/common/SmartLink.jsx.
+ */
+export const destinations = {
+  mentoring: { section: "pathwise" },
+  services: { href: whatsappLink(messages.project) },
+  resume: { to: "/resume" },
+};
+
+// ---------------------------------------------------------------------------
+// Personal brand: announcement bar, hero, "I can help you" strip
+// ---------------------------------------------------------------------------
+export const brand = {
+  announcement: {
+    long: "Pathwise mentoring is open — book a free 20-min discovery call",
+    short: "Free 20-min mentoring call",
+  },
+  greeting: "Hi, I'm Rajalingam Muthiah",
+  // `accent` parts are highlighted: "brand" = cyan→purple, "pathwise" = teal
+  headline: [
+    { text: "I build " },
+    { text: "reliable AI systems", accent: "brand" },
+    { text: " — and help others build " },
+    { text: "their AI careers", accent: "pathwise" },
+    { text: "." },
+  ],
+  subline: [
+    "Senior Associate AI/ML Engineer at TransformHub",
+    "IIT Bombay (Exec PG AI/ML)",
+    "Claude Certified Architect",
+  ],
+  // icon keys: graduation | briefcase | file
+  audiences: [
+    {
+      id: "students",
+      icon: "graduation",
+      audience: "Students",
+      text: "Confused about AI/IT careers? Get a roadmap, projects and interview prep.",
+      action: "Get mentored",
+      destination: "mentoring",
+      pathwise: true,
+    },
+    {
+      id: "companies",
+      icon: "briefcase",
+      audience: "Companies & founders",
+      text: "Need a RAG chatbot, document AI or a computer-vision POC? Let's build it.",
+      action: "Discuss a project",
+      destination: "services",
+    },
+    {
+      id: "recruiters",
+      icon: "file",
+      audience: "Recruiters",
+      text: "5+ years in AI/ML · TCS → TransformHub. View my experience.",
+      action: "View resume",
+      destination: "resume",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
 // About page
 // ---------------------------------------------------------------------------
 export const about = {
@@ -98,7 +180,7 @@ export const about = {
 };
 
 // ---------------------------------------------------------------------------
-// Mentorship — Pathwise (Home section #mentorship, hero pill, footer link)
+// Mentorship — Pathwise (Home section #pathwise, footer link)
 // ---------------------------------------------------------------------------
 export const mentorship = {
   sectionTitle: "Mentorship – Pathwise",
@@ -142,13 +224,12 @@ export const mentorship = {
   location: "Mumbai | Online & Offline",
   bookCall: {
     label: "Book a free 20-minute discovery call",
-    href: "https://wa.me/919920580660?text=Hi%20Raja%2C%20I%27d%20like%20to%20book%20a%20Pathwise%20discovery%20call",
+    href: whatsappLink(messages.mentoring),
   },
   email: {
     label: "Email me",
-    href: "mailto:rajalingammuthiah2011@gmail.com?subject=Pathwise%20discovery%20call",
+    href: mailtoLink("Pathwise discovery call"),
   },
-  heroPill: "Now mentoring: Pathwise — book a free discovery call",
   footerLabel: "Pathwise mentoring",
 };
 
@@ -582,4 +663,15 @@ export const gallery = [
   { id: 4, url: "/gallery/Happiness.jpeg", title: "Happy Moments", category: "Personal" },
   { id: 5, url: "/gallery/Jai-Hanuman.jpeg", title: "Spiritual Moments", category: "Personal" },
   { id: 6, url: "/gallery/Traditional-Look.jpeg", title: "Traditional Look", category: "Personal" },
+];
+
+// ---------------------------------------------------------------------------
+// Trust strip (text badges only — no company logos or trademarks)
+// ---------------------------------------------------------------------------
+export const trustBadges = [
+  "5+ years industry",
+  "TCS → TransformHub",
+  "IIT Bombay",
+  "Claude Certified Architect",
+  `${projects.length} projects`,
 ];

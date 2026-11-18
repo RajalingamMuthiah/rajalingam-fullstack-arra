@@ -1,37 +1,42 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
-import { scrollToSection } from "../../utils/scrollToSection";
+import SmartLink from "../common/SmartLink";
+import AnnouncementBar from "./AnnouncementBar";
+import { destinations } from "../../data/portfolio";
 
+// Each link has a target: { to } | { section } | { dest } (→ data `destinations`).
 const NAV_LINKS = [
-  { name: "Home", path: "/", section: null },
-  { name: "Experience", path: "/", section: "experience" },
-  { name: "Projects", path: "/projects", section: null },
-  { name: "Mentorship", path: "/", section: "mentorship" },
-  { name: "Gallery", path: "/gallery", section: null },
-  { name: "Skills", path: "/", section: "skills" },
-  { name: "Certificates", path: "/certificates", section: null },
-  { name: "About", path: "/about", section: null },
-  { name: "Contact", path: "/contact", section: null },
+  { name: "Home", to: "/" },
+  { name: "Experience", section: "experience" },
+  { name: "Projects", to: "/projects" },
+  { name: "Services", dest: "services" },
+  { name: "Skills", section: "skills" },
+  { name: "Certificates", to: "/certificates" },
+  { name: "About", to: "/about" },
+  { name: "Contact", to: "/contact" },
 ];
-const HOME_SECTIONS = NAV_LINKS.filter((l) => l.section).map((l) => l.section);
-const NAV_OFFSET = 120; // fixed navbar height + a little breathing room
+// Highlighted pill at the right end of the navbar.
+const CTA_LINK = { name: "Mentorship", dest: "mentoring" };
+
+const target = (link) =>
+  link.dest ? destinations[link.dest] : { to: link.to, section: link.section };
+
+const HOME_SECTIONS = [...NAV_LINKS, CTA_LINK]
+  .map((l) => target(l).section)
+  .filter(Boolean);
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
   const location = useLocation();
-  const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
-  const [activeSection, setActiveSection] = useState(null);
-
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -43,7 +48,8 @@ const Navbar = () => {
       return undefined;
     }
     const update = () => {
-      const y = window.scrollY + NAV_OFFSET;
+      const header = document.querySelector("header")?.offsetHeight ?? 80;
+      const y = window.scrollY + header + 40;
       let current = null;
       for (const id of HOME_SECTIONS) {
         const el = document.getElementById(id);
@@ -63,184 +69,185 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const isActive = (link) => {
-    if (link.section) {
-      return location.pathname === "/" && activeSection === link.section;
-    }
-    if (link.path === "/") {
-      return location.pathname === "/" && activeSection === null;
-    }
-    return location.pathname === link.path;
+    const t = target(link);
+    if (t.section) return location.pathname === "/" && activeSection === t.section;
+    if (t.to === "/") return location.pathname === "/" && activeSection === null;
+    if (t.to) return location.pathname === t.to;
+    return false;
   };
 
-  /**
-   * - Home: scroll to top (navigating first if needed)
-   * - Section links: on Home scroll directly; elsewhere navigate to "/" and
-   *   let Home scroll once its sections have mounted (see pages/Home.jsx)
-   * - Other links: plain route navigation
-   */
-  const handleNavigation = (path, section) => {
+  const onLinkClick = (link) => () => {
     setIsOpen(false);
-
-    if (section) {
-      if (location.pathname === "/") {
-        scrollToSection(section);
-      } else {
-        navigate("/", { state: { scrollTo: section } });
-      }
-      return;
-    }
-
-    if (path === "/" && location.pathname === "/") {
+    // "Home" while already on Home: back to the top.
+    if (link.to === "/" && location.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
     }
-
-    navigate(path);
   };
+
+  const ctaActive = isActive(CTA_LINK);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? isDark
-              ? "glass shadow-lg shadow-neon-blue/10"
-              : "bg-white/80 backdrop-blur-lg shadow-lg border-b border-gray-200"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <button
-              onClick={() => handleNavigation("/", null)}
-              className="flex items-center space-x-2"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.5 }}
-                className="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center font-bold text-xl shadow-lg shadow-neon-blue/50"
+      <header className="fixed top-0 inset-x-0 z-50">
+        <AnnouncementBar />
+        <motion.nav
+          aria-label="Main"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className={`transition-all duration-300 ${
+            scrolled
+              ? isDark
+                ? "bg-dark-bg/80 backdrop-blur-lg shadow-[0_1px_0_rgba(255,255,255,0.08),0_10px_30px_-10px_rgba(0,217,255,0.15)]"
+                : "bg-white/90 backdrop-blur-lg shadow-[0_1px_0_rgba(0,0,0,0.08),0_10px_30px_-12px_rgba(0,0,0,0.15)]"
+              : "bg-transparent"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20 gap-4">
+              {/* Logo */}
+              <SmartLink
+                to="/"
+                onClick={onLinkClick({ to: "/" })}
+                aria-label="Rajalingam Muthiah — home"
+                className="flex items-center space-x-2 rounded-xl"
               >
-                RM
-              </motion.div>
-              <span className="hidden sm:block lg:hidden xl:block font-display font-bold text-xl gradient-text">
-                Portfolio
-              </span>
-            </button>
+                <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-neon-blue/40">
+                  RM
+                </span>
+                <span className="hidden sm:block lg:hidden xl:block font-display font-bold text-xl">
+                  Portfolio
+                </span>
+              </SmartLink>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {NAV_LINKS.map((link) => {
-                const active = isActive(link);
-
-                return (
-                  <button
-                    key={link.name}
-                    onClick={() => handleNavigation(link.path, link.section)}
-                    aria-current={active ? "page" : undefined}
-                    className="relative px-3 xl:px-4 py-2 group"
-                  >
-                    <span
-                      className={`text-sm font-medium transition-colors duration-300 ${
-                        active
-                          ? "text-neon-blue"
-                          : isDark
-                            ? "text-gray-300 hover:text-white"
-                            : "text-gray-700 hover:text-gray-900"
-                      }`}
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center">
+                {NAV_LINKS.map((link) => {
+                  const active = isActive(link);
+                  return (
+                    <SmartLink
+                      key={link.name}
+                      {...target(link)}
+                      onClick={onLinkClick(link)}
+                      aria-current={active ? "page" : undefined}
+                      className="relative px-2.5 xl:px-3.5 py-2 group rounded-lg"
                     >
-                      {link.name}
-                    </span>
-                    {active && (
-                      <motion.div
-                        layoutId="navbar-indicator"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple"
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple transition-all duration-300 group-hover:w-full" />
-                  </button>
-                );
-              })}
-            </div>
+                      <span
+                        className={`text-sm font-medium transition-colors duration-300 ${
+                          active
+                            ? isDark
+                              ? "text-neon-blue"
+                              : "text-cyan-700"
+                            : isDark
+                              ? "text-gray-300 group-hover:text-white"
+                              : "text-gray-700 group-hover:text-gray-900"
+                        }`}
+                      >
+                        {link.name}
+                      </span>
+                      {active && (
+                        <motion.span
+                          layoutId="navbar-indicator"
+                          className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </SmartLink>
+                  );
+                })}
+              </div>
 
-            {/* Theme Toggle & Mobile Menu Button */}
-            <div className="flex items-center space-x-4">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={toggleTheme}
-                className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <Sun className="w-5 h-5 text-yellow-400" />
-                ) : (
-                  <Moon className="w-5 h-5 text-neon-blue" />
-                )}
-              </motion.button>
+              {/* Mentorship pill, theme toggle, mobile menu button */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <SmartLink
+                  {...target(CTA_LINK)}
+                  onClick={onLinkClick(CTA_LINK)}
+                  aria-current={ctaActive ? "page" : undefined}
+                  className={`hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white bg-teal-700 hover:bg-teal-600 shadow-md shadow-teal-500/30 transition-colors ${
+                    ctaActive ? "ring-2 ring-teal-300 ring-offset-2 ring-offset-transparent" : ""
+                  }`}
+                >
+                  <span aria-hidden="true">🎓</span>
+                  {CTA_LINK.name}
+                </SmartLink>
 
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden p-2 rounded-lg glass hover:bg-white/10 transition-colors"
-                aria-label="Toggle menu"
-              >
-                {isOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
+                  aria-label="Toggle theme"
+                >
+                  {isDark ? (
+                    <Sun className="w-5 h-5 text-yellow-400" aria-hidden="true" />
+                  ) : (
+                    <Moon className="w-5 h-5 text-cyan-700" aria-hidden="true" />
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="lg:hidden p-2 rounded-lg glass hover:bg-white/10 transition-colors"
+                  aria-label="Toggle menu"
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-menu"
+                >
+                  {isOpen ? (
+                    <X className="w-6 h-6" aria-hidden="true" />
+                  ) : (
+                    <Menu className="w-6 h-6" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </motion.nav>
+        </motion.nav>
+      </header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "tween", duration: 0.3 }}
-            className={`fixed inset-y-0 right-0 z-40 w-full sm:w-80 lg:hidden pt-20 ${
-              isDark ? "glass" : "bg-white border-l border-gray-200"
+            transition={{ type: "tween", duration: 0.25 }}
+            className={`fixed inset-y-0 right-0 z-40 w-full sm:w-80 lg:hidden pt-header overflow-y-auto ${
+              isDark ? "bg-dark-bg/95 backdrop-blur-lg" : "bg-white border-l border-gray-200"
             }`}
           >
-            <div className="flex flex-col p-6 space-y-4">
-              {NAV_LINKS.map((link, index) => {
+            <nav aria-label="Mobile" className="flex flex-col p-6 space-y-2">
+              <SmartLink
+                {...target(CTA_LINK)}
+                onClick={onLinkClick(CTA_LINK)}
+                className="mb-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-white bg-teal-700 hover:bg-teal-600"
+              >
+                <span aria-hidden="true">🎓</span>
+                {CTA_LINK.name}
+              </SmartLink>
+              {NAV_LINKS.map((link) => {
                 const active = isActive(link);
-
                 return (
-                  <motion.div
+                  <SmartLink
                     key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    {...target(link)}
+                    onClick={onLinkClick(link)}
+                    aria-current={active ? "page" : undefined}
+                    className={`w-full text-left block px-4 py-3 rounded-lg font-medium transition-colors ${
+                      active
+                        ? isDark
+                          ? "bg-white/10 text-neon-blue"
+                          : "bg-cyan-50 text-cyan-800"
+                        : isDark
+                          ? "hover:bg-white/5 text-gray-300"
+                          : "hover:bg-gray-100 text-gray-700"
+                    }`}
                   >
-                    <button
-                      onClick={() => handleNavigation(link.path, link.section)}
-                      className={`w-full text-left block px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
-                        active
-                          ? "bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 text-neon-blue"
-                          : isDark
-                            ? "hover:bg-white/5 text-gray-300"
-                            : "hover:bg-gray-100 text-gray-700"
-                      }`}
-                    >
-                      {link.name}
-                    </button>
-                  </motion.div>
+                    {link.name}
+                  </SmartLink>
                 );
               })}
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
