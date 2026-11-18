@@ -93,6 +93,28 @@ const Tags = ({ tags }) => (
   </ul>
 );
 
+/**
+ * 16:9 project image (or an icon panel when the project has none).
+ * `eager` skips lazy loading for the first, above-the-fold card.
+ */
+const ProjectImage = ({ project, eager = false, className = "" }) => (
+  <div className={`relative aspect-[16/9] overflow-hidden ${className}`}>
+    {project.image ? (
+      <img
+        src={project.image}
+        alt={project.imageAlt || `Screenshot of ${project.title}`}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover object-top"
+      />
+    ) : (
+      <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/20 via-neon-purple/15 to-transparent flex items-center justify-center">
+        <FolderGit2 className="w-12 h-12 text-neon-blue/70" aria-hidden="true" />
+      </div>
+    )}
+  </div>
+);
+
 const Results = ({ results }) => (
   <div className="rounded-xl border border-neon-blue/20 bg-neon-blue/5 p-4">
     <p className="text-xs uppercase tracking-wide text-neon-blue font-semibold mb-3">
@@ -116,8 +138,11 @@ const Results = ({ results }) => (
  */
 export const isWideFeatured = (project) => Boolean(project.results);
 
-export const FeaturedProjectCard = ({ project, wide = isWideFeatured(project) }) => {
-
+export const FeaturedProjectCard = ({
+  project,
+  wide = isWideFeatured(project),
+  eager = false,
+}) => {
   // In the wide layout, a card without results shows its role/team on the
   // right so the two columns stay balanced.
   const roleOnRight = wide && !project.results;
@@ -192,12 +217,25 @@ export const FeaturedProjectCard = ({ project, wide = isWideFeatured(project) })
     return (
       <Card glow hover={false} className="h-full grid gap-6 lg:grid-cols-2 lg:gap-10">
         <div className="flex flex-col gap-4">{intro}</div>
-        <div className="flex flex-col gap-4 lg:pt-12">{outro}</div>
+        <div className={`flex flex-col gap-4 ${project.image ? "" : "lg:pt-12"}`}>
+          {project.image && (
+            <ProjectImage
+              project={project}
+              eager={eager}
+              className="rounded-xl border border-white/10"
+            />
+          )}
+          {outro}
+        </div>
       </Card>
     );
   }
   return (
-    <Card glow hover={false} className="h-full flex flex-col gap-4">
+    <Card glow hover={false} className="h-full flex flex-col gap-4 overflow-hidden">
+      {/* Featured cards skip the placeholder panel until a real image exists. */}
+      {project.image && (
+        <ProjectImage project={project} eager={eager} className="-mx-6 -mt-6 mb-1" />
+      )}
       {intro}
       {outro}
     </Card>
@@ -214,11 +252,11 @@ export const FeaturedGrid = ({ projects }) => {
   const unpaired = halves.length % 2 === 1 ? halves[halves.length - 1].id : null;
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      {projects.map((p) => {
+      {projects.map((p, index) => {
         const wide = isWideFeatured(p) || p.id === unpaired;
         return (
           <div key={p.id} className={wide ? "lg:col-span-2" : ""}>
-            <FeaturedProjectCard project={p} wide={wide} />
+            <FeaturedProjectCard project={p} wide={wide} eager={index === 0} />
           </div>
         );
       })}
@@ -229,20 +267,7 @@ export const FeaturedGrid = ({ projects }) => {
 /** Compact card for other projects. */
 export const ProjectCard = ({ project }) => (
   <Card glow hover={false} className="h-full flex flex-col gap-3 overflow-hidden">
-    <div className="relative h-40 -mx-6 -mt-6 mb-1 overflow-hidden">
-      {project.image ? (
-        <img
-          src={project.image}
-          alt={`Screenshot of ${project.title}`}
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <div className="w-full h-full bg-gradient-to-br from-neon-blue/20 via-neon-purple/15 to-transparent flex items-center justify-center">
-          <FolderGit2 className="w-12 h-12 text-neon-blue/70" aria-hidden="true" />
-        </div>
-      )}
-    </div>
+    <ProjectImage project={project} className="-mx-6 -mt-6 mb-1" />
 
     <h3 className="text-lg font-bold">{project.title}</h3>
     {project.date && (

@@ -77,6 +77,7 @@ export const about = {
   paragraphs: [
     "I'm a Senior Associate AI/ML Engineer with 5 years of experience building RAG, LLM evaluation, OCR and computer vision systems. I specialize in measuring and improving the reliability of AI answers, including hallucination and factual-grounding evaluation.",
     "I'm currently at TransformHub, building enterprise AI agent solutions on the AgentIQX platform, and pursuing an Executive PG Diploma in AI/ML at IIT Bombay.",
+    "Outside my day job I mentor students through Pathwise, helping them choose a direction in AI/IT, build portfolio projects and prepare for interviews.",
   ],
   // icon keys: code | zap | graduation
   stats: [
@@ -94,6 +95,61 @@ export const about = {
     "NLP",
     "AI for Health Tech",
   ],
+};
+
+// ---------------------------------------------------------------------------
+// Mentorship — Pathwise (Home section #mentorship, hero pill, footer link)
+// ---------------------------------------------------------------------------
+export const mentorship = {
+  sectionTitle: "Mentorship – Pathwise",
+  heading: "Pathwise — Find your direction. Build your future.",
+  intro:
+    "Graduated, but unsure what comes next? I help students and early-career engineers build a clear path into AI/ML, Data Science and Software Development.",
+  flyer: {
+    src: "/pathwise-flyer.webp",
+    alt: "Pathwise career mentoring flyer by Rajalingam Muthiah",
+    width: 1122,
+    height: 1402,
+  },
+  // icon keys: compass | code | graduation
+  services: [
+    {
+      icon: "compass",
+      title: "Career Guidance",
+      description:
+        "Your personalised AI/IT roadmap, job search and interview preparation.",
+    },
+    {
+      icon: "code",
+      title: "Project Guidance",
+      description:
+        "Build meaningful portfolio projects in AI, computer vision and RAG.",
+    },
+    {
+      icon: "graduation",
+      title: "Course Guidance",
+      description:
+        "Choose the right courses and certifications without wasting time or money.",
+    },
+  ],
+  credentials: [
+    "5+ years in industry, including 3 years as an AI Engineer at TCS",
+    "2 years of teaching experience",
+    "Executive PG Diploma in AI/ML, IIT Bombay (pursuing)",
+    "Claude Certified Architect, Anthropic",
+    "Senior Associate AI/ML Engineer at TransformHub",
+  ],
+  location: "Mumbai | Online & Offline",
+  bookCall: {
+    label: "Book a free 20-minute discovery call",
+    href: "https://wa.me/919920580660?text=Hi%20Raja%2C%20I%27d%20like%20to%20book%20a%20Pathwise%20discovery%20call",
+  },
+  email: {
+    label: "Email me",
+    href: "mailto:rajalingammuthiah2011@gmail.com?subject=Pathwise%20discovery%20call",
+  },
+  heroPill: "Now mentoring: Pathwise — book a free discovery call",
+  footerLabel: "Pathwise mentoring",
 };
 
 // ---------------------------------------------------------------------------
@@ -176,6 +232,8 @@ export const education = [
 //   role / team  featured cards: "My role" text and team member names
 //   results      measured results quoted from the repo README
 //   note         short disclaimer shown on the card
+//   image        16:9 image in public/ (see public/projects/CREDITS.md);
+//   imageAlt     descriptive alt text. Without an image the card shows an icon panel.
 // ---------------------------------------------------------------------------
 export const projectCategories = [
   { id: "all", label: "All" },
@@ -240,6 +298,23 @@ export const projects = [
   },
 
   {
+    id: "askimo",
+    image: "/projects/askimo.webp",
+    imageAlt:
+      "Askimo (EvoLearn v2) upload screen for a lecture PDF, with the MediaPipe Hands vision engine marked ready",
+    title: "Askimo – AI Tutor with Hand-Raise Detection",
+    subtitle: "(EvoLearn v2)",
+    summary:
+      "AI tutor prototype that reads an uploaded lecture PDF aloud, sentence by sentence (PDF.js + browser text-to-speech), while MediaPipe Hands watches the webcam and pauses the lecture when a student raises their hand. Answering the student's question with a RAG pipeline is shown in the app as the planned next phase.",
+    tags: ["React", "MediaPipe", "PDF.js", "Web Speech API", "Tailwind CSS"],
+    categories: ["ai", "cv"],
+    links: {
+      demo: "https://askimo-demo.vercel.app",
+      github: `${GH}/askimo_demo`,
+    },
+    featured: true,
+  },
+  {
     id: "adlc",
     title: "ADLC – Agentic Requirements & Planning Platform",
     subtitle: "IIT Bombay capstone (team project)",
@@ -260,10 +335,12 @@ export const projects = [
   // ----- Other projects -----
   {
     id: "smart-todo",
+    image: "/projects/smart-todo.webp",
+    imageAlt:
+      "Smart To-Do task list with morning and night-routine sections, status filters and bottom navigation",
     title: "Smart To-Do – Intelligent Task Planner",
     summary:
       "Full-stack AI product with automated workout generation and real-time collaboration, deployed as a mobile-first Progressive Web App.",
-    image: "/Smart-To-Do.png",
     tags: ["PWA", "Python", "MongoDB", "AI"],
     categories: ["fullstack", "ai"],
     date: "Feb – Mar 2026",
@@ -271,10 +348,12 @@ export const projects = [
   },
   {
     id: "hand-tracking",
+    image: "/projects/hand-tracking.webp",
+    imageAlt:
+      "LUXEtime virtual watch try-on landing page showing a smartwatch render",
     title: "Real-Time Hand Tracking & AR Overlay",
     summary:
       "21-point hand-landmark detection running at live webcam frame rates for virtual AR watch try-ons.",
-    image: "/Virtual-Watch.png",
     tags: ["Python", "OpenCV", "MediaPipe"],
     categories: ["cv", "ai"],
     date: "Jun – Jul 2025",
@@ -296,29 +375,13 @@ export const projects = [
     links: {},
   },
   {
-    id: "workflow-builder",
-    title: "Generative AI Workflow Builder",
-    summary:
-      "Visual builder for agentic pipelines: connect LLM, prompt and logic nodes on a canvas, with a backend that validates each pipeline is a directed acyclic graph.",
-    tags: ["React", "React Flow", "FastAPI", "JavaScript"],
-    categories: ["ai", "fullstack"],
-    links: { github: `${GH}/Generative-AI-Workflow-Builder-Vector` },
-  },
-  {
-    id: "sci-hunt",
-    title: "Scientis-Hunt",
-    summary:
-      "Exam and assessment platform with HttpOnly-cookie JWT auth, CSRF protection, optional TOTP MFA and four roles (super admin, school admin, teacher, student).",
-    tags: ["Next.js 14", "Spring Boot 3.4", "MongoDB", "JWT", "TOTP MFA"],
-    categories: ["fullstack"],
-    links: { github: `${GH}/sci-hunt` },
-  },
-  {
     id: "eems",
+    image: "/Exam.jpg",
+    imageAlt:
+      "Wooden letter tiles spelling EXAM",
     title: "EEMS – Exam Examiner Management System",
     summary:
       "Multi-role dashboards (Admin, Principal, VP, HOD, Teacher) for exam scheduling and examiner assignment.",
-    image: "/Exam.jpg",
     tags: ["PHP", "MySQL", "JavaScript"],
     categories: ["fullstack"],
     availability: "Demo on request",
@@ -329,7 +392,6 @@ export const projects = [
     title: "AyuSangam",
     summary:
       "Fitness and health tracker with HRV, resting-heart-rate and sleep analytics from Whoop and Garmin wearables.",
-    image: "/Ayusangam.jpg",
     tags: ["FastAPI", "PostgreSQL", "Wearables"],
     categories: ["fullstack"],
     availability: "Demo on request",
@@ -337,28 +399,20 @@ export const projects = [
   },
   {
     id: "animal-care",
+    image: "/projects/animal-care.webp",
+    imageAlt:
+      "Animal Rescue landing page with a volunteer holding a puppy and a Report Animal Now button",
     title: "Digital Animal Care & Emergency Response",
     summary:
       "Dog-care and emergency platform connecting pet owners, vets, rescue teams and the public, with care recommendations, remote vet consultation scheduling and WhatsApp emergency alerts.",
-    image: "/Digital-Animal-care.png",
     tags: ["React", "TypeScript"],
     categories: ["fullstack"],
     date: "Oct – Dec 2024",
     collaborator: "Arjun",
     links: {
-      // TODO(owner): animalrescue-emergency-response-platform is a private repo;
-      // add `github` once it is public (or confirm the public duplicate).
       demo: "https://animalrescue-emergency-response-pla.vercel.app",
+      github: `${GH}/animal-rescue-emergency-response-platform`,
     },
-  },
-  {
-    id: "apti",
-    title: "Apti – SMB Growth Tracker",
-    summary:
-      "Multi-channel attribution dashboard showing SMBs which channels (ads, WhatsApp, referrals, organic) bring their customers, with campaign management and KPI charts.",
-    tags: ["HTML", "Tailwind CSS", "Chart.js"],
-    categories: ["fullstack"],
-    links: { github: `${GH}/apti-SMBs-growth-tracker` },
   },
   {
     id: "fraud-detection",
