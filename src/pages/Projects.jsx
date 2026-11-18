@@ -8,8 +8,14 @@ import {
   ProjectCard,
 } from "../components/projects/ProjectCard";
 import { projects, projectCategories } from "../data/portfolio";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Projects = () => {
+  useDocumentTitle({
+    title: "Projects — RAG, LLM Evaluation, Computer Vision | Rajalingam Muthiah",
+    description:
+      "AI/ML, computer vision and full-stack projects by Rajalingam Muthiah, including MedQuery (RAG with hallucination evaluation), ADLC (LangGraph agents), Codey and Askimo.",
+  });
   const [filter, setFilter] = useState("all");
   const { hash } = useLocation();
 

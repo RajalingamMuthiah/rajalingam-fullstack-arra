@@ -5,6 +5,7 @@ import Card from "../components/common/Card";
 import Button from "../components/common/Button";
 import SkillGroupsGrid from "../components/common/SkillGroupsGrid";
 import { profile, experience, education } from "../data/portfolio";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const SectionHeading = ({ icon: Icon, children }) => (
   <h2 className="flex items-center gap-3 mb-6 text-3xl font-bold">
@@ -14,6 +15,11 @@ const SectionHeading = ({ icon: Icon, children }) => (
 );
 
 const Resume = () => {
+  useDocumentTitle({
+    title: "Resume — Rajalingam Muthiah, Senior Associate AI/ML Engineer",
+    description:
+      "Experience at TransformHub and TCS, education (IIT Bombay Exec PG AI/ML, M.Sc. Data Science) and skills. Download the resume PDF.",
+  });
   return (
     <PageTransition>
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">

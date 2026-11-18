@@ -29,7 +29,13 @@ export const profile = {
   location: "Mumbai, India",
   experienceLabel: "5+ Years",
   email: "rajalingammuthiah2011@gmail.com",
-  photo: { src: "/Passport_Photograph.jpeg", alt: "Rajalingam Muthiah" },
+  // Square WebP crops of public/Passport_Photograph.jpeg (the JPEG stays for
+  // social previews in index.html).
+  photo: {
+    src: "/profile-384.webp",
+    srcSet: "/profile-192.webp 192w, /profile-384.webp 384w, /profile-768.webp 768w",
+    alt: "Rajalingam Muthiah",
+  },
   resume: {
     file: "Rajalingam-Muthiah-AI-Engineer-Resume.pdf",
     path: "/Rajalingam-Muthiah-AI-Engineer-Resume.pdf",
@@ -161,12 +167,15 @@ export const about = {
     "I'm currently at TransformHub, building enterprise AI agent solutions on the AgentIQX platform, and pursuing an Executive PG Diploma in AI/ML at IIT Bombay.",
     "Outside my day job I mentor students through Pathwise, helping them choose a direction in AI/IT, build portfolio projects and prepare for interviews.",
   ],
-  // icon keys: code | zap | graduation
-  stats: [
-    { value: "5+", label: "Years Experience", icon: "code" },
-    { value: "15+", label: "Projects", icon: "zap" },
-    { value: "IIT Bombay", label: "Exec PG AI/ML", icon: "graduation" },
-  ],
+  // icon keys: code | zap | graduation. The project count comes from the
+  // `projects` list below (a getter, so it is read after that list exists).
+  get stats() {
+    return [
+      { value: "5+", label: "Years Experience", icon: "code" },
+      { value: String(projects.length), label: "Projects", icon: "zap" },
+      { value: "IIT Bombay", label: "Exec PG AI/ML", icon: "graduation" },
+    ];
+  },
   interests: [
     "LLM Evaluation",
     "RAG",
@@ -188,7 +197,8 @@ export const mentorship = {
   intro:
     "Graduated, but unsure what comes next? I help students and early-career engineers build a clear path into AI/ML, Data Science and Software Development.",
   flyer: {
-    src: "/pathwise-flyer.webp",
+    src: "/pathwise-flyer.webp", // full size (lightbox); keep 1122px so the QR scans
+    thumb: "/pathwise-flyer-600.webp",
     alt: "Pathwise career mentoring flyer by Rajalingam Muthiah",
     width: 1122,
     height: 1402,
@@ -558,6 +568,7 @@ export const projects = [
     tags: ["PWA", "Python", "MongoDB", "AI"],
     categories: ["fullstack", "ai"],
     date: "Feb – Mar 2026",
+    collaborator: "Arjun", // the live site credits Arjun Ramaswamy Mudaliyar
     links: { demo: "https://smart-todo-list-fb8d.onrender.com/login.html" },
   },
   {

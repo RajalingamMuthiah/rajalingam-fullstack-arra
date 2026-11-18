@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
@@ -10,16 +10,16 @@ import Footer from "./components/layout/Footer";
 import ParticlesBackground from "./components/common/ParticlesBackground";
 import QuickContact from "./components/layout/QuickContact";
 
-// Pages
+// Pages: Home ships in the main bundle; the rest load on demand.
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Gallery from "./pages/Gallery";
-import Certificates from "./pages/Certificates";
-import Resume from "./pages/Resume";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Mentorship from "./pages/Mentorship";
-import Services from "./pages/Services";
+const Projects = lazy(() => import("./pages/Projects"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Certificates = lazy(() => import("./pages/Certificates"));
+const Resume = lazy(() => import("./pages/Resume"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Mentorship = lazy(() => import("./pages/Mentorship"));
+const Services = lazy(() => import("./pages/Services"));
 
 // Context
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
@@ -45,6 +45,7 @@ function AppContent() {
       <div className="relative z-10 pb-16 md:pb-0">
         <Navbar />
 
+        <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
@@ -59,6 +60,7 @@ function AppContent() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </AnimatePresence>
+        </Suspense>
 
         <Footer />
       </div>

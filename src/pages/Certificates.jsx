@@ -3,8 +3,12 @@ import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import { certificates } from "../data/portfolio";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Certificates = () => {
+  useDocumentTitle({
+    title: "Certificates | Rajalingam Muthiah",
+  });
   return (
     <PageTransition>
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">

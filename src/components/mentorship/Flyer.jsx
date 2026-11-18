@@ -88,11 +88,14 @@ const Flyer = ({ className = "", eager = false }) => {
         className={`group relative block w-full rounded-2xl overflow-hidden shadow-2xl shadow-pathwise-500/10 border border-gray-200 dark:border-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pathwise-500 ${className}`}
       >
         <img
-          src={flyer.src}
+          src={flyer.thumb}
+          srcSet={`${flyer.thumb} 600w, ${flyer.src} ${flyer.width}w`}
+          sizes="(min-width: 1024px) 440px, (min-width: 640px) 384px, 100vw"
           alt={flyer.alt}
           width={flyer.width}
           height={flyer.height}
           loading={eager ? "eager" : "lazy"}
+          fetchPriority={eager ? "high" : undefined}
           decoding="async"
           className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
         />

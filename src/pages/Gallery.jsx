@@ -4,8 +4,12 @@ import { X, ZoomIn } from "lucide-react";
 import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import { gallery } from "../data/portfolio";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Gallery = () => {
+  useDocumentTitle({
+    title: "Gallery | Rajalingam Muthiah",
+  });
   const [selectedImage, setSelectedImage] = useState(null);
 
   const images = gallery;

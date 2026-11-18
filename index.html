@@ -18,10 +18,10 @@
         if (bar) root.classList.add("has-announcement");
       })();
     </script>
-    <title>Rajalingam Muthiah — AI/ML Engineer</title>
+    <title>Rajalingam Muthiah — AI/ML Engineer, Freelance AI Developer &amp; Mentor</title>
     <meta
       name="description"
-      content="AI/ML Engineer at TransformHub building RAG, LLM evaluation, OCR and computer vision systems. Projects: MedQuery, Codey, Barometers. Also mentors students in AI/ML careers through Pathwise."
+      content="AI/ML Engineer at TransformHub. Freelance AI development — RAG chatbots, document AI, computer vision and LLM evaluation — and Pathwise career mentoring for students moving into AI/ML."
     />
     <meta name="author" content="Rajalingam Muthiah" />
     <link rel="canonical" href="https://rajalingam-fullstack-arra.vercel.app/" />
@@ -29,10 +29,10 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rajalingam Muthiah" />
-    <meta property="og:title" content="Rajalingam Muthiah — AI/ML Engineer" />
+    <meta property="og:title" content="Rajalingam Muthiah — AI/ML Engineer, Freelance AI Developer &amp; Mentor" />
     <meta
       property="og:description"
-      content="AI/ML Engineer at TransformHub building RAG, LLM evaluation, OCR and computer vision systems. Projects: MedQuery, Codey, Barometers. Also mentors students in AI/ML careers through Pathwise."
+      content="AI/ML Engineer at TransformHub. Freelance AI development — RAG chatbots, document AI, computer vision and LLM evaluation — and Pathwise career mentoring for students moving into AI/ML."
     />
     <meta property="og:url" content="https://rajalingam-fullstack-arra.vercel.app/" />
     <meta property="og:image" content="https://rajalingam-fullstack-arra.vercel.app/Passport_Photograph.jpeg" />
@@ -40,21 +40,107 @@
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Rajalingam Muthiah — AI/ML Engineer" />
+    <meta name="twitter:title" content="Rajalingam Muthiah — AI/ML Engineer, Freelance AI Developer &amp; Mentor" />
     <meta
       name="twitter:description"
-      content="AI/ML Engineer at TransformHub building RAG, LLM evaluation, OCR and computer vision systems. Projects: MedQuery, Codey, Barometers. Also mentors students in AI/ML careers through Pathwise."
+      content="AI/ML Engineer at TransformHub. Freelance AI development — RAG chatbots, document AI, computer vision and LLM evaluation — and Pathwise career mentoring for students moving into AI/ML."
     />
     <meta name="twitter:image" content="https://rajalingam-fullstack-arra.vercel.app/Passport_Photograph.jpeg" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
+    <!-- Non-blocking: text renders in the fallback font until these load -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" /></noscript>
+    <!-- Structured data: person + the two services -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://rajalingam-fullstack-arra.vercel.app/#person",
+            "name": "Rajalingam Muthiah",
+            "url": "https://rajalingam-fullstack-arra.vercel.app/",
+            "image": "https://rajalingam-fullstack-arra.vercel.app/Passport_Photograph.jpeg",
+            "jobTitle": "Senior Associate AI/ML Engineer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "TransformHub"
+            },
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "IIT Bombay"
+              },
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "SIES College"
+              },
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "SIWS College"
+              }
+            ],
+            "email": "mailto:rajalingammuthiah2011@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Mumbai",
+              "addressCountry": "IN"
+            },
+            "knowsAbout": [
+              "Retrieval-augmented generation",
+              "LLM evaluation",
+              "Computer vision",
+              "OCR",
+              "Agentic AI"
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/rajalingam-muthiah/",
+              "https://github.com/RajalingamMuthiah"
+            ]
+          },
+          {
+            "@type": "Service",
+            "@id": "https://rajalingam-fullstack-arra.vercel.app/mentorship#service",
+            "name": "Pathwise career mentoring",
+            "serviceType": "Career mentoring in AI/ML, Data Science and Software Development",
+            "description": "Personalised AI/IT roadmap, portfolio project guidance, course guidance and interview preparation for students and early-career engineers. The first 20-minute discovery call is free.",
+            "url": "https://rajalingam-fullstack-arra.vercel.app/mentorship",
+            "provider": {
+              "@id": "https://rajalingam-fullstack-arra.vercel.app/#person"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Mumbai"
+              },
+              {
+                "@type": "Place",
+                "name": "Online"
+              }
+            ]
+          },
+          {
+            "@type": "Service",
+            "@id": "https://rajalingam-fullstack-arra.vercel.app/services#service",
+            "name": "Freelance AI development",
+            "serviceType": "AI software development",
+            "description": "RAG chatbots and document Q&A, document AI (OCR, extraction, classification), computer vision POCs, LLM evaluation and hallucination audits, AI agent workflows and full-stack AI MVPs.",
+            "url": "https://rajalingam-fullstack-arra.vercel.app/services",
+            "provider": {
+              "@id": "https://rajalingam-fullstack-arra.vercel.app/#person"
+            },
+            "areaServed": {
+              "@type": "Place",
+              "name": "Worldwide"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

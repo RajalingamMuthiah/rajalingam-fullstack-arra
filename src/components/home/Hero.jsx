@@ -69,7 +69,7 @@ const Hero = () => {
             className="flex items-center gap-3 text-base sm:text-lg font-semibold text-cyan-700 dark:text-neon-blue"
           >
             <img
-              src={profile.photo.src}
+              src="/profile-192.webp"
               alt=""
               width="48"
               height="48"
@@ -113,8 +113,8 @@ const Hero = () => {
           <motion.p
             {...fadeUp(0.15)}
             className="relative text-sm sm:text-base font-mono text-gray-500 dark:text-gray-400"
-            aria-label={fullText}
           >
+            <span className="sr-only">{fullText}</span>
             {/* invisible copy reserves the final height while typing */}
             <span className="invisible" aria-hidden="true">
               {fullText}|
@@ -175,9 +175,12 @@ const Hero = () => {
             />
             <img
               src={profile.photo.src}
+              srcSet={profile.photo.srcSet}
+              sizes="(min-width: 1280px) 384px, 320px"
               alt={profile.photo.alt}
               width="384"
               height="384"
+              fetchPriority="high"
               className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full object-cover border-4 border-gray-200 dark:border-white/10 shadow-2xl"
             />
           </div>

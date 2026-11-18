@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rajalingam-fullstack-arra.vercel.app/sitemap.xml

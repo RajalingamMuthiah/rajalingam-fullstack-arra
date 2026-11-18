@@ -4,10 +4,14 @@ import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import { about } from "../data/portfolio";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const ICONS = { code: Code2, zap: Zap, graduation: GraduationCap };
 
 const About = () => {
+  useDocumentTitle({
+    title: "About Rajalingam Muthiah — AI/ML Engineer and Mentor",
+  });
   return (
     <PageTransition>
       <div className="min-h-screen pt-page pb-16 px-4 sm:px-6 lg:px-8">

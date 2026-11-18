@@ -9,11 +9,14 @@ import Education from "../components/home/Education";
 import ProjectsPreview from "../components/home/ProjectsPreview";
 import PathwiseTeaser from "../components/home/PathwiseTeaser";
 import { scrollToSection } from "../utils/scrollToSection";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 // Matches PageTransition's enter animation, so we scroll once layout is final.
 const ENTER_ANIMATION_MS = 350;
 
 const Home = () => {
+  // Site defaults from index.html
+  useDocumentTitle();
   const location = useLocation();
   const target = location.state?.scrollTo;
 

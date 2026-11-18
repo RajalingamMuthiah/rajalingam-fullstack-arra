@@ -198,6 +198,8 @@ const Mentorship = () => {
             <div className={`${PANEL} grid gap-8 md:grid-cols-[auto_minmax(0,1fr)] items-center`}>
               <img
                 src={profile.photo.src}
+                srcSet={profile.photo.srcSet}
+                sizes="192px"
                 alt={profile.photo.alt}
                 width="192"
                 height="192"
