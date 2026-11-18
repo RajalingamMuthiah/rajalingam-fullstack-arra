@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 const SectionTitle = ({ title, subtitle, align = 'center' }) => {
@@ -14,7 +13,7 @@ const SectionTitle = ({ title, subtitle, align = 'center' }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`mb-12 ${alignmentClasses[align]}`}
+      className={`mb-8 md:mb-10 ${alignmentClasses[align]}`}
     >
       <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
         <span className="gradient-text">{title}</span>

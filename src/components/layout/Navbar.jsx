@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
+import { scrollToSection } from "../../utils/scrollToSection";
+
+const NAV_LINKS = [
+  { name: "Home", path: "/", section: null },
+  { name: "Experience", path: "/", section: "experience" },
+  { name: "Projects", path: "/projects", section: null },
+  { name: "Gallery", path: "/gallery", section: null },
+  { name: "Skills", path: "/", section: "skills" },
+  { name: "Certificates", path: "/certificates", section: null },
+  { name: "About", path: "/about", section: null },
+  { name: "Contact", path: "/contact", section: null },
+];
+const HOME_SECTIONS = NAV_LINKS.filter((l) => l.section).map((l) => l.section);
+const NAV_OFFSET = 120; // fixed navbar height + a little breathing room
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,84 +25,76 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
 
-  const navLinks = [
-    { name: "Home", path: "/", section: null },
-    { name: "Experience", path: "/", section: "experience" },
-    { name: "Projects", path: "/projects", section: null },
-    { name: "Gallery", path: "/gallery", section: null },
-    { name: "Skills", path: "/", section: "skills" },
-    { name: "Certificates", path: "/certificates", section: null },
-    // { name: "Blog", path: "/blog", section: null },
-    { name: "About", path: "/about", section: null },
-    { name: "Contact", path: "/contact", section: null },
-  ];
+  const [activeSection, setActiveSection] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Track which Home section is in view so the right nav item is highlighted.
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setActiveSection(null);
+      return undefined;
+    }
+    const update = () => {
+      const y = window.scrollY + NAV_OFFSET;
+      let current = null;
+      for (const id of HOME_SECTIONS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (y >= top && y < top + el.offsetHeight) current = id;
+      }
+      setActiveSection(current);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [location.pathname]);
+
+  const isActive = (link) => {
+    if (link.section) {
+      return location.pathname === "/" && activeSection === link.section;
+    }
+    if (link.path === "/") {
+      return location.pathname === "/" && activeSection === null;
+    }
+    return location.pathname === link.path;
+  };
+
   /**
-   * Professional scroll handler
-   * - If on home page ("/") → scroll to section immediately
-   * - If on different route → navigate to "/" first, then scroll after delay
-   * - Home button → always scroll to top
+   * - Home: scroll to top (navigating first if needed)
+   * - Section links: on Home scroll directly; elsewhere navigate to "/" and
+   *   let Home scroll once its sections have mounted (see pages/Home.jsx)
+   * - Other links: plain route navigation
    */
   const handleNavigation = (path, section) => {
     setIsOpen(false);
 
-    // Case 1: Home button - always scroll to top
-    if (!section && path === "/") {
-      if (location.pathname === "/") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        navigate("/");
-        // Scroll to top after navigation completes
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 100);
-      }
-      return;
-    }
-
-    // Case 2: Section link (Experience, Skills, etc.)
     if (section) {
       if (location.pathname === "/") {
-        // Already on home page - scroll directly
         scrollToSection(section);
       } else {
-        // On different route - navigate first, then scroll
-        navigate("/");
-        setTimeout(() => {
-          scrollToSection(section);
-        }, 100);
+        navigate("/", { state: { scrollTo: section } });
       }
       return;
     }
 
-    // Case 3: Regular route navigation (Projects, Gallery, About, etc.)
-    navigate(path);
-  };
-
-  /**
-   * Smooth scroll to section with retry logic
-   */
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      // Retry once if element not immediately available (for slower DOMs)
-      setTimeout(() => {
-        const retryElement = document.getElementById(sectionId);
-        if (retryElement) {
-          retryElement.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
+    if (path === "/" && location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
     }
+
+    navigate(path);
   };
 
   return (
@@ -125,23 +131,19 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
-              {navLinks.map((link) => {
-                const isActive =
-                  (link.section === null && link.path === location.pathname) ||
-                  (location.pathname === "/" &&
-                    link.path === "/" &&
-                    !link.section &&
-                    location.pathname === "/");
+              {NAV_LINKS.map((link) => {
+                const active = isActive(link);
 
                 return (
                   <button
                     key={link.name}
                     onClick={() => handleNavigation(link.path, link.section)}
+                    aria-current={active ? "page" : undefined}
                     className="relative px-4 py-2 group"
                   >
                     <span
                       className={`text-sm font-medium transition-colors duration-300 ${
-                        isActive
+                        active
                           ? "text-neon-blue"
                           : isDark
                             ? "text-gray-300 hover:text-white"
@@ -150,7 +152,7 @@ const Navbar = () => {
                     >
                       {link.name}
                     </span>
-                    {isActive && (
+                    {active && (
                       <motion.div
                         layoutId="navbar-indicator"
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple"
@@ -212,12 +214,8 @@ const Navbar = () => {
             }`}
           >
             <div className="flex flex-col p-6 space-y-4">
-              {navLinks.map((link, index) => {
-                const isActive =
-                  (link.section === null && link.path === location.pathname) ||
-                  (location.pathname === "/" &&
-                    link.path === "/" &&
-                    !link.section);
+              {NAV_LINKS.map((link, index) => {
+                const active = isActive(link);
 
                 return (
                   <motion.div
@@ -229,7 +227,7 @@ const Navbar = () => {
                     <button
                       onClick={() => handleNavigation(link.path, link.section)}
                       className={`w-full text-left block px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
-                        isActive
+                        active
                           ? "bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 text-neon-blue"
                           : isDark
                             ? "hover:bg-white/5 text-gray-300"

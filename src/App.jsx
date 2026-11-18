@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
@@ -25,6 +25,12 @@ import { ThemeProvider, useTheme } from "./context/ThemeContext";
 function AppContent() {
   const location = useLocation();
   const { isDark } = useTheme();
+
+  // New page → start at the top, unless a navbar section link asked Home to
+  // scroll to a section (handled in pages/Home.jsx).
+  useEffect(() => {
+    if (!location.state?.scrollTo) window.scrollTo(0, 0);
+  }, [location.pathname, location.state]);
 
   return (
     <div
