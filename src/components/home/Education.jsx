@@ -3,57 +3,10 @@ import { motion } from "framer-motion";
 import { GraduationCap, Calendar, MapPin, BookOpen } from "lucide-react";
 import SectionTitle from "../common/SectionTitle";
 import Card from "../common/Card";
+import { education } from "../../data/portfolio";
 
 const Education = () => {
-  const educationList = [
-    {
-      degree: "Master of Science in Data Science",
-      school: "SIES College of Arts, Science & Commerce",
-      university: "Mumbai University",
-      location: "Mumbai, India",
-      period: "Aug 2022 - May 2024",
-      description:
-        "Advanced study in data science with focus on practical applications",
-      coursework: [
-        "Machine Learning",
-        "Data Visualization",
-        "Big Data Analytics",
-        "Statistical Modeling",
-      ],
-      thesis:
-        "Developed predictive models using Python, TensorFlow, and Scikit-learn for real-world forecasting applications",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      degree: "Bachelor of Science in Computer Science",
-      school: "SIWS College of Arts, Science & Commerce",
-      university: "Mumbai University",
-      location: "Mumbai, India",
-      period: "Aug 2018 - May 2021",
-      description: "Comprehensive foundation in computer science fundamentals",
-      coursework: [
-        "Algorithms & Data Structures",
-        "Database Management Systems",
-        "Computer Networks",
-        "Web Development",
-      ],
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      degree: "ePGD in Computer Science Engineering",
-      school: "Indian Institute of Technology (IIT)",
-      location: "Online",
-      period: "May 2026 - Ongoing",
-      description:
-        "Advanced postgraduate diploma in Computer Science Engineering",
-      coursework: [
-        "Advanced Computer Science",
-        "Modern Computing Practices",
-        "Emerging Technologies",
-      ],
-      color: "from-green-500 to-emerald-500",
-    },
-  ];
+  const educationList = education;
 
   const containerVariants = {
     hidden: { opacity: 0 },

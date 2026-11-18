@@ -4,46 +4,16 @@ import { User, Target, Heart, Zap, Coffee, Code2 } from "lucide-react";
 import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
+import { about } from "../data/portfolio";
+
+const ICONS = { code: Code2, zap: Zap, heart: Heart, coffee: Coffee, target: Target };
 
 const About = () => {
-  const stats = [
-    { label: "Years Experience", value: "5+", icon: Code2 },
-    { label: "Projects Completed", value: "10+", icon: Zap },
-    { label: "Happy Clients", value: "30+", icon: Heart },
-    { label: "Cups of Coffee", value: "1000+", icon: Coffee },
-  ];
+  const stats = about.stats.map((s) => ({ ...s, icon: ICONS[s.icon] }));
 
-  const values = [
-    {
-      icon: Target,
-      title: "Innovation",
-      description:
-        "Constantly exploring new technologies and pushing the boundaries of what's possible in AI and ML.",
-    },
-    {
-      icon: Heart,
-      title: "Quality",
-      description:
-        "Committed to delivering high-quality, maintainable, and scalable solutions that exceed expectations.",
-    },
-    {
-      icon: Zap,
-      title: "Performance",
-      description:
-        "Optimizing every aspect to ensure fast, efficient, and reliable applications.",
-    },
-  ];
+  const values = about.values.map((v) => ({ ...v, icon: ICONS[v.icon] }));
 
-  const interests = [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Deep Learning",
-    "Computer Vision",
-    "Natural Language Processing",
-    "Web Development",
-    "Open Source",
-    "Mentoring",
-  ];
+  const interests = about.interests;
 
   return (
     <PageTransition>
@@ -64,8 +34,8 @@ const About = () => {
               <div>
                 <div className="w-full h-96 rounded-xl overflow-hidden">
                   <img
-                    src="/gallery/Bike-Ride.jpeg"
-                    alt="Your professional photo"
+                    src={about.photo.src}
+                    alt={about.photo.alt}
                     className="w-full h-full object-cover"
                   />
                   <div className="w-full h-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center">
@@ -81,28 +51,13 @@ const About = () => {
 
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold gradient-text">
-                  Hi, I'm Rajalingam Muthiah
+                  {about.heading}
                 </h2>
-                <p className="text-gray-300 leading-relaxed">
-                  I'm a passionate AI/ML Engineer and Full Stack Developer with
-                  over 5 years of experience building intelligent systems and
-                  scalable web applications. My journey in tech started with a
-                  curiosity about how machines can learn and has evolved into a
-                  career dedicated to creating innovative solutions.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  I specialize in developing end-to-end AI solutions, from data
-                  collection and model training to deployment and monitoring. My
-                  expertise spans across computer vision, natural language
-                  processing, and deep learning, combined with strong full-stack
-                  development skills.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  When I'm not coding, you'll find me contributing to
-                  open-source projects, writing technical articles, or mentoring
-                  aspiring developers. I believe in continuous learning and
-                  sharing knowledge with the community.
-                </p>
+                {about.paragraphs.map((text) => (
+                  <p key={text} className="text-gray-300 leading-relaxed">
+                    {text}
+                  </p>
+                ))}
               </div>
             </Card>
           </motion.div>

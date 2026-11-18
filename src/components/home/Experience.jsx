@@ -3,38 +3,10 @@ import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import SectionTitle from "../common/SectionTitle";
 import Card from "../common/Card";
+import { experience } from "../../data/portfolio";
 
 const Experience = () => {
-  const experiences = [
-    {
-      title: "Full Stack Developer",
-      company: "Tata Consultancy Services",
-      location: "Mumbai, India",
-      period: "June 2023 - Present",
-      description:
-        "Engineered and deployed responsive UI components for Salesforce-powered enterprise applications, implementing data quality frameworks and automated validation scripts.",
-      highlights: [
-        "Achieved 99% data accuracy through custom Python scripts",
-        "Improved user engagement with responsive UI components",
-        "Collaborated with cross-functional teams for seamless integration",
-      ],
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Workflow Analyst",
-      company: "Tata Consultancy Services",
-      location: "Mumbai, India",
-      period: "June 2021 - May 2023",
-      description:
-        "Designed visual assets for digital platforms and streamlined workflow processes to improve team efficiency.",
-      highlights: [
-        "Created visual assets using Adobe Creative Suite",
-        "Improved team efficiency through process optimization",
-        "Translated requirements into actionable specifications",
-      ],
-      color: "from-purple-500 to-pink-500",
-    },
-  ];
+  const experiences = experience;
 
   const containerVariants = {
     hidden: { opacity: 0 },

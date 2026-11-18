@@ -15,11 +15,13 @@ import { Link } from "react-router-dom";
 import Button from "../common/Button";
 import LaunchBadge from "../common/LaunchBadge";
 import LaunchModal from "../common/LaunchModal";
+import { SOCIAL_ICONS, SOCIAL_COLORS } from "../common/socialIcons";
+import { profile, socialLinks as socialLinkData } from "../../data/portfolio";
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [isLaunchModalOpen, setIsLaunchModalOpen] = useState(false);
-  const fullText = "Fullstack Developer | AI Engineer | ML Developer";
+  const fullText = profile.typedTitle;
 
   useEffect(() => {
     let index = 0;
@@ -35,38 +37,21 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const skills = [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Deep Learning",
-    "Computer Vision",
-    "Natural Language Processing",
-    "Full Stack Development",
-  ];
+  const skills = profile.heroBadges;
 
   const infoCards = [
-    { icon: MapPin, label: "Location", value: "Mumbai, MH" },
-    { icon: Briefcase, label: "Expertise", value: "5+ Years" },
-    { icon: Mail, label: "Email", value: "rajalingammuthiah2011@email.com" },
+    { icon: MapPin, label: "Location", value: profile.location },
+    { icon: Briefcase, label: "Expertise", value: profile.experienceLabel },
+    { icon: Mail, label: "Email", value: profile.email },
   ];
 
-  const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/RajalingamMuthiah",
-      color: "hover:text-gray-300",
-    },
-    {
-      icon: Linkedin,
-      href: "https://linkedin.com/in/rajalingam-muthiah",
-      color: "hover:text-blue-400",
-    },
-    {
-      icon: Instagram,
-      href: "https://instagram.com/hilarious_king__/",
-      color: "hover:text-pink-400",
-    },
-  ];
+  const socialLinks = socialLinkData
+    .filter((link) => link.showIn.includes("hero"))
+    .map((link) => ({
+      ...link,
+      icon: SOCIAL_ICONS[link.key],
+      color: SOCIAL_COLORS[link.key],
+    }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,7 +92,7 @@ const Hero = () => {
                 transition={{ duration: 0.8 }}
               >
                 Hi, I'm{" "}
-                <span className="gradient-text">Rajalingam Muthiah</span>
+                <span className="gradient-text">{profile.name}</span>
               </motion.h1>
 
               <div className="h-24 sm:h-20 md:h-16">
@@ -245,8 +230,8 @@ const Hero = () => {
                 className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
               >
                 <img
-                  src="/Passport_Photograph.jpeg"
-                  alt="Your Name"
+                  src={profile.photo.src}
+                  alt={profile.photo.alt}
                   className="w-full h-full object-cover"
                 />
               </motion.div>

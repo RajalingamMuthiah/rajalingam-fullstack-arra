@@ -14,6 +14,8 @@ import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import Button from "../components/common/Button";
+import { SOCIAL_ICONS, SOCIAL_COLORS } from "../components/common/socialIcons";
+import { profile, socialLinks as socialLinkData } from "../data/portfolio";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,43 +32,26 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "rajalingammuthiah2011@gmail.com",
-      href: "mailto:rajalingammuthiah2011@gmail.com",
+      value: profile.email,
+      href: `mailto:${profile.email}`,
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Mumbai, MH",
+      value: profile.location,
       href: null,
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 9920580660",
-      href: "tel:+919920580660",
+      value: profile.phone.display,
+      href: profile.phone.href,
     },
   ];
 
-  const socialLinks = [
-    {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com/RajalingamMuthiah",
-      color: "hover:text-gray-300",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://linkedin.com/in/rajalingam-muthiah/",
-      color: "hover:text-blue-400",
-    },
-    {
-      icon: Instagram,
-      label: "Instagram",
-      href: "https://instagram.com/hilarious_king__/",
-      color: "hover:text-pink-400",
-    },
-  ];
+  const socialLinks = socialLinkData
+    .filter((link) => link.showIn.includes("contact"))
+    .map((link) => ({ ...link, icon: SOCIAL_ICONS[link.key], color: SOCIAL_COLORS[link.key] }));
 
   const validateForm = () => {
     const newErrors = {};

@@ -5,111 +5,18 @@ import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import Button from "../components/common/Button";
+import {
+  certificates as certificateData,
+  certificateCategories,
+} from "../data/portfolio";
 
 const Certificates = () => {
   const [filter, setFilter] = useState("all");
   const [selectedCert, setSelectedCert] = useState(null);
 
-  const certificates = [
-    {
-      id: 1,
-      title: "Salesforce Certified Data Cloud Consultant",
-      issuer: "Salesforce",
-      date: "2024",
-      category: "tech",
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
-      description:
-        "Professional certification validating expertise in Salesforce Data Cloud implementation and management.",
-      credentialUrl: "/DataCloudConsultant_20240803_Cert4732972.pdf",
-    },
-    {
-      id: 2,
-      title: "JPMorgan Chase's Software Engineering",
-      issuer: "JPMorgan Chase (Forage)",
-      date: "2024",
-      category: "tech",
-      image: "/TheForage-JPMorgan-Certificate_page-0001.jpg",
-      description:
-        "Software engineering virtual experience program covering full-stack development and modern software practices.",
-      credentialUrl: "/TheForage-JPMorgan-Certificate.pdf",
-    },
-    {
-      id: 3,
-      title: "AWS Solutions Architecture",
-      issuer: "Amazon Web Services (Forage)",
-      date: "2024",
-      category: "tech",
-      image: "/AWS_completion_certificate_page-0001.jpg",
-      description:
-        "AWS virtual internship program covering cloud architecture, deployment, and best practices.",
-      credentialUrl: "/AWS_completion_certificate.pdf",
-    },
-    {
-      id: 4,
-      title: "Walmart Advanced Software Engineering",
-      issuer: "Walmart Global Tech (Forage)",
-      date: "2024",
-      category: "tech",
-      image: "/Wells_Fargo_completion_certificate_page-0001.jpg",
-      description:
-        "Advanced software engineering program covering enterprise-scale development and system design.",
-      credentialUrl: "/Wells_Fargo_completion_certificate.pdf",
-    },
-    {
-      id: 5,
-      title: "AI Prompt Engineering Masterclass",
-      issuer: "Microsoft × Reliance Digital",
-      date: "September 2025",
-      category: "tech",
-      image:
-        "https://images.unsplash.com/photo-1677442d019cecf3da5391b1ab9eb9345?w=800&h=600&fit=crop",
-      description:
-        "Advanced masterclass on prompt engineering, AI applications, and modern language models.",
-      credentialUrl: "#",
-    },
-    {
-      id: 6,
-      title: "Google Cloud Study Jams",
-      issuer: "Google Cloud",
-      date: "2023–2024",
-      category: "tech",
-      image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop",
-      description:
-        "Google Cloud Study Jams program with hands-on labs and cloud computing certifications.",
-      credentialUrl: "#",
-    },
-    {
-      id: 7,
-      title: "Power BI Bootcamp Certification",
-      issuer: "O'Reilly",
-      date: "2023",
-      category: "tech",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-      description:
-        "Comprehensive Power BI training covering data visualization, dashboards, and business intelligence.",
-      credentialUrl: "#",
-    },
-    {
-      id: 8,
-      title: "Master Google Data Studio for Data",
-      issuer: "Google (Looker Studio)",
-      date: "2023",
-      category: "tech",
-      image:
-        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
-      description:
-        "Data visualization masterclass using Google Data Studio (Looker Studio) for analytics.",
-      credentialUrl: "#",
-    },
-  ];
+  const certificates = certificateData;
 
-  const categories = [
-    { id: "all", label: "All Certificates" },
-    { id: "tech", label: "Technical Certifications" },
-  ];
+  const categories = certificateCategories;
 
   const filteredCertificates =
     filter === "all"

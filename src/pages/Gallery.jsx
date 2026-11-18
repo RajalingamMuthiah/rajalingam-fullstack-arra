@@ -3,48 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
+import { gallery } from "../data/portfolio";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const images = [
-    {
-      id: 1,
-      url: "/gallery/Bike-Ride.jpeg",
-      title: "Bike Ride Adventure",
-      category: "Personal",
-    },
-    {
-      id: 2,
-      url: "/gallery/Cool.jpeg",
-      title: "Cool Vibes",
-      category: "Personal",
-    },
-    {
-      id: 3,
-      url: "/gallery/Gym.jpeg",
-      title: "Fitness Journey",
-      category: "Lifestyle",
-    },
-    {
-      id: 4,
-      url: "/gallery/Happiness.jpeg",
-      title: "Happy Moments",
-      category: "Personal",
-    },
-    {
-      id: 5,
-      url: "/gallery/Jai-Hanuman.jpeg",
-      title: "Spiritual Moments",
-      category: "Personal",
-    },
-    {
-      id: 6,
-      url: "/gallery/Traditional-Look.jpeg",
-      title: "Traditional Look",
-      category: "Personal",
-    },
-  ];
+  const images = gallery;
 
   return (
     <PageTransition>

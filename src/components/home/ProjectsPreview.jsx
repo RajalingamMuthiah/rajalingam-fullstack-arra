@@ -5,52 +5,12 @@ import { Link } from "react-router-dom";
 import SectionTitle from "../common/SectionTitle";
 import Card from "../common/Card";
 import Button from "../common/Button";
+import { projects as allProjects } from "../../data/portfolio";
 
 const ProjectsPreview = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Smart To-Do – Intelligent Task Planning System",
-      description:
-        "Java-based full-stack productivity platform with priority-based task management, AI-generated workout plans, and real-time collaboration.",
-      fullDescription:
-        "A comprehensive full-stack productivity platform built with Java and Spring Boot. Features intelligent task management with priority-based organization, AI-generated workout plans, real-time collaboration capabilities, and MongoDB for scalable data storage. Deployed as a Progressive Web App (PWA) for seamless mobile-first accessibility and offline functionality.",
-      image: "/Smart-To-Do.png",
-      tags: ["Java", "Spring Boot", "MongoDB", "PWA", "REST APIs"],
-      github: "#",
-      demo: "https://smart-todo-list-fb8d.onrender.com/login.html",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "EEMS – Smart Educational Platform",
-      description:
-        "Full-stack app with role-based dashboards (Admin, Principal, Teacher, HOD), JWT auth, and exam scheduling.",
-      fullDescription:
-        "A comprehensive educational management system with full-stack architecture. Features role-based access control (Admin, Principal, Teacher, HOD), JWT authentication, and intelligent exam scheduling. Built with Spring Boot backend and modern frontend technologies.",
-      image: "/Exam.jpg",
-      tags: ["Java", "Spring Boot", "MySQL", "REST APIs"],
-      github: "https://github.com/yourusername/eems",
-      demo: "#",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Cognitive Visual Intelligence Framework",
-      description:
-        "AI-based computer vision system to identify handwritten response indicators in evaluation sheets.",
-      fullDescription:
-        "An intelligent computer vision system leveraging deep learning and ML techniques to analyze and identify handwritten response indicators in evaluation sheets. Built with Python and Roboflow for dataset management, achieving high accuracy in document analysis.",
-      image:
-        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop",
-      tags: ["Python", "Applied ML", "AI", "Roboflow"],
-      github: "https://github.com/yourusername/cognitive-vision",
-      demo: "#",
-      featured: true,
-    },
-  ];
+  const projects = allProjects.filter((p) => p.featured).slice(0, 3);
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">

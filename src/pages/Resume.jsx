@@ -5,59 +5,19 @@ import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import Button from "../components/common/Button";
+import {
+  profile,
+  experience as experienceData,
+  legacyResumeEducation,
+  resumeSkills,
+} from "../data/portfolio";
 
 const Resume = () => {
-  const experience = [
-    {
-      title: "Full Stack Developer",
-      company: "Tata Consultancy Services",
-      period: "June 2023 - Present",
-      description:
-        "Engineered and deployed responsive UI components for Salesforce-powered enterprise applications, implementing data quality frameworks and automated validation scripts.",
-      achievements: [
-        "Engineered responsive UI components using Lightning App Builder, Experience Builder, and SLDS, improving user engagement metrics",
-        "Implemented data quality framework achieving 99% data accuracy through custom Python scripts and Excel VBA queries",
-        "Developed automated data validation scripts using Python (Pandas, NumPy) to support critical business operations",
-        "Collaborated with cross-functional teams to align UI/UX design with data architecture requirements",
-      ],
-    },
-    {
-      title: "Workflow Analyst",
-      company: "Tata Consultancy Services",
-      period: "June 2021 - May 2023",
-      description:
-        "Designed visual assets for digital platforms and streamlined workflow processes to improve team efficiency.",
-      achievements: [
-        "Designed and delivered visual assets for digital platforms using Adobe Creative Suite (Illustrator, Photoshop)",
-        "Streamlined workflow processes and created documentation to improve team efficiency and project delivery timelines",
-        "Partnered with business analysts and technical teams to translate requirements into actionable design specifications",
-      ],
-    },
-  ];
+  const experience = experienceData;
 
-  const education = [
-    {
-      degree: "Master of Science in Computer Science",
-      school: "Stanford University",
-      period: "2016 - 2018",
-      gpa: "3.9/4.0",
-      focus: "Artificial Intelligence & Machine Learning",
-    },
-    {
-      degree: "Bachelor of Technology in Computer Engineering",
-      school: "MIT",
-      period: "2012 - 2016",
-      gpa: "3.8/4.0",
-      focus: "Software Engineering",
-    },
-  ];
+  const education = legacyResumeEducation;
 
-  const skills = {
-    Languages: ["Python", "JavaScript", "TypeScript", "C++", "SQL"],
-    "AI/ML": ["TensorFlow", "PyTorch", "Scikit-learn", "OpenCV", "Keras"],
-    Web: ["React", "Next.js", "Node.js", "Express", "Tailwind CSS"],
-    Tools: ["Git", "Docker", "AWS", "MongoDB", "PostgreSQL"],
-  };
+  const skills = resumeSkills;
 
   return (
     <PageTransition>
@@ -74,10 +34,9 @@ const Resume = () => {
               variant="primary"
               icon={Download}
               onClick={() => {
-                // Replace with actual resume file path
                 const link = document.createElement("a");
-                link.href = "/resume.pdf";
-                link.download = "Your_Name_Resume.pdf";
+                link.href = profile.resume.path;
+                link.download = profile.resume.file;
                 link.click();
               }}
             >

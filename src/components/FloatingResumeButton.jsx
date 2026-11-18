@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, Eye, FileText, X } from "lucide-react";
 
-const RESUME_FILE = "Rajalingam-Muthiah-Resume_Updtaed.pdf";
-const RESUME_PATH = `/${RESUME_FILE}`;
+import { profile } from "../data/portfolio";
+
+const RESUME_FILE = profile.resume.file;
+const RESUME_PATH = profile.resume.path;
 
 const miniButtonVariants = {
   closed: {

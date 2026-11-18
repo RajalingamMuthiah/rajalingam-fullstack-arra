@@ -1,32 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Mail, Heart } from "lucide-react";
+import { Mail, Heart } from "lucide-react";
+import { SOCIAL_ICONS } from "../common/socialIcons";
+import { profile, site, socialLinks as socialLinkData } from "../../data/portfolio";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/RajalingamMuthiah",
-      label: "GitHub",
-    },
-    {
-      icon: Linkedin,
-      href: "https://linkedin.com/in/rajalingam-muthiah/",
-      label: "LinkedIn",
-    },
-    {
-      icon: Instagram,
-      href: "https://instagram.com/hilarious_king__/",
-      label: "Instagram",
-    },
-    {
-      icon: Mail,
-      href: "mailto:your.rajalingammuthiah2011@gmail.com",
-      label: "Email",
-    },
+    ...socialLinkData
+      .filter((link) => link.showIn.includes("footer"))
+      .map((link) => ({ ...link, icon: SOCIAL_ICONS[link.key] })),
+    { icon: Mail, href: `mailto:${profile.email}`, label: "Email" },
   ];
 
   const footerLinks = [
@@ -46,12 +32,11 @@ const Footer = () => {
                 RM
               </div>
               <span className="font-display font-bold text-lg">
-                AI/ML Portfolio
+                {site.footerBrand}
               </span>
             </div>
             <p className="text-gray-400 text-sm">
-              Building the future with AI and Machine Learning. Passionate about
-              creating innovative solutions.
+              {site.footerBlurb}
             </p>
           </div>
 
@@ -98,12 +83,12 @@ const Footer = () => {
                 Other Portfolio:
               </p>
               <a
-                href="https://arjun-portfolio-wheat.vercel.app/"
+                href={site.otherPortfolio.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-xs inline-block"
               >
-                Arjun – Fullstack Developer (Java)
+                {site.otherPortfolio.label}
               </a>
             </div>
           </div>
@@ -112,7 +97,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <p className="text-gray-400 text-sm text-center sm:text-center">
-            © {currentYear} Rajalingam Muthiah. All rights reserved.
+            © {currentYear} {profile.name}. All rights reserved.
           </p>
           <p className="text-gray-400 text-sm flex items-center">
             Built with <Heart className="w-4 h-4 mx-1 text-red-500" /> using

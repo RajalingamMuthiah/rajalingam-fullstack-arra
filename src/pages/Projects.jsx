@@ -5,113 +5,16 @@ import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import Button from "../components/common/Button";
+import { projects as allProjects, projectCategories } from "../data/portfolio";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [filter, setFilter] = useState("all");
   const [workInProgressProject, setWorkInProgressProject] = useState(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Smart To-Do – Intelligent Task Planning System",
-      description:
-        "Java-based full-stack productivity platform with priority-based task management, AI-generated workout plans, and real-time collaboration.",
-      fullDescription:
-        "A comprehensive full-stack productivity platform built with Java and Spring Boot. Features intelligent task management with priority-based organization, AI-generated workout plans, real-time collaboration capabilities, and MongoDB for scalable data storage. Deployed as a Progressive Web App (PWA) for seamless mobile-first accessibility and offline functionality.",
-      image: "/Smart-To-Do.png",
-      tags: ["Java", "Spring Boot", "MongoDB", "PWA", "REST APIs"],
-      category: "web",
-      github: "#",
-      demo: "https://smart-todo-list-fb8d.onrender.com/login.html",
-      featured: true,
-      date: "Feb – Mar 2026",
-    },
-    {
-      id: 2,
-      title: "EEMS – Smart Educational Platform",
-      description:
-        "Full-stack app with role-based dashboards (Admin, Principal, Teacher, HOD), JWT auth, and exam scheduling.",
-      fullDescription:
-        "A comprehensive educational management system with full-stack architecture. Features role-based access control (Admin, Principal, Teacher, HOD), JWT authentication, and intelligent exam scheduling. Built with Spring Boot backend and modern frontend technologies.",
-      image: "/Exam.jpg",
-      tags: ["Java", "Spring Boot", "MySQL", "REST APIs"],
-      category: "web",
-      github: "https://github.com/yourusername/eems",
-      demo: "#",
-      featured: true,
-      date: "Nov – Jan 2025",
-      inProgress: true,
-    },
-    {
-      id: 3,
-      title: "Cognitive Visual Intelligence Framework",
-      description:
-        "AI-based computer vision system to identify handwritten response indicators in evaluation sheets.",
-      fullDescription:
-        "An intelligent computer vision system leveraging deep learning and ML techniques to analyze and identify handwritten response indicators in evaluation sheets. Built with Python and Roboflow for dataset management, achieving high accuracy in document analysis.",
-      image:
-        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop",
-      tags: ["Python", "Applied ML", "AI", "Roboflow"],
-      category: "ai",
-      github: "https://github.com/yourusername/cognitive-vision",
-      demo: "#",
-      featured: true,
-      date: "Feb – Apr 2025",
-      inProgress: true,
-    },
-    {
-      id: 4,
-      title: "Real-Time Hand Tracking & Watch Overlay",
-      description:
-        "Real-time 21-point hand landmark tracking with virtual watch overlay using webcam.",
-      fullDescription:
-        "A sophisticated computer vision application featuring real-time hand tracking using 21-point landmark detection. Includes interactive virtual watch overlay that follows hand movements. Optimized for low-latency performance with live webcam input.",
-      image: "/Virtual-Watch.png",
-      tags: ["Python", "OpenCV", "MediaPipe"],
-      category: "ai",
-      github: "https://github.com/yourusername/hand-tracking",
-      demo: "https://luxe-time-e-commerce.vercel.app/",
-      featured: true,
-      date: "Jun – Jul 2025",
-    },
-    {
-      id: 5,
-      title: "AyuSangam Fitness Tracker",
-      description:
-        "React.js dashboard integrating wearable health data with gym logs and real-time analytics.",
-      fullDescription:
-        "A comprehensive fitness tracking dashboard that aggregates data from wearable devices and gym activities. Features real-time health analytics, progress tracking, and personalized insights. Built with React.js and integrated REST APIs for seamless data synchronization.",
-      image: "/Ayusangam.jpg",
-      tags: ["React.js", "REST APIs", "Wearables", "Analytics"],
-      category: "web",
-      github: "https://github.com/yourusername/ayusangam",
-      demo: "#",
-      featured: true,
-      date: "Aug – Oct 2025",
-      inProgress: true,
-    },
-    {
-      id: 6,
-      title: "Digital Animal Care Platform",
-      description:
-        "Connected pet owners, vets & rescue teams via WhatsApp alerts and an AI chatbot for consultations.",
-      fullDescription:
-        "A comprehensive animal care platform connecting pet owners, veterinarians, and rescue teams. Features WhatsApp integration for instant alerts, AI-powered chatbot for consultations, and real-time emergency response coordination. Built with modern web technologies and cloud infrastructure.",
-      image: "/Digital-Animal-care.png",
-      tags: ["HTML", "CSS", "JavaScript", "Dialog flow", "WhatsApp API"],
-      category: "web",
-      github: "https://github.com/yourusername/animal-care",
-      demo: "https://animalrescue-emergency-response-pla.vercel.app/",
-      date: "Oct – Dec 2025",
-    },
-  ];
+  const projects = allProjects;
 
-  const categories = [
-    { id: "all", label: "All Projects" },
-    { id: "ai", label: "AI/ML" },
-    { id: "web", label: "Web Development" },
-  ];
+  const categories = projectCategories;
 
   const filteredProjects =
     filter === "all" ? projects : projects.filter((p) => p.category === filter);
