@@ -90,8 +90,8 @@ export const messages = {
  * and is rendered by components/common/SmartLink.jsx.
  */
 export const destinations = {
-  mentoring: { section: "pathwise" },
-  services: { href: whatsappLink(messages.project) },
+  mentoring: { to: "/mentorship" },
+  services: { to: "/services" },
   resume: { to: "/resume" },
 };
 
@@ -231,7 +231,132 @@ export const mentorship = {
     href: mailtoLink("Pathwise discovery call"),
   },
   footerLabel: "Pathwise mentoring",
+
+  // ----- /mentorship landing page -----
+  page: {
+    title: "Graduated, but unsure what comes next?",
+    lead: "You don't need to figure it all out alone. Let's build a clear path forward — into AI/ML, Data Science or Software Development.",
+  },
+  // Short version on Home, linking to /mentorship
+  teaser: {
+    title: "Pathwise — career mentoring for AI/IT",
+    text: "A personalised roadmap, portfolio projects and interview prep for students and early-career engineers. The first 20-minute call is free.",
+    cta: "Explore Pathwise",
+  },
+  audience: [
+    "Final-year students",
+    "Fresh graduates",
+    "Working professionals switching into AI/ML",
+    "People preparing for AI/ML interviews",
+  ],
+  steps: [
+    { title: "Free 20-min discovery call", text: "We talk about where you are and where you want to go." },
+    { title: "Personalised roadmap", text: "A clear plan of skills, courses and projects for your goal." },
+    { title: "Weekly guidance and project reviews", text: "Regular check-ins and feedback on the work you build." },
+    { title: "Interview prep and job search", text: "Resume, portfolio and interview practice for AI/ML roles." },
+  ],
+  faq: [
+    { q: "Is the first call free?", a: "Yes. The first discovery call is free and takes 20 minutes." },
+    { q: "Online or offline?", a: "Both. Sessions run online, and offline in Mumbai." },
+    {
+      q: "Who is it for?",
+      a: "Final-year students, fresh graduates, working professionals switching into AI/ML, and anyone preparing for AI/ML interviews.",
+    },
+    { q: "What should I prepare?", a: "Your resume and your goals." },
+    { q: "How much does it cost?", a: "Pricing is shared after the discovery call, based on your goals." },
+  ],
+  // Real testimonials only, added by the site owner. The section stays hidden
+  // while this list is empty. Shape: { quote, name, role }
+  testimonials: [],
 };
+
+// ---------------------------------------------------------------------------
+// Freelance AI services (/services)
+//
+// NOTE: Freelance work must not conflict with Rajalingam's employment terms at
+// TransformHub (e.g. non-compete, moonlighting and confidentiality clauses).
+// Check those terms before taking on a project, and never describe TransformHub
+// client work by client name here.
+// ---------------------------------------------------------------------------
+export const freelance = {
+  title: "AI solutions for businesses",
+  lead: "I help companies and founders turn AI ideas into working systems — grounded chatbots, document AI, computer vision and agent workflows, with a focus on measuring whether the AI's answers can be trusted.",
+  // icon keys: chat | file | eye | gauge | workflow | layers
+  // proof: { label, projectId? } — projectId links to that card on /projects
+  services: [
+    {
+      icon: "chat",
+      title: "RAG chatbots and document Q&A on your own data",
+      outcome: "Answers grounded in your documents, with citations and an honest “not covered” when the answer isn't there.",
+      proof: [{ label: "MedQuery", projectId: "medquery" }],
+    },
+    {
+      icon: "file",
+      title: "Document AI: OCR, extraction and classification",
+      outcome: "Turn PDFs, claim forms and ID documents into structured, validated data.",
+      proof: [{ label: "Claims-processing and document-intelligence POCs at TransformHub" }],
+    },
+    {
+      icon: "eye",
+      title: "Computer vision POCs",
+      outcome: "Detection, tracking and AR overlays on images and live video.",
+      proof: [
+        { label: "YOLOv8 document grading (TCS)" },
+        { label: "Hand Tracking & AR Overlay", projectId: "hand-tracking" },
+        { label: "Askimo", projectId: "askimo" },
+      ],
+    },
+    {
+      icon: "gauge",
+      title: "LLM evaluation and hallucination audits",
+      outcome: "Measure how often your existing AI app makes things up, and where to fix it.",
+      proof: [{ label: "MedQuery evaluation", projectId: "medquery" }],
+    },
+    {
+      icon: "workflow",
+      title: "AI agent workflows with LangGraph and MCP",
+      outcome: "Multi-step agents that plan, call tools and wait for human approval where it matters.",
+      proof: [{ label: "ADLC (IIT Bombay capstone)", projectId: "adlc" }],
+    },
+    {
+      icon: "layers",
+      title: "Full-stack AI MVPs (FastAPI + React)",
+      outcome: "From idea to a working app with an API and a UI you can demo.",
+      proof: [
+        { label: "Codey", projectId: "codey" },
+        { label: "Barometers", projectId: "barometers" },
+      ],
+    },
+  ],
+  process: [
+    { title: "Discovery call", text: "We discuss the problem, your data and what success looks like." },
+    { title: "Scope and fixed quote", text: "A written scope with deliverables and a fixed quote." },
+    { title: "Weekly demos", text: "You see working software every week and steer as we go." },
+    { title: "Handover with docs", text: "Code, setup instructions and documentation, handed over to your team." },
+  ],
+  engagements: [
+    {
+      title: "Fixed-scope POC",
+      text: "A defined proof of concept with clear deliverables and a fixed quote.",
+    },
+    {
+      title: "Part-time / hourly",
+      text: "Ongoing help on your AI product, billed by the hour.",
+    },
+  ],
+  whatsapp: whatsappLink(messages.project),
+  email: mailtoLink("Freelance project enquiry"),
+};
+
+// ---------------------------------------------------------------------------
+// Contact page: "I am a…" selector → prefilled subject
+// ---------------------------------------------------------------------------
+export const contactRoles = [
+  { id: "student", label: "Student – mentoring", subject: "Pathwise mentoring enquiry" },
+  { id: "company", label: "Company – project", subject: "Freelance project enquiry" },
+  { id: "recruiter", label: "Recruiter", subject: "Job opportunity" },
+  { id: "other", label: "Other", subject: "" },
+];
 
 // ---------------------------------------------------------------------------
 // Experience (newest first) — shown on Home and Resume

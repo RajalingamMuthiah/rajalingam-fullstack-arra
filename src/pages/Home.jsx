@@ -7,7 +7,7 @@ import Experience from "../components/home/Experience";
 import Skills from "../components/home/Skills";
 import Education from "../components/home/Education";
 import ProjectsPreview from "../components/home/ProjectsPreview";
-import Mentorship from "../components/home/Mentorship";
+import PathwiseTeaser from "../components/home/PathwiseTeaser";
 import { scrollToSection } from "../utils/scrollToSection";
 
 // Matches PageTransition's enter animation, so we scroll once layout is final.
@@ -35,7 +35,7 @@ const Home = () => {
       <div className="min-h-screen">
         <Hero />
         <HelpStrip />
-        <Mentorship />
+        <PathwiseTeaser />
         <Experience />
         <Skills />
         <ProjectsPreview />

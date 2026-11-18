@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Button from "../components/common/Button";
@@ -10,6 +11,18 @@ import { projects, projectCategories } from "../data/portfolio";
 
 const Projects = () => {
   const [filter, setFilter] = useState("all");
+  const { hash } = useLocation();
+
+  // /projects#medquery (e.g. "Proof" links on /services): scroll to that card
+  // once the page-enter animation has finished.
+  useEffect(() => {
+    if (!hash) return undefined;
+    const timer = setTimeout(
+      () => document.getElementById(hash.slice(1))?.scrollIntoView({ block: "start" }),
+      350,
+    );
+    return () => clearTimeout(timer);
+  }, [hash]);
 
   const visible =
     filter === "all"

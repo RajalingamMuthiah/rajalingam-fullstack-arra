@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin } from "lucide-react";
+import { Send, Mail, MapPin, MessageCircle } from "lucide-react";
 import { toast } from "react-toastify";
 import PageTransition from "../components/common/PageTransition";
 import SectionTitle from "../components/common/SectionTitle";
 import Card from "../components/common/Card";
 import Button from "../components/common/Button";
 import { SOCIAL_ICONS, SOCIAL_COLORS } from "../components/common/socialIcons";
-import { profile, socialLinks as socialLinkData } from "../data/portfolio";
+import useDocumentTitle from "../hooks/useDocumentTitle";
+import {
+  profile,
+  contactRoles,
+  messages,
+  whatsappLink,
+  socialLinks as socialLinkData,
+} from "../data/portfolio";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,11 +23,29 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "/api";
 
+  useDocumentTitle({
+    title: "Contact Rajalingam Muthiah — Mentoring, Freelance AI Projects, Hiring",
+    description:
+      "Get in touch with Rajalingam Muthiah for Pathwise mentoring, freelance AI projects or AI/ML job opportunities. WhatsApp, email or the contact form.",
+  });
+
+  // WhatsApp message follows the selected role.
+  const whatsappText =
+    role === "student" ? messages.mentoring : role === "company" ? messages.project : undefined;
+
   const contactInfo = [
+    {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      value: "Message me on WhatsApp",
+      href: whatsappLink(whatsappText),
+      newTab: true,
+    },
     {
       icon: Mail,
       label: "Email",
@@ -64,6 +89,16 @@ const Contact = () => {
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  // "I am a…" selector: prefill the subject unless the visitor typed their own.
+  const handleRole = (r) => {
+    setRole(r.id);
+    setFormData((prev) => {
+      const prefilled = contactRoles.some((x) => x.subject && x.subject === prev.subject);
+      return prev.subject && !prefilled ? prev : { ...prev, subject: r.subject };
+    });
+    if (r.subject && errors.subject) setErrors((prev) => ({ ...prev, subject: "" }));
   };
 
   const handleChange = (e) => {
@@ -125,8 +160,10 @@ const Contact = () => {
       <div className="min-h-screen pt-page pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <SectionTitle
+            as="h1"
+            eyebrow="Contact"
             title="Get In Touch"
-            subtitle="Have a project in mind? Let's work together!"
+            subtitle="Mentoring, a freelance AI project or a job opportunity — tell me who you are and I'll get back to you."
           />
 
           <div className="grid grid-cols-[minmax(0,1fr)] lg:grid-cols-2 gap-8">
@@ -141,6 +178,37 @@ const Contact = () => {
                   Send Message
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* I am a… */}
+                  <fieldset>
+                    <legend className="block text-sm font-medium mb-2">
+                      I am a…
+                    </legend>
+                    <div className="flex flex-wrap gap-2">
+                      {contactRoles.map((r) => (
+                        <label
+                          key={r.id}
+                          className={`cursor-pointer rounded-full border px-3 py-1.5 text-sm font-medium transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-neon-blue ${
+                            role === r.id
+                              ? r.id === "student"
+                                ? "border-teal-600 bg-teal-700 text-white"
+                                : "border-cyan-600 bg-cyan-700 text-white"
+                              : "border-gray-300 hover:border-gray-500 dark:border-white/15 dark:hover:border-white/40"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="role"
+                            value={r.id}
+                            checked={role === r.id}
+                            onChange={() => handleRole(r)}
+                            className="sr-only"
+                          />
+                          {r.label}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+
                   {/* Name Input */}
                   <div>
                     <label
@@ -270,7 +338,7 @@ const Contact = () => {
                   Contact Info
                 </h2>
                 <div className="space-y-4">
-                  {contactInfo.map(({ icon: Icon, label, value, href }) => (
+                  {contactInfo.map(({ icon: Icon, label, value, href, newTab }) => (
                     <div key={label} className="flex items-start space-x-4">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center flex-shrink-0">
                         <Icon className="w-5 h-5" />
@@ -280,6 +348,7 @@ const Contact = () => {
                         {href ? (
                           <a
                             href={href}
+                            {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             className="text-white hover:text-neon-blue transition-colors break-all"
                           >
                             {value}

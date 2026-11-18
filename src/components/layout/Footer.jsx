@@ -24,6 +24,7 @@ const Footer = () => {
     { name: "Home", target: { to: "/" } },
     { name: "Projects", target: { to: "/projects" } },
     { name: mentorship.footerLabel, target: destinations.mentoring },
+    { name: "Freelance AI services", target: destinations.services },
     { name: "Gallery", target: { to: "/gallery" } },
     { name: "Contact", target: { to: "/contact" } },
   ];

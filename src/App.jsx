@@ -18,6 +18,8 @@ import Certificates from "./pages/Certificates";
 import Resume from "./pages/Resume";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Mentorship from "./pages/Mentorship";
+import Services from "./pages/Services";
 
 // Context
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
@@ -47,6 +49,8 @@ function AppContent() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/mentorship" element={<Mentorship />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/certificates" element={<Certificates />} />
 

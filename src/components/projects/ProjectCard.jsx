@@ -255,7 +255,7 @@ export const FeaturedGrid = ({ projects }) => {
       {projects.map((p, index) => {
         const wide = isWideFeatured(p) || p.id === unpaired;
         return (
-          <div key={p.id} className={wide ? "lg:col-span-2" : ""}>
+          <div key={p.id} id={p.id} className={`scroll-mt-header ${wide ? "lg:col-span-2" : ""}`}>
             <FeaturedProjectCard project={p} wide={wide} eager={index === 0} />
           </div>
         );
@@ -266,7 +266,7 @@ export const FeaturedGrid = ({ projects }) => {
 
 /** Compact card for other projects. */
 export const ProjectCard = ({ project }) => (
-  <Card glow hover={false} className="h-full flex flex-col gap-3 overflow-hidden">
+  <Card id={project.id} glow hover={false} className="scroll-mt-header h-full flex flex-col gap-3 overflow-hidden">
     <ProjectImage project={project} className="-mx-6 -mt-6 mb-1" />
 
     <h3 className="text-lg font-bold">{project.title}</h3>
