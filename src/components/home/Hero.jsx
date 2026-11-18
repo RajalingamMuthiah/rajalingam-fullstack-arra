@@ -3,7 +3,12 @@ import { motion } from "framer-motion";
 import { MapPin, Briefcase, Mail, ArrowRight } from "lucide-react";
 import Button from "../common/Button";
 import { SOCIAL_ICONS, SOCIAL_COLORS } from "../common/socialIcons";
-import { profile, socialLinks as socialLinkData } from "../../data/portfolio";
+import {
+  profile,
+  mentorship,
+  socialLinks as socialLinkData,
+} from "../../data/portfolio";
+import { scrollToSection } from "../../utils/scrollToSection";
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
@@ -144,6 +149,18 @@ const Hero = () => {
               <Button to="/contact" variant="secondary">
                 Get In Touch
               </Button>
+            </motion.div>
+
+            {/* Pathwise mentoring pill */}
+            <motion.div variants={itemVariants}>
+              <button
+                type="button"
+                onClick={() => scrollToSection("mentorship")}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium glass border border-neon-purple/40 hover:border-neon-purple transition-colors"
+              >
+                <span aria-hidden="true">🎓</span>
+                {mentorship.heroPill}
+              </button>
             </motion.div>
 
             {/* Social Links */}

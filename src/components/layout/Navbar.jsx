@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { name: "Home", path: "/", section: null },
   { name: "Experience", path: "/", section: "experience" },
   { name: "Projects", path: "/projects", section: null },
+  { name: "Mentorship", path: "/", section: "mentorship" },
   { name: "Gallery", path: "/gallery", section: null },
   { name: "Skills", path: "/", section: "skills" },
   { name: "Certificates", path: "/certificates", section: null },
@@ -124,7 +125,7 @@ const Navbar = () => {
               >
                 RM
               </motion.div>
-              <span className="hidden sm:block font-display font-bold text-xl gradient-text">
+              <span className="hidden sm:block lg:hidden xl:block font-display font-bold text-xl gradient-text">
                 Portfolio
               </span>
             </button>
@@ -139,7 +140,7 @@ const Navbar = () => {
                     key={link.name}
                     onClick={() => handleNavigation(link.path, link.section)}
                     aria-current={active ? "page" : undefined}
-                    className="relative px-4 py-2 group"
+                    className="relative px-3 xl:px-4 py-2 group"
                   >
                     <span
                       className={`text-sm font-medium transition-colors duration-300 ${

@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Heart } from "lucide-react";
 import { SOCIAL_ICONS } from "../common/socialIcons";
-import { profile, site, socialLinks as socialLinkData } from "../../data/portfolio";
+import {
+  profile,
+  site,
+  mentorship,
+  socialLinks as socialLinkData,
+} from "../../data/portfolio";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,6 +22,11 @@ const Footer = () => {
   const footerLinks = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
+    {
+      name: mentorship.footerLabel,
+      path: "/",
+      state: { scrollTo: "mentorship" },
+    },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -47,6 +57,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
+                    state={link.state}
                     className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
                   >
                     {link.name}
