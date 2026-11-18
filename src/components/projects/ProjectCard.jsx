@@ -6,6 +6,8 @@ import {
   Clock,
   AlertTriangle,
   FolderGit2,
+  Lock,
+  GraduationCap,
 } from "lucide-react";
 import Card from "../common/Card";
 
@@ -39,17 +41,27 @@ const ProjectLinks = ({ project }) => {
 
 const Badges = ({ project }) => {
   const badges = [
+    ...(project.badges ?? []).map((text) => ({
+      icon: GraduationCap,
+      text,
+      tone: "purple",
+    })),
     project.status && { icon: Clock, text: project.status, tone: "amber" },
     project.collaborator && {
       icon: Users,
       text: `Collaborator: ${project.collaborator}`,
       tone: "blue",
     },
-    project.availability && { icon: null, text: project.availability, tone: "gray" },
+    project.availability && {
+      icon: project.links?.github ? null : Lock,
+      text: project.availability,
+      tone: "gray",
+    },
   ].filter(Boolean);
   if (!badges.length) return null;
   const tones = {
     amber: "bg-amber-400/10 text-amber-300 border-amber-400/30",
+    purple: "bg-neon-purple/10 text-purple-300 border-neon-purple/30",
     blue: "bg-neon-blue/10 text-neon-blue border-neon-blue/30",
     gray: "bg-white/5 text-gray-300 border-white/15",
   };
@@ -104,8 +116,29 @@ const Results = ({ results }) => (
  */
 export const isWideFeatured = (project) => Boolean(project.results);
 
-export const FeaturedProjectCard = ({ project }) => {
-  const wide = isWideFeatured(project);
+export const FeaturedProjectCard = ({ project, wide = isWideFeatured(project) }) => {
+
+  // In the wide layout, a card without results shows its role/team on the
+  // right so the two columns stay balanced.
+  const roleOnRight = wide && !project.results;
+  const roleAndTeam = (
+    <>
+      {project.role && (
+        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+          <p className="text-xs uppercase tracking-wide text-neon-blue font-semibold mb-1">
+            My role
+          </p>
+          <p className="text-sm text-gray-300 leading-relaxed">{project.role}</p>
+        </div>
+      )}
+      {project.team && (
+        <p className="text-sm text-gray-400">
+          <span className="font-semibold text-gray-300">Team:</span>{" "}
+          {project.team.join(", ")}
+        </p>
+      )}
+    </>
+  );
 
   const intro = (
     <>
@@ -134,12 +167,14 @@ export const FeaturedProjectCard = ({ project }) => {
           ))}
         </ul>
       )}
+      {!roleOnRight && roleAndTeam}
     </>
   );
 
   const outro = (
     <>
       {project.results && <Results results={project.results} />}
+      {roleOnRight && roleAndTeam}
       {project.note && (
         <p className="flex items-start gap-2 text-xs text-amber-300/90">
           <AlertTriangle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
@@ -169,16 +204,27 @@ export const FeaturedProjectCard = ({ project }) => {
   );
 };
 
-/** Grid for featured cards: wide ones span the full row, others sit two per row. */
-export const FeaturedGrid = ({ projects }) => (
-  <div className="grid gap-6 lg:grid-cols-2">
-    {projects.map((p) => (
-      <div key={p.id} className={isWideFeatured(p) ? "lg:col-span-2" : ""}>
-        <FeaturedProjectCard project={p} />
-      </div>
-    ))}
-  </div>
-);
+/**
+ * Grid for featured cards: wide ones span the full row, others sit two per
+ * row. If the half-width cards leave one unpaired, the last one also spans
+ * the full row so there is no empty half.
+ */
+export const FeaturedGrid = ({ projects }) => {
+  const halves = projects.filter((p) => !isWideFeatured(p));
+  const unpaired = halves.length % 2 === 1 ? halves[halves.length - 1].id : null;
+  return (
+    <div className="grid gap-6 lg:grid-cols-2">
+      {projects.map((p) => {
+        const wide = isWideFeatured(p) || p.id === unpaired;
+        return (
+          <div key={p.id} className={wide ? "lg:col-span-2" : ""}>
+            <FeaturedProjectCard project={p} wide={wide} />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 /** Compact card for other projects. */
 export const ProjectCard = ({ project }) => (

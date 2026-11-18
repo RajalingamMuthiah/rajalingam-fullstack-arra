@@ -171,7 +171,9 @@ export const education = [
 //   categories   any of "ai" | "cv" | "fullstack" (drives the filters)
 //   links        only real URLs; omit a link rather than using "#"
 //   status       "In progress" shows a badge
-//   availability e.g. "Demo on request"
+//   badges       extra labels, e.g. ["IIT Bombay Capstone"]
+//   availability e.g. "Demo on request" (shown instead of a missing repo link)
+//   role / team  featured cards: "My role" text and team member names
 //   results      measured results quoted from the repo README
 //   note         short disclaimer shown on the card
 // ---------------------------------------------------------------------------
@@ -234,6 +236,24 @@ export const projects = [
     tags: ["FastAPI", "MongoDB Atlas", "JWT", "Groq", "Python"],
     categories: ["fullstack", "ai"],
     links: { github: `${GH}/Barometers` },
+    featured: true,
+  },
+
+  {
+    id: "adlc",
+    title: "ADLC – Agentic Requirements & Planning Platform",
+    subtitle: "IIT Bombay capstone (team project)",
+    summary:
+      "A FastAPI + LangGraph platform that clarifies software requirements and produces evidence-backed implementation plans for an existing application. A multi-step agent workflow runs requirements analysis, a clarification interrupt, plan preparation and independent review. The owner then approves, edits or rejects the exact plan version before it is published to Jira and a knowledge base. Exposes four FastMCP servers (requirements, knowledge, validation, publishing).",
+    role: "I own the knowledge and integrations layer: GitHub/document extraction, Jira snapshot reader, chunking and embeddings, hybrid BM25 + pgvector retrieval with fusion and reranking, and the MCP servers and idempotent publication gate.",
+    team: ["Mahesh Kumar", "Aryan Katiyar", "Sanghvi", "Rajalingam Muthiah"],
+    badges: ["IIT Bombay Capstone"],
+    status: "In progress",
+    availability: "Private repo – IIT Bombay team project",
+    note: "In active development: the repository is currently a demo-mode scaffold.",
+    tags: ["Python", "FastAPI", "LangGraph", "FastMCP", "RAG", "pgvector", "HTMX"],
+    categories: ["ai"],
+    links: {},
     featured: true,
   },
 

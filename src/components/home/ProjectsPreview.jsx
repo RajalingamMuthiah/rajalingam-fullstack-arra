@@ -15,7 +15,7 @@ const ProjectsPreview = () => {
       <div className="max-w-7xl mx-auto">
         <SectionTitle
           title="Featured Projects"
-          subtitle="RAG and LLM evaluation, secure code execution, and voice-enabled inventory"
+          subtitle="RAG and LLM evaluation, agentic planning, secure code execution, and voice-enabled inventory"
         />
         <div className="mb-10">
           <FeaturedGrid projects={featured} />
