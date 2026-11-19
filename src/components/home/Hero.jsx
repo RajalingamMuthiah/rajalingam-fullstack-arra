@@ -180,7 +180,8 @@ const Hero = () => {
               alt={profile.photo.alt}
               width="384"
               height="384"
-              fetchPriority="high"
+              // lowercase attribute: React 18 DOM does not know `fetchPriority`
+              {...{ fetchpriority: "high" }}
               className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full object-cover border-4 border-gray-200 dark:border-white/10 shadow-2xl"
             />
           </div>

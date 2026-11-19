@@ -29,14 +29,18 @@ function AppContent() {
   const { isDark } = useTheme();
 
   // New page → start at the top, unless a navbar section link asked Home to
-  // scroll to a section (handled in pages/Home.jsx).
+  // scroll to a section (pages/Home.jsx) or the URL has a hash such as
+  // /projects#medquery (pages/Projects.jsx). Only a pathname change counts, so
+  // opening a case study (hash/state change) never jumps to the top.
+  const skipScrollTop = Boolean(location.state?.scrollTo || location.hash);
   useEffect(() => {
-    if (!location.state?.scrollTo) window.scrollTo(0, 0);
-  }, [location.pathname, location.state]);
+    if (!skipScrollTop) window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   return (
     <div
-      className={`relative min-h-screen ${isDark ? "bg-dark-bg text-white" : "bg-gray-50 text-gray-900"} overflow-x-hidden`}
+      className={`relative min-h-screen ${isDark ? "bg-dark-bg text-white" : "bg-gray-50 text-gray-900"} overflow-x-clip`}
     >
       {/* Particle Background */}
       <ParticlesBackground />

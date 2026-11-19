@@ -95,7 +95,8 @@ const Flyer = ({ className = "", eager = false }) => {
           width={flyer.width}
           height={flyer.height}
           loading={eager ? "eager" : "lazy"}
-          fetchPriority={eager ? "high" : undefined}
+          // lowercase attribute: React 18 DOM does not know `fetchPriority`
+          {...(eager ? { fetchpriority: "high" } : {})}
           decoding="async"
           className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
         />

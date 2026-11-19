@@ -439,15 +439,17 @@ export const education = [
 // Projects
 //
 // Fields:
-//   featured     larger card on Home + top of Projects page (in array order)
+//   featured     bento grid on Home + Projects (in array order)
 //   categories   any of "ai" | "cv" | "fullstack" (drives the filters)
 //   links        only real URLs; omit a link rather than using "#"
 //   status       "In progress" shows a badge
 //   badges       extra labels, e.g. ["IIT Bombay Capstone"]
 //   availability e.g. "Demo on request" (shown instead of a missing repo link)
 //   role / team  featured cards: "My role" text and team member names
-//   results      measured results quoted from the repo README
-//   note         short disclaimer shown on the card
+//   highlights   3 short highlights (≤ 40 characters) shown on the card
+//   metrics      optional before → after numbers for the wide featured card
+//   results      measured results table quoted from the repo README (case study)
+//   note         short disclaimer shown in the case study
 //   image        16:9 image in public/ (see public/projects/CREDITS.md);
 //   imageAlt     descriptive alt text. Without an image the card shows an icon panel.
 // ---------------------------------------------------------------------------
@@ -461,7 +463,7 @@ export const projectCategories = [
 const GH = "https://github.com/RajalingamMuthiah";
 
 export const projects = [
-  // ----- Featured -----
+  // ----- Featured (bento order on /projects) -----
   {
     id: "medquery",
     image: "/projects/medquery-cover.svg",
@@ -475,65 +477,33 @@ export const projects = [
       "Cited answers generated on Groq (gpt-oss-20b), with honest \"not covered\" refusals.",
       "Optional claim-by-claim verification and a hallucination-evaluation layer; every design choice measured on a held-out dev set.",
     ],
-    results: {
+    // From the MedQuery README "Headline results" (test split, 23 questions,
+    // run once, no tuning afterwards).
+    // Wide-card metrics panel (same numbers as `results`, rounded labels)
+    metrics: {
       caption: "Held-out test set (23 questions) vs. a simple baseline",
       items: [
-        { label: "Answer correctness", value: "0.556 → 0.833" },
-        { label: "False refusals", value: "0.389 → 0.111" },
-        { label: "Unanswerable questions declined", value: "100%" },
+        { label: "Answer correctness", from: "0.556", to: "0.833" },
+        { label: "False refusals", from: "0.389", to: "0.111" },
+        { label: "Unanswerable questions declined", to: "100%" },
       ],
     },
+    results: {
+      caption: "Held-out test set (23 questions), run once with no tuning afterwards",
+      columns: ["Metric", "Simple baseline", "MedQuery", "Difference [95% CI]"],
+      rows: [
+        ["Answer correctness", "0.556", "0.833", "+0.278 [0.118, 0.469]"],
+        ["False refusals of answerable questions", "0.389", "0.111", "−0.278 [−0.479, −0.100]"],
+        ["Unanswerable questions declined", "1.000", "1.000", "—"],
+        ["Claim hallucination rate", "0.059", "0.158", "+0.099 [−0.030, 0.265], not shown to differ"],
+      ],
+      footnote: "23 test questions, so the intervals are wide. A difference counts as real only if its 95% CI excludes 0.",
+    },
     note: "Not medical advice. MedQuery answers only from its source documents.",
+    highlights: ["Correctness 0.56 → 0.83", "False refusals 0.39 → 0.11", "100% unanswerable declined"],
     tags: ["Python", "FastAPI", "React", "RAG", "LLM Evaluation", "Groq"],
     categories: ["ai", "fullstack"],
     links: { github: `${GH}/MedQuery` },
-    featured: true,
-  },
-  {
-    id: "codey",
-    image: "/projects/codey-cover.svg",
-    imageAlt: "Cover graphic for Codey",
-    title: "Codey",
-    subtitle: "Secure remote code-execution platform",
-    summary:
-      "Run code remotely and safely: an Angular frontend and FastAPI backend, with each execution sandboxed in Docker.",
-    tags: ["Angular", "FastAPI", "Python", "Docker"],
-    categories: ["fullstack"],
-    links: {
-      github: `${GH}/codey`,
-      video: `${GH}/codey/blob/main/static/submission_vid.mp4`,
-    },
-    featured: true,
-  },
-  {
-    id: "barometers",
-    image: "/projects/barometers-cover.svg",
-    imageAlt: "Cover graphic for Barometers",
-    title: "Barometers",
-    subtitle: "Outlet counting and inventory platform",
-    summary:
-      "Outlet counting and inventory platform with JWT authentication, outlet-scoped inventory, voice transcription (Groq speech-to-text) and text-to-speech confirmations. Deployable on Render or Railway.",
-    tags: ["FastAPI", "MongoDB Atlas", "JWT", "Groq", "Python"],
-    categories: ["fullstack", "ai"],
-    links: { github: `${GH}/Barometers` },
-    featured: true,
-  },
-
-  {
-    id: "askimo",
-    image: "/projects/askimo.webp",
-    imageAlt:
-      "Askimo (EvoLearn v2) upload screen for a lecture PDF, with the MediaPipe Hands vision engine marked ready",
-    title: "Askimo – AI Tutor with Hand-Raise Detection",
-    subtitle: "(EvoLearn v2)",
-    summary:
-      "AI tutor prototype that reads an uploaded lecture PDF aloud, sentence by sentence (PDF.js + browser text-to-speech), while MediaPipe Hands watches the webcam and pauses the lecture when a student raises their hand. Answering the student's question with a RAG pipeline is shown in the app as the planned next phase.",
-    tags: ["React", "MediaPipe", "PDF.js", "Web Speech API", "Tailwind CSS"],
-    categories: ["ai", "cv"],
-    links: {
-      demo: "https://askimo-demo.vercel.app",
-      github: `${GH}/askimo_demo`,
-    },
     featured: true,
   },
   {
@@ -550,13 +520,63 @@ export const projects = [
     status: "In progress",
     availability: "Private repo – IIT Bombay team project",
     note: "In active development: the repository is currently a demo-mode scaffold.",
+    highlights: ["Multi-step LangGraph agent workflow", "Human approval before publishing", "4 FastMCP servers"],
     tags: ["Python", "FastAPI", "LangGraph", "FastMCP", "RAG", "pgvector", "HTMX"],
     categories: ["ai"],
     links: {},
     featured: true,
   },
+  {
+    id: "askimo",
+    image: "/projects/askimo.webp",
+    imageAlt:
+      "Askimo (EvoLearn v2) upload screen for a lecture PDF, with the MediaPipe Hands vision engine marked ready",
+    title: "Askimo – AI Tutor with Hand-Raise Detection",
+    subtitle: "(EvoLearn v2)",
+    summary:
+      "AI tutor prototype that reads an uploaded lecture PDF aloud, sentence by sentence (PDF.js + browser text-to-speech), while MediaPipe Hands watches the webcam and pauses the lecture when a student raises their hand. Answering the student's question with a RAG pipeline is shown in the app as the planned next phase.",
+    highlights: ["Pauses lecture on a raised hand", "Reads lecture PDFs aloud", "MediaPipe Hands in the browser"],
+    tags: ["React", "MediaPipe", "PDF.js", "Web Speech API", "Tailwind CSS"],
+    categories: ["ai", "cv"],
+    links: {
+      demo: "https://askimo-demo.vercel.app",
+      github: `${GH}/askimo_demo`,
+    },
+    featured: true,
+  },
+  {
+    id: "codey",
+    image: "/projects/codey-cover.svg",
+    imageAlt: "Cover graphic for Codey",
+    title: "Codey",
+    subtitle: "Secure remote code-execution platform",
+    summary:
+      "Run code remotely and safely: an Angular frontend and FastAPI backend, with each execution sandboxed in Docker.",
+    highlights: ["Docker-sandboxed execution", "Angular + FastAPI", "Submission demo video"],
+    tags: ["Angular", "FastAPI", "Python", "Docker"],
+    categories: ["fullstack"],
+    links: {
+      github: `${GH}/codey`,
+      video: `${GH}/codey/blob/main/static/submission_vid.mp4`,
+    },
+    featured: true,
+  },
+  {
+    id: "barometers",
+    image: "/projects/barometers-cover.svg",
+    imageAlt: "Cover graphic for Barometers",
+    title: "Barometers",
+    subtitle: "Outlet counting and inventory platform",
+    summary:
+      "Outlet counting and inventory platform with JWT authentication, outlet-scoped inventory, voice transcription (Groq speech-to-text) and text-to-speech confirmations. Deployable on Render or Railway.",
+    highlights: ["Voice input with Groq speech-to-text", "JWT auth, outlet-scoped inventory", "Text-to-speech confirmations"],
+    tags: ["FastAPI", "MongoDB Atlas", "JWT", "Groq", "Python"],
+    categories: ["fullstack", "ai"],
+    links: { github: `${GH}/Barometers` },
+    featured: true,
+  },
 
-  // ----- Other projects -----
+  // ----- More projects -----
   {
     id: "smart-todo",
     image: "/projects/smart-todo.webp",
@@ -565,6 +585,7 @@ export const projects = [
     title: "Smart To-Do – Intelligent Task Planner",
     summary:
       "Full-stack AI product with automated workout generation and real-time collaboration, deployed as a mobile-first Progressive Web App.",
+    highlights: ["Automated workout generation", "Real-time collaboration", "Mobile-first PWA"],
     tags: ["PWA", "Python", "MongoDB", "AI"],
     categories: ["fullstack", "ai"],
     date: "Feb – Mar 2026",
@@ -579,6 +600,7 @@ export const projects = [
     title: "Real-Time Hand Tracking & AR Overlay",
     summary:
       "21-point hand-landmark detection running at live webcam frame rates for virtual AR watch try-ons.",
+    highlights: ["21-point hand landmarks", "Live webcam AR watch try-on", "LUXEtime store live demo"],
     tags: ["Python", "OpenCV", "MediaPipe"],
     categories: ["cv", "ai"],
     date: "Jun – Jul 2025",
@@ -594,6 +616,7 @@ export const projects = [
     title: "Cognitive Visual Intelligence Framework",
     summary:
       "AI-based computer vision system that identifies handwritten response indicators on evaluation sheets.",
+    highlights: ["Detects handwritten answer marks", "Evaluation-sheet analysis", "Built with Roboflow"],
     tags: ["Python", "Roboflow", "Computer Vision"],
     categories: ["cv", "ai"],
     date: "Feb 2025 – Present",
@@ -608,6 +631,7 @@ export const projects = [
     title: "EEMS – Exam Examiner Management System",
     summary:
       "Multi-role dashboards (Admin, Principal, VP, HOD, Teacher) for exam scheduling and examiner assignment.",
+    highlights: ["5 role-based dashboards", "Exam scheduling", "Examiner assignment"],
     tags: ["PHP", "MySQL", "JavaScript"],
     categories: ["fullstack"],
     availability: "Demo on request",
@@ -620,6 +644,7 @@ export const projects = [
     title: "AyuSangam",
     summary:
       "Fitness and health tracker with HRV, resting-heart-rate and sleep analytics from Whoop and Garmin wearables.",
+    highlights: ["HRV, resting HR and sleep analytics", "Whoop and Garmin wearable data", "FastAPI + PostgreSQL backend"],
     tags: ["FastAPI", "PostgreSQL", "Wearables"],
     categories: ["fullstack"],
     availability: "Demo on request",
@@ -633,6 +658,7 @@ export const projects = [
     title: "Digital Animal Care & Emergency Response",
     summary:
       "Dog-care and emergency platform connecting pet owners, vets, rescue teams and the public, with care recommendations, remote vet consultation scheduling and WhatsApp emergency alerts.",
+    highlights: ["WhatsApp emergency alerts", "Remote vet consultations", "Volunteer and admin dashboards"],
     tags: ["React", "TypeScript"],
     categories: ["fullstack"],
     date: "Oct – Dec 2024",
@@ -649,6 +675,7 @@ export const projects = [
     title: "Fraud Detection",
     summary:
       "Fraud classification with a K-Nearest Neighbors model, feature scaling and cross-validation, in a Jupyter notebook.",
+    highlights: ["K-Nearest Neighbors classifier", "Feature scaling + cross-validation", "Jupyter notebook analysis"],
     tags: ["Python", "Scikit-learn", "Pandas", "Jupyter"],
     categories: ["ai"],
     links: { github: `${GH}/Fraud-Detection` },

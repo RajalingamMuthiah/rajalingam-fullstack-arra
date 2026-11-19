@@ -96,4 +96,8 @@
   .scroll-mt-header {
     scroll-margin-top: var(--header-h);
   }
+  /* Project cards on /projects: clear the header and the sticky filter bar */
+  .scroll-mt-project {
+    scroll-margin-top: calc(var(--header-h) + 5rem);
+  }
 }
