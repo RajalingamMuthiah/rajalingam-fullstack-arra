@@ -1,26 +1,24 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
-const Card = ({ 
-  children, 
-  className = '', 
+/**
+ * Base card: rounded-2xl, 1px subtle border (.glass), glow on hover only
+ * (`glow`), optional small lift on hover (`hover`).
+ */
+const Card = ({
+  children,
+  className = '',
   hover = true,
   glow = false,
-  ...props 
+  ...props
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={hover ? { y: -5 } : {}}
-      className={`
-        glass rounded-2xl p-6 
-        ${glow ? 'glow-card' : ''}
-        ${hover ? 'cursor-pointer' : ''}
-        transition-all duration-300
-        ${className}
-      `}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.4 }}
+      whileHover={hover ? { y: -3 } : undefined}
+      className={`glass rounded-2xl p-6 ${glow ? 'glow-card' : ''} ${className}`}
       {...props}
     >
       {children}

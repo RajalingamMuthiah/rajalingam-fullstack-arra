@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
@@ -8,16 +8,18 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ParticlesBackground from "./components/common/ParticlesBackground";
-import FloatingResumeButton from "./components/FloatingResumeButton";
+import QuickContact from "./components/layout/QuickContact";
 
-// Pages
+// Pages: Home ships in the main bundle; the rest load on demand.
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Gallery from "./pages/Gallery";
-import Certificates from "./pages/Certificates";
-import Resume from "./pages/Resume";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+const Projects = lazy(() => import("./pages/Projects"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Certificates = lazy(() => import("./pages/Certificates"));
+const Resume = lazy(() => import("./pages/Resume"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Mentorship = lazy(() => import("./pages/Mentorship"));
+const Services = lazy(() => import("./pages/Services"));
 
 // Context
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
@@ -26,21 +28,34 @@ function AppContent() {
   const location = useLocation();
   const { isDark } = useTheme();
 
+  // New page → start at the top, unless a navbar section link asked Home to
+  // scroll to a section (pages/Home.jsx) or the URL has a hash such as
+  // /projects#medquery (pages/Projects.jsx). Only a pathname change counts, so
+  // opening a case study (hash/state change) never jumps to the top.
+  const skipScrollTop = Boolean(location.state?.scrollTo || location.hash);
+  useEffect(() => {
+    if (!skipScrollTop) window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
+
   return (
     <div
-      className={`relative min-h-screen ${isDark ? "bg-dark-bg text-white" : "bg-gray-50 text-gray-900"} overflow-x-hidden`}
+      className={`relative min-h-screen ${isDark ? "bg-dark-bg text-white" : "bg-gray-50 text-gray-900"} overflow-x-clip`}
     >
       {/* Particle Background */}
       <ParticlesBackground />
 
       {/* Main Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 pb-16 md:pb-0">
         <Navbar />
 
+        <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/mentorship" element={<Mentorship />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/certificates" element={<Certificates />} />
 
@@ -49,11 +64,13 @@ function AppContent() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </AnimatePresence>
+        </Suspense>
 
         <Footer />
       </div>
 
-      <FloatingResumeButton />
+      {/* Floating action button (≥768px) / sticky action bar (<768px) */}
+      <QuickContact />
 
       {/* Toast Notifications */}
       <ToastContainer

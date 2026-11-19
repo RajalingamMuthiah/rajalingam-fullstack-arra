@@ -1,57 +1,50 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import SmartLink from "../common/SmartLink";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Mail, Heart } from "lucide-react";
+import { Mail, Heart } from "lucide-react";
+import { SOCIAL_ICONS } from "../common/socialIcons";
+import {
+  profile,
+  site,
+  mentorship,
+  destinations,
+  socialLinks as socialLinkData,
+} from "../../data/portfolio";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/RajalingamMuthiah",
-      label: "GitHub",
-    },
-    {
-      icon: Linkedin,
-      href: "https://linkedin.com/in/rajalingam-muthiah/",
-      label: "LinkedIn",
-    },
-    {
-      icon: Instagram,
-      href: "https://instagram.com/hilarious_king__/",
-      label: "Instagram",
-    },
-    {
-      icon: Mail,
-      href: "mailto:your.rajalingammuthiah2011@gmail.com",
-      label: "Email",
-    },
+    ...socialLinkData
+      .filter((link) => link.showIn.includes("footer"))
+      .map((link) => ({ ...link, icon: SOCIAL_ICONS[link.key] })),
+    { icon: Mail, href: `mailto:${profile.email}`, label: "Email" },
   ];
 
   const footerLinks = [
-    { name: "Home", path: "/" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", target: { to: "/" } },
+    { name: "Projects", target: { to: "/projects" } },
+    { name: mentorship.footerLabel, target: destinations.mentoring },
+    { name: "Freelance AI services", target: destinations.services },
+    { name: "Gallery", target: { to: "/gallery" } },
+    { name: "Contact", target: { to: "/contact" } },
   ];
 
   return (
-    <footer className="relative mt-20 border-t border-white/10">
+    <footer className="relative mt-20 border-t border-gray-200 dark:border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-600 to-purple-600 text-white flex items-center justify-center font-bold">
                 RM
               </div>
               <span className="font-display font-bold text-lg">
-                AI/ML Portfolio
+                {site.footerBrand}
               </span>
             </div>
-            <p className="text-gray-400 text-sm">
-              Building the future with AI and Machine Learning. Passionate about
-              creating innovative solutions.
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              {site.footerBlurb}
             </p>
           </div>
 
@@ -61,12 +54,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
+                  <SmartLink
+                    {...link.target}
+                    className="text-gray-600 dark:text-gray-400 hover:text-cyan-700 dark:hover:text-neon-blue transition-colors duration-300 text-sm"
                   >
                     {link.name}
-                  </Link>
+                  </SmartLink>
                 </li>
               ))}
             </ul>
@@ -84,39 +77,25 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:bg-white/10 transition-all duration-300 group"
+                  className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:bg-gray-200 dark:hover:bg-white/10 transition-all duration-300 group"
                   aria-label={label}
                 >
-                  <Icon className="w-5 h-5 group-hover:text-neon-blue transition-colors" />
+                  <Icon className="w-5 h-5 group-hover:text-cyan-700 dark:group-hover:text-neon-blue transition-colors" />
                 </motion.a>
               ))}
-            </div>
-
-            {/* Other Portfolio Section */}
-            <div className="pt-4 border-t border-white/10">
-              <p className="text-gray-500 text-xs font-medium mb-2">
-                Other Portfolio:
-              </p>
-              <a
-                href="https://arjun-portfolio-wheat.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-xs inline-block"
-              >
-                Arjun – Fullstack Developer (Java)
-              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <p className="text-gray-400 text-sm text-center sm:text-center">
-            © {currentYear} Rajalingam Muthiah. All rights reserved.
+        <div className="pt-8 md:pr-20 border-t border-gray-200 dark:border-white/10 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <p className="text-gray-600 dark:text-gray-400 text-sm text-center sm:text-center">
+            © {currentYear} {profile.name}. All rights reserved.
           </p>
-          <p className="text-gray-400 text-sm flex items-center">
-            Built with <Heart className="w-4 h-4 mx-1 text-red-500" /> using
-            React & Tailwind CSS
+          <p className="text-gray-600 dark:text-gray-400 text-sm flex items-center">
+            Built with{" "}
+            <Heart className="w-4 h-4 mx-1 text-red-500" aria-label="love" role="img" />{" "}
+            by {profile.name}
           </p>
         </div>
       </div>

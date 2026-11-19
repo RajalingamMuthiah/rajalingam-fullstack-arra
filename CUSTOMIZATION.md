@@ -81,7 +81,7 @@ neon: {
 - Update experience (Lines 10-44)
 - Update education (Lines 47-61)
 - Update skills (Lines 64-69)
-- Add your resume PDF to `public/resume.pdf`
+- Resume PDF lives at `public/Rajalingam-Muthiah-AI-Engineer-Resume.pdf`; its path is set in `src/data/portfolio.js` (`profile.resume`)
 
 #### Certificates
 - **File**: `src/pages/Certificates.jsx`

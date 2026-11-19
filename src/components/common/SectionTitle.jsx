@@ -1,7 +1,11 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
-const SectionTitle = ({ title, subtitle, align = 'center' }) => {
+/**
+ * Section header: optional small uppercase eyebrow, title, one-line subtitle.
+ * `tone="pathwise"` colours the eyebrow teal (mentoring sections only).
+ * `as` sets the heading level (h1 on page heroes, h2 elsewhere).
+ */
+const SectionTitle = ({ eyebrow, title, subtitle, align = 'center', tone = 'brand', as: Heading = 'h2', id }) => {
   const alignmentClasses = {
     left: 'text-left',
     center: 'text-center',
@@ -14,19 +18,25 @@ const SectionTitle = ({ title, subtitle, align = 'center' }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`mb-12 ${alignmentClasses[align]}`}
+      className={`mb-8 md:mb-10 ${alignmentClasses[align]}`}
     >
-      <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
-        <span className="gradient-text">{title}</span>
-      </h2>
+      {eyebrow && (
+        <p
+          className={`mb-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] ${
+            tone === 'pathwise' ? 'text-pathwise-700 dark:text-pathwise-400' : 'text-cyan-700 dark:text-neon-blue'
+          }`}
+        >
+          {eyebrow}
+        </p>
+      )}
+      <Heading id={id} className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight text-gray-900 dark:text-white mb-3">
+        {title}
+      </Heading>
       {subtitle && (
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        <p className={`text-gray-600 dark:text-gray-400 text-lg max-w-2xl ${align === 'center' ? 'mx-auto' : ''}`}>
           {subtitle}
         </p>
       )}
-      <div className={`mt-6 h-1 w-20 bg-gradient-to-r from-neon-blue to-neon-purple ${
-        align === 'center' ? 'mx-auto' : align === 'right' ? 'ml-auto' : ''
-      }`} />
     </motion.div>
   );
 };

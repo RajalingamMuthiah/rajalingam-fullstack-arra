@@ -1,137 +1,71 @@
-import React from "react";
-import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import SectionTitle from "../common/SectionTitle";
 import Card from "../common/Card";
+import { experience } from "../../data/portfolio";
 
 const Experience = () => {
-  const experiences = [
-    {
-      title: "Full Stack Developer",
-      company: "Tata Consultancy Services",
-      location: "Mumbai, India",
-      period: "June 2023 - Present",
-      description:
-        "Engineered and deployed responsive UI components for Salesforce-powered enterprise applications, implementing data quality frameworks and automated validation scripts.",
-      highlights: [
-        "Achieved 99% data accuracy through custom Python scripts",
-        "Improved user engagement with responsive UI components",
-        "Collaborated with cross-functional teams for seamless integration",
-      ],
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Workflow Analyst",
-      company: "Tata Consultancy Services",
-      location: "Mumbai, India",
-      period: "June 2021 - May 2023",
-      description:
-        "Designed visual assets for digital platforms and streamlined workflow processes to improve team efficiency.",
-      highlights: [
-        "Created visual assets using Adobe Creative Suite",
-        "Improved team efficiency through process optimization",
-        "Translated requirements into actionable specifications",
-      ],
-      color: "from-purple-500 to-pink-500",
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+    <section
+      id="experience"
+      className="scroll-mt-header py-8 md:py-10 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto">
         <SectionTitle
+          eyebrow="Career"
           title="Professional Experience"
-          subtitle="My journey in building innovative solutions"
+          subtitle="Building reliable AI systems, from document intelligence to LLM evaluation"
         />
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="space-y-8 mb-12"
-        >
-          {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card glow hover className="relative overflow-hidden">
-                {/* Timeline Connector */}
-                {index !== experiences.length - 1 && (
-                  <div className="absolute left-8 top-full h-8 w-0.5 bg-gradient-to-b from-neon-blue to-transparent hidden md:block" />
-                )}
-
-                <div className="flex flex-col md:flex-row gap-6">
-                  {/* Timeline Dot & Date */}
-                  <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-2">
+        <ol className="space-y-6">
+          {experience.map((exp) => (
+            <li key={`${exp.company}-${exp.period}`}>
+              <Card glow hover={false}>
+                <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+                  {/* Icon & date */}
+                  <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-2 md:w-44 flex-shrink-0">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${exp.color} flex items-center justify-center flex-shrink-0`}
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-600 to-purple-600 flex items-center justify-center flex-shrink-0`}
                     >
-                      <Briefcase className="w-6 h-6 text-white" />
+                      <Briefcase className="w-6 h-6 text-white" aria-hidden="true" />
                     </div>
-                    <div className="flex items-center gap-2 text-gray-400 text-sm md:rotate-0">
-                      <Calendar className="w-4 h-4" />
-                      <span className="whitespace-nowrap">{exp.period}</span>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                      <Calendar className="w-4 h-4" aria-hidden="true" />
+                      <span>{exp.period}</span>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 space-y-4">
+                  <div className="flex-1 space-y-3">
                     <div>
-                      <h3 className="text-2xl font-bold gradient-text mb-2">
+                      <h3 className="text-xl md:text-2xl font-bold mb-1">
                         {exp.title}
                       </h3>
-                      <div className="flex flex-wrap items-center gap-4 text-gray-300">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-gray-700 dark:text-gray-300">
                         <span className="font-semibold">{exp.company}</span>
-                        <div className="flex items-center gap-1 text-sm text-gray-400">
-                          <MapPin className="w-4 h-4" />
-                          <span>{exp.location}</span>
-                        </div>
+                        <span className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
+                          <MapPin className="w-4 h-4" aria-hidden="true" />
+                          {exp.location}
+                        </span>
                       </div>
                     </div>
-
-                    <p className="text-gray-300 leading-relaxed">
-                      {exp.description}
-                    </p>
-
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold text-neon-blue uppercase tracking-wide">
-                        Key Highlights
-                      </h4>
-                      <ul className="space-y-2">
-                        {exp.highlights.map((highlight, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-start gap-2 text-sm text-gray-400"
-                          >
-                            <span className="text-neon-blue mt-1">▹</span>
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <ul className="space-y-2">
+                      {exp.bullets.map((bullet) => (
+                        <li
+                          key={bullet}
+                          className="flex items-start gap-2 text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed"
+                        >
+                          <span className="text-cyan-700 dark:text-neon-blue mt-0.5" aria-hidden="true">
+                            ▹
+                          </span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </Card>
-            </motion.div>
+            </li>
           ))}
-        </motion.div>
+        </ol>
       </div>
     </section>
   );
