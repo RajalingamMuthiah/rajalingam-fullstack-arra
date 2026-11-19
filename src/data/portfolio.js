@@ -304,7 +304,12 @@ export const freelance = {
       icon: "file",
       title: "Document AI: OCR, extraction and classification",
       outcome: "Turn PDFs, claim forms and ID documents into structured, validated data.",
-      proof: [{ label: "Claims-processing and document-intelligence POCs at TransformHub" }],
+      proof: [
+        {
+          label: "Document parsing, OCR and table extraction (MedQuery ingestion pipeline)",
+          projectId: "medquery",
+        },
+      ],
     },
     {
       icon: "eye",
@@ -330,11 +335,11 @@ export const freelance = {
     },
     {
       icon: "layers",
-      title: "Full-stack AI MVPs (FastAPI + React)",
+      title: "Full-stack AI MVPs (FastAPI + React/Angular)",
       outcome: "From idea to a working app with an API and a UI you can demo.",
       proof: [
+        { label: "MedQuery", projectId: "medquery" },
         { label: "Codey", projectId: "codey" },
-        { label: "Barometers", projectId: "barometers" },
       ],
     },
   ],

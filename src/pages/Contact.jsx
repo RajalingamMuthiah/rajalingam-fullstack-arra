@@ -398,7 +398,7 @@ const Contact = () => {
                   <br />
                   💼 Open to collaboration
                   <br />
-                  📧 Usually respond within 24 hours
+                  📧 Usually reply within 1–2 days
                 </p>
               </Card>
             </motion.div>

@@ -93,8 +93,9 @@ const Footer = () => {
             © {currentYear} {profile.name}. All rights reserved.
           </p>
           <p className="text-gray-600 dark:text-gray-400 text-sm flex items-center">
-            Built with <Heart className="w-4 h-4 mx-1 text-red-500" /> using
-            React & Tailwind CSS
+            Built with{" "}
+            <Heart className="w-4 h-4 mx-1 text-red-500" aria-label="love" role="img" />{" "}
+            by {profile.name}
           </p>
         </div>
       </div>
